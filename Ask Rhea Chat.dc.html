@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #1a1a1a; }
+  a { color: #1a1a1a; text-decoration: none; }
+  a:hover { color: #2e7d32; }
+  @keyframes askDot { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+</style>
+</helmet>
+<div style="height: 100%; min-height: 0; box-sizing: border-box; display: flex; flex-direction: column; background: #ffffff; border-left: {{ edge }}; box-shadow: {{ shadow }}; font-family: Inter, system-ui, sans-serif; color: #1a1a1a;">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 14px 18px; border-bottom: 1px solid #eef0ee;">
+    <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0;">
+      <span style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; font-size: 16px; letter-spacing: -0.02em;">Ask about Rhea</span>
+      <span style="display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: #7d847d;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #2e7d32;"></span>AI assistant · knows her portfolio</span>
+    </div>
+    <button type="button" onClick="{{ close }}" aria-label="Close chat" style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 1px solid #e4e7e4; border-radius: 50%; background: #ffffff; color: #1a1a1a; font: 500 16px/1 Inter, sans-serif; cursor: pointer; transition: background .15s ease;" style-hover="background: #f3f6f3;">×</button>
+  </div>
+
+  <div ref="{{ scrollRef }}" style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 18px 16px;">
+    <div style="align-self: flex-start; max-width: 88%; padding: 11px 13px; background: #f3f6f3; border-radius: 4px 14px 14px 14px; font-size: 13.5px; line-height: 1.55;">Hi! I know Rhea's work inside out. Ask about her projects, how she works, or whether she'd fit your team.</div>
+
+    <sc-for list="{{ messages }}" as="m" hint-placeholder-count="0">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <sc-if value="{{ m.isUser }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self: flex-end; max-width: 85%; padding: 10px 13px; background: #1a1a1a; color: #ffffff; border-radius: 14px 4px 14px 14px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap;">{{ m.text }}</div>
+        </sc-if>
+        <sc-if value="{{ m.isBot }}" hint-placeholder-val="{{ false }}">
+          <div style="align-self: flex-start; max-width: 88%; padding: 11px 13px; background: #f3f6f3; border-radius: 4px 14px 14px 14px; font-size: 13.5px; line-height: 1.55; white-space: pre-wrap;">{{ m.text }}</div>
+        </sc-if>
+        <sc-if value="{{ m.hasLinks }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{ m.links }}" as="l" hint-placeholder-count="1">
+              <a href="{{ l.href }}" target="_top" style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid #2e7d32; border-radius: 999px; font-size: 12.5px; font-weight: 600; color: #2e7d32; transition: background .15s ease, color .15s ease;" style-hover="background: #2e7d32; color: #ffffff;">{{ l.label }} →</a>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+      <div style="align-self: flex-start; display: flex; align-items: center; gap: 5px; padding: 12px 14px; background: #f3f6f3; border-radius: 4px 14px 14px 14px;">
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #2e7d32; animation: askDot 1.2s infinite;"></span>
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #2e7d32; animation: askDot 1.2s .15s infinite;"></span>
+        <span style="width: 6px; height: 6px; border-radius: 50%; background: #2e7d32; animation: askDot 1.2s .3s infinite;"></span>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showSuggestions }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 4px;">
+        <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Try asking</span>
+        <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="4">
+          <button type="button" onClick="{{ s.ask }}" style="align-self: flex-start; padding: 8px 12px; border: 1px solid #e2e5e2; border-radius: 999px; background: #ffffff; color: #1a1a1a; font: 500 12.5px/1.3 Inter, sans-serif; text-align: left; cursor: pointer; transition: border-color .15s ease, background .15s ease;" style-hover="border-color: #2e7d32; background: #f3f6f3;">{{ s.text }}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="display: flex; gap: 8px; align-items: center; padding: 12px 14px 14px; border-top: 1px solid #eef0ee;">
+    <input type="text" value="{{ input }}" onChange="{{ onInput }}" onKeyDown="{{ onKey }}" placeholder="Ask anything about her work…" style="flex: 1; min-width: 0; height: 40px; box-sizing: border-box; padding: 0 14px; border: 1px solid #e2e5e2; border-radius: 999px; font: 400 13.5px/1 Inter, sans-serif; color: #1a1a1a; outline: none; background: #ffffff;" style-focus="border-color: #2e7d32;" />
+    <button type="button" onClick="{{ sendInput }}" aria-label="Send" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: 0 0 auto; border: 0; border-radius: 50%; background: #2e7d32; color: #ffffff; font: 600 16px/1 Inter, sans-serif; cursor: pointer; transition: transform .15s cubic-bezier(.34,1.5,.64,1);" style-hover="transform: scale(1.06);">↑</button>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 380, &quot;height&quot;: 640}, &quot;onClose&quot;: {&quot;editor&quot;: null, &quot;tsType&quot;: &quot;() =&gt; void&quot;}, &quot;inline&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;}}">
+const KB = `You are the portfolio assistant on Rhea Thampy's product design portfolio. Visitors (recruiters, hiring managers, designers) ask you about her work and experience. Answer ONLY from the facts below. If something isn't covered, say you don't know that detail and suggest emailing Rhea at rheathampy@gmail.com. Never invent employers, dates, numbers, clients or personal details.
+
+STYLE: Never name the client behind the HR onboarding or motor insurance projects; they are white-labelled. Never use em dashes. Confident, warm, a little witty, sounds like a person, not a job description. Plain text only (no markdown, no asterisks, no headings, no bullet symbols). Keep answers short: 2-4 sentences unless asked for detail. Refer to her as "Rhea" or "she". Never use the phrases "self-taught", "five years", or "passionate about creating meaningful experiences".
+
+BUTTONS: When the visitor asks about a specific project, wants to see work, or wants to contact/hire her, end your reply with one or more tags on the final line, e.g. [[page:arkahub]] [[page:email]]. Allowed values: onboarding, arkahub, fello, work, resume, email, linkedin. The tags become clickable buttons; never mention them in the text itself.
+
+FACTS
+- Rhea Thampy, Product Designer. 6 years of experience (six, never five). End-to-end product design across fintech, enterprise SaaS and AI-powered products.
+- Markets designed for: India, UAE, USA.
+- Education: Master's in Industrial Design (M.Des) from Florence Design Academy. Her industrial design training means she cares how a thing behaves before how it looks.
+- Headline: "I make the complex feel obvious." She likes the unglamorous products: onboarding, compliance, admin flows, insurance.
+- Career highlights across her work: products reaching 10M+ users, a +35% usage increase, a 17% uptick in onboarding success.
+- Currently available for work (from Sept 2026), open to product design roles.
+- Contact: rheathampy@gmail.com, LinkedIn linkedin.com/in/rheathampy. Resume is linked on the site.
+
+PROJECT 1: Onboarding retention (HR platform), for one of India's leading investment firms. Role: Product Designer, led the project end to end. ~6 weeks, 2024.
+- Problem: high drop-off during new-employee onboarding, hurting hiring outcomes. The portal didn't resonate with millennial and Gen-Z hires: no personalisation, outdated rigid flow, poor first impressions, not mobile-friendly.
+- Constraint: built on a low-code platform: limited layout flexibility, no advanced interactions or micro-animations, restricted styling. Constraints pushed focus on clarity, structure and flow.
+- Research: benchmarked onboarding at SHRM, HBR, TechCrunch, Forbes and Gallup; in-depth interviews with recent hires and HR. Findings: users want clarity, efficiency, structure; motivated by confidence, belonging, engagement; they skim and skip redundant steps; pain points were confusing flows, disconnection, anxiety.
+- Module 1 (clarity and confidence from Day One): clear structured flow, visual timelines and task highlighting, progress tracking, human support touchpoints so new hires could reach team members/managers early, conversational tone.
+- Module 2 (streamlining): removed repetitive steps, showed total step count, auto-fill from uploaded documents, colour/visual progress cues.
+- Impact: 9.1 onboarding experience score, 80% reduction in employee queries, 17% uptick in onboarding success year over year.
+- Takeaways: restrictions sharpened focus; early stakeholder collaboration with HR, devs and business was critical; end-to-end ownership including client expectations and leading the design team.
+
+Outcome note for Arkahub: when the project started they had one client; they now serve over 100 customers across multiple cities in India.
+Hobbies: crafts (clay, crochet), cooking (long projects, new recipes and cuisines), sketching, travel.
+PROJECT 2: Arkahub (residential rooftop solar, India). Freelance, UX Designer, July 2024, ~2 months, worked with a UI designer and the founders. Live, shipped website.
+- Context: one of India's first residential rooftop solar companies (Bengaluru, Hyderabad, Pune, Nagpur), backed by Kae Capital and Antler. The business was very new, only one client when the project started, and grew a lot afterwards. The old site was a static information page that didn't convert.
+- Brief: revamp the website and make it drive action. Scope: homepage, How It Works, Learn/FAQs, Design Your Solar flow, Calculate My Payback, EMI Plans, About, subsidy explainer, plus a satellite roof-view concept.
+- Problems: conversion, clarity (savings/warranty buried), trust and warmth (solar is unfamiliar, and Arkahub had no reviews or reference installs yet), engagement.
+- Research in three layers: Indian solar companies (dense, technical, written for people who already understand solar); international residential solar (lead with savings and peace of mind, social proof, low-effort path to a quote); indirect/category builders (lead with outcome, follow with how, earn the ask). Principle: reduce reading, increase feeling.
+- User map: with no data or user base to survey, Rhea built an audience model herself, a hypothesis of who lands on a site like this. Four types: Casual Explorer (needs education, ROI calculator), Solution Seeker (USPs, trust, offerings), Quote Collector (transparent pricing, financing, calculators), Validation Seeker (social proof, reassurance). Mapped to Awareness, Interest, Desire, Action, giving one site narrative that serves all four.
+- Key decision: in the multi-step Design Your Solar flow the client wanted contact details at step one. Rhea recommended asking at the end, as the gateway to the personalised results, a user who has invested time answering questions is far more motivated to finish than one asked for a phone number before seeing any value. This was one of several UX negotiations she won.
+- Subsidy: homeowners can get a central government subsidy via PM Surya Ghar: Muft Bijli Yojana. The scheme is well publicised, but most people don't know they qualify, what it's worth, or how to claim it. Rhea made it structural: surfaced on the homepage, explained in Learn, and built a subsidy calculation into Design Your Solar so users see the net price.
+- Solution: lead with outcome, surface trust signals early, cut copy, warmer homeowner-friendly tone, product range (ArkaCore, ArkaSky, ArkaScape) given room. Three pathways every CTA feeds into: Design Your Solar, Calculate My Payback, EMI Eligibility.
+- Reflection: "When you ask for something matters as much as what you ask for." Pushing back is part of the job. With more time she'd user-test drop-off points in the flow and simplify the satellite roof view.
+
+PROJECT 3: Fello, an AI-native real estate CRM (US market). Under NDA. Product Designer, ~3 months. Detailed visuals can only be shared in a walkthrough/interview.
+- Fello was evolving from a marketing CRM extension into an independent AI-powered platform. Rhea designed communication infrastructure letting teams call, text and email clients from Fello.
+- Core ownership: phone number and calling setup: buying numbers and Copilot Seats, number porting, and compliance (business registration, CNAM caller-ID, number integrity checks, 10DLC registration). She collapsed multiple long regulatory flows into one three-step setup by combining related steps, auto-filling known data, and using AI to draft the sample messages 10DLC requires.
+- Also designed team management (seats, permissions, number assignment) and call settings (voicemail, forwarding) for individuals and admins; redesigned the communication system for multi-participant conversations; simplified two-way CRM integration and sync into a single guided step.
+- Research: Aircall, JustCall (calling platforms), Follow Up Boss, HubSpot (CRMs with built-in comms). Worked closely with a PM and the product head.
+- She left before launch, so no post-launch metrics; she'd measure setup completion, time to first call, and support/compliance load.
+
+PROJECT 4: a leading Indian fintech Motor Insurance (fintech, India). Case study is still being prepared; details aren't published yet. Suggest asking Rhea directly.`;
+
+const PAGES = {
+  onboarding: { label: 'Onboarding case study', href: 'Onboarding Retention.dc.html' },
+  arkahub: { label: 'Arkahub case study', href: 'Arkahub.dc.html' },
+  fello: { label: 'Fello case study', href: 'Fello.dc.html' },
+  work: { label: 'All work', href: 'Portfolio Home.dc.html#work' },
+  resume: { label: 'Resume', href: '/assets/Rhea-Thampy-Senior-Product-Designer.pdf' },
+  email: { label: 'Email Rhea', href: 'mailto:rheathampy@gmail.com' },
+  linkedin: { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rheathampy/' }
+};
+
+const SUGGESTIONS = [
+  'Give me the 30-second version of Rhea',
+  'Has she designed for AI products?',
+  'What was the hardest call on Arkahub?',
+  'Is she available? How do I reach her?'
+];
+
+class Component extends DCLogic {
+  state = { messages: [], input: '', loading: false };
+  scrollRef = React.createRef();
+
+  componentDidUpdate() {
+    const el = this.scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+
+  async send(text) {
+    const q = (text || '').trim();
+    if (!q || this.state.loading) return;
+    const history = [...this.state.messages, { role: 'user', text: q, links: [] }];
+    this.setState({ messages: history, input: '', loading: true });
+    const links = [];
+    try {
+      const reply = await window.claude.complete({
+        system: KB,
+        max_tokens: 600,
+        messages: history.map((m) => ({ role: m.role, content: m.text }))
+      });
+      let raw = String(reply || '');
+      raw = raw.replace(/\[\[page:([a-z]+)\]\]/gi, (_, k) => {
+        const p = PAGES[k.toLowerCase()];
+        if (p && !links.some((l) => l.href === p.href)) links.push(p);
+        return '';
+      });
+      const clean = raw.replace(/\*\*/g, '').replace(/^#+\s*/gm, '').replace(/[ \t]+\n/g, '\n').trim();
+      this.setState((s) => ({ loading: false, messages: [...s.messages, { role: 'assistant', text: clean || 'Hmm, I lost my train of thought. Try asking that another way?', links }] }));
+    } catch (e) {
+      this.setState((s) => ({ loading: false, messages: [...s.messages, { role: 'assistant', text: "I can't reach my notes right now. The real Rhea answers email though: rheathampy@gmail.com.", links: [PAGES.email] }] }));
+    }
+  }
+
+  renderVals() {
+    const { messages, input, loading } = this.state;
+    const inline = !!this.props.inline;
+    return {
+      edge: inline ? '0 solid transparent' : '1px solid #e4e7e4',
+      shadow: inline ? 'none' : '-18px 0 44px rgba(26,26,26,0.10)',
+      messages: messages.map((m) => ({
+        text: m.text,
+        isUser: m.role === 'user',
+        isBot: m.role === 'assistant',
+        hasLinks: m.role === 'assistant' && m.links.length > 0,
+        links: m.links
+      })),
+      loading,
+      input,
+      showSuggestions: messages.length === 0 && !loading,
+      suggestions: SUGGESTIONS.map((t) => ({ text: t, ask: () => this.send(t) })),
+      onInput: (e) => this.setState({ input: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') this.send(this.state.input); },
+      sendInput: () => this.send(this.state.input),
+      close: () => { if (this.props.onClose) this.props.onClose(); },
+      scrollRef: this.scrollRef
+    };
+  }
+}
+</script>
+</body>
+</html>

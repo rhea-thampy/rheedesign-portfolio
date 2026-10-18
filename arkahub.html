@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #ffffff; color: #1a1a1a; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #1a1a1a; text-decoration: none; }
+  a:hover { color: #2e7d32; }
+  ::selection { background: #2e7d32; color: #fff; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&amp;display=swap" rel="stylesheet">
+</helmet>
+<div style="--head: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 1600px; margin: 0 auto; padding: 0 clamp(22px, 4.5vw, 80px);">
+
+  <nav style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0 20px; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);">
+    <a href="/" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 19px; letter-spacing: -0.02em;">Rhea Thampy</a>
+    <a href="/#work" style="font-size: 15px; font-weight: 500; transition: color .2s;" style-hover="color: #2e7d32;">← Back to work</a>
+  </nav>
+
+  <header style="max-width: 1100px; padding: clamp(40px, 8vh, 88px) 0 clamp(32px, 5vh, 56px);">
+    <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Case study · Residential solar · 2024</span>
+    <h1 style="font-family: var(--head); font-weight: 700; font-size: clamp(38px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -0.04em; margin: 22px 0 0; text-wrap: balance;">
+      Making Indian homes, solar homes.
+    </h1>
+    <p style="font-size: clamp(16px, 1.3vw, 18px); line-height: 1.65; color: #3a3f3a; max-width: 68ch; margin: 28px 0 0; text-wrap: pretty;">
+      A full website redesign for one of India's first residential rooftop solar companies, turning an information portal into a conversion engine built on warmth and trust.
+    </p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px 40px; padding: clamp(28px, 4vh, 40px) 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">My role</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">UX Designer (Freelance)</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Timeline</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">2024 · 2 months</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Domain</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Clean Energy · Consumer Web</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Team</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">UI designer + founders</span>
+    </div>
+  </section>
+
+  <figure style="margin: clamp(32px, 5vh, 56px) 0 0;">
+    <img src="/assets/arkahub-cover.webp" alt="Redesigned Arkahub homepage" style="display: block; width: 100%; height: clamp(320px, 44vw, 620px); object-fit: cover; object-position: 50% 60%;">
+  </figure>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+
+    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
+      <a href="#brief" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Background</a>
+      <a href="#problem" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;What we solved for</a>
+      <a href="#research" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">03 &nbsp;Research</a>
+      <a href="#usermap" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">04 &nbsp;User map &amp; journeys</a>
+      <a href="#flow" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">05 &nbsp;When to ask for contact</a>
+      <a href="#subsidy" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">06 &nbsp;The unclaimed subsidy</a>
+      <a href="#content" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">07 &nbsp;Stripping back the content</a>
+      <a href="#solution" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">08 &nbsp;The solution</a>
+      <a href="#pages" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">09 &nbsp;Pages designed</a>
+      <a href="#reflection" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">10 &nbsp;What I'm taking with me</a>
+    </nav>
+
+    <main style="display: flex; flex-direction: column; gap: clamp(56px, 9vh, 104px); min-width: 0;">
+
+      <section id="brief" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Background.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Arkahub is <strong style="font-weight: 600; color: #1a1a1a;">one of India's first residential rooftop solar companies</strong>, offering structured solar solutions to homeowners across Bengaluru, Hyderabad, Pune, and Nagpur. Backed by institutional investors including Kae Capital and Antler, they were early: one client on the books, a product that worked, and a website that was doing none of the convincing.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The site conveyed basic information but did little to convert visitors or communicate the real value of switching to solar. For a product that asks homeowners to make a significant financial and lifestyle decision, it wasn't doing nearly enough work.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The brief was clear in direction and open in scope: <strong style="font-weight: 600; color: #1a1a1a;">revamp the website and make it drive action.</strong></p>
+      </section>
+
+      <section id="problem" style="display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What we solved for.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">01</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Conversion</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">No meaningful pathways toward a quote, a consultation, or even a clear sense of what the next step was.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">02</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Clarity</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Financial savings, warranty terms and maintenance coverage were buried in copy rather than made legible.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">03</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Trust &amp; warmth</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Home solar is new to most Indian households, and Arkahub was new too: one client, no reviews, no reference installs. Credibility had to come from the design itself.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">04</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Engagement</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">There was no reason to stay, explore, or come back.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Research, in three layers.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Arkahub operates in a new market category, so a single competitive sweep wouldn't have said much. I looked at three different sets of players, each answering a different question.</p>
+
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">L1</span>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Indian solar companies</span>
+              <span style="font-size: 13.5px; color: #8a908a;">Residential &amp; commercial</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">The pattern was consistent: dense, technical, aimed at people who already understood solar.</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 16px; letter-spacing: -0.015em; color: #2e7d32;">Almost none were selling the idea to someone who didn't.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">L2</span>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">International residential solar</span>
+              <span style="font-size: 13.5px; color: #8a908a;">US &amp; Europe: high adoption</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">They led with financial benefit, built trust through social proof and warranty clarity early, and made the path to a quote feel low-effort.</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 16px; letter-spacing: -0.015em; color: #2e7d32;">They weren't selling technology. They were selling savings and peace of mind.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">L3</span>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Indirect &amp; category builders</span>
+              <span style="font-size: 13.5px; color: #8a908a;">New-to-market concepts in India</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Arkahub wasn't only competing for solar customers; it was competing against inertia and unfamiliarity. Adjacent brands showed how to introduce an unfamiliar idea.</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 16px; letter-spacing: -0.015em; color: #2e7d32;">Lead with outcome, follow with how, earn the ask.</span>
+            </div>
+          </div>
+        </div>
+
+        <blockquote style="margin: 12px 0 0; padding: 0; border-left: 3px solid #2e7d32; padding-left: clamp(20px, 3vw, 40px);">
+          <p style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.25; letter-spacing: 0em; margin: 0; max-width: 26ch; text-wrap: balance">Reduce reading. Increase feeling.</p>
+          <p style="font-size: 16px; line-height: 1.6; color: #6c726c; margin: 18px 0 0; max-width: 62ch;">Show people what solar means for their home and their bills before asking them to engage with any complexity.</p>
+        </blockquote>
+      </section>
+
+      <section id="usermap" style="display: flex; flex-direction: column; gap: 30px; scroll-margin-top: 100px;">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">User map.</h2>
+          <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">There was no data or user base to survey since the product was very new, so I built an audience model myself: <strong style="font-weight: 600; color: #1a1a1a;">a hypothesis of who lands on a site like this</strong>, drawn from how people research an unfamiliar purchase. Four types, each sitting at a different stage in the journey, each needing something different from the same page.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0; min-width: 0;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 28px; padding-bottom: 14px; border-bottom: 1px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 14px; letter-spacing: -0.01em;">User type</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 14px; letter-spacing: -0.01em;">Concern</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 14px; letter-spacing: -0.01em;">What they're looking for</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 14px; letter-spacing: -0.01em;">What we can do</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px 28px; padding: 24px 0; border-bottom: 1px solid #ececec; align-items: start;">
+            <span style="display: flex; gap: 10px;"><span style="font-family: var(--head); font-weight: 700; font-size: 14px; color: #8a908a; padding-top: 2px;">01</span><span style="font-family: var(--head); font-weight: 600; font-size: 15px; letter-spacing: -0.02em;">Casual Explorer</span></span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Lack of information</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Understand solar energy, cost, feasibility, ROI</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Educate about solar, make the process look simple, ROI calculator, showcase benefits</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px 28px; padding: 24px 0; border-bottom: 1px solid #ececec; align-items: start;">
+            <span style="display: flex; gap: 10px;"><span style="font-family: var(--head); font-weight: 700; font-size: 14px; color: #8a908a; padding-top: 2px;">02</span><span style="font-family: var(--head); font-weight: 600; font-size: 15px; letter-spacing: -0.02em;">Solution Seeker</span></span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Is this right for me?</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Compare vendors, understand options and offerings</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Showcase brand USPs, build trust, social proof, show offerings</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px 28px; padding: 24px 0; border-bottom: 1px solid #ececec; align-items: start;">
+            <span style="display: flex; gap: 10px;"><span style="font-family: var(--head); font-weight: 700; font-size: 14px; color: #8a908a; padding-top: 2px;">03</span><span style="font-family: var(--head); font-weight: 600; font-size: 15px; letter-spacing: -0.02em;">Quote Collector</span></span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Who has the best ROI?</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Evaluate offers, compare ROI</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Transparent pricing options, address financial insecurities, calculators</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px 28px; padding: 24px 0; border-bottom: 1px solid #ececec; align-items: start;">
+            <span style="display: flex; gap: 10px;"><span style="font-family: var(--head); font-weight: 700; font-size: 14px; color: #8a908a; padding-top: 2px;">04</span><span style="font-family: var(--head); font-weight: 600; font-size: 15px; letter-spacing: -0.02em;">Validation Seeker</span></span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Am I making the right choice?</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Validate choice, reassurance</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Social proof, USPs, enable trust in the brand</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 18px; padding-top: clamp(24px, 4vh, 44px);">
+          <h3 style="font-family: var(--head); font-weight: 700; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: -0.03em; margin: 0"><span style="font-weight: 400; font-size: clamp(30px, 3.4vw, 46px)">User journeys.</span></h3>
+          <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Mapping each type against the funnel stage they arrive at turned the model into something actionable. It told me what had to exist on the page, which tool had to be within reach at that moment, and gave me <strong style="font-weight: 600; color: #1a1a1a;">a single narrative for the site that could serve all four at once</strong>, rather than four disconnected journeys.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px 28px; background: #f5f7f5;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Awareness</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Casual Explorer</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Source</span>
+              <span style="font-size: 15px; line-height: 1.55; color: #3a3f3a;">Google, friends and family, news, blogs, marketing links</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Tools needed</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Homepage hook statement</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Solar calculator: ROI, savings, bill reduction</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Address input to check feasibility</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Benefits of solar in Indian homes: stories, payback</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Process explained: custom design, in-house install</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px 28px; background: #f5f7f5;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Interest</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Solution Seeker</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Source</span>
+              <span style="font-size: 15px; line-height: 1.55; color: #3a3f3a;">Google, friends and family, comparison sites, marketing links</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Tools needed</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Clear value proposition</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">What we offer: products, process</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Brand USPs: custom design, post-purchase app, one-click service</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Trust factors: certifications, badges, partnerships, DISCOM approvals</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Pricing estimator</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px 28px; background: #f5f7f5;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Desire</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Quote Collector</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Source</span>
+              <span style="font-size: 15px; line-height: 1.55; color: #3a3f3a;">Recommendations, ads, salespeople</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Tools needed</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Clear value proposition</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Interactive quote generator</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Financing options and subsidy</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Pricing estimator</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 20px; padding: 30px 28px; background: #f5f7f5;">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Action</span>
+              <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Validation Seeker</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Source</span>
+              <span style="font-size: 15px; line-height: 1.55; color: #3a3f3a;">Salesperson, guided link (WhatsApp, social)</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Tools needed</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Why us?</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Support and contact</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Book a free consultation or site visit</span>
+              <span style="font-size: 15px; line-height: 1.5; color: #3a3f3a;">Trust factors: certifications, badges, partnerships, DISCOM approvals</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="flow" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Key decision</span>
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: -14px 0 0; text-wrap: balance;">When to ask for contact details.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">One of the UX negotiations on this project sat inside the <strong style="font-weight: 600; color: #1a1a1a;">Design Your Solar</strong> flow, a multi-step process that walked users through their roof, their energy needs, and the right configuration for their home. The client's instinct was to capture contact information at step one, before drop-off. My recommendation was the opposite.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 4px;">
+          <div style="display: flex; flex-direction: column; gap: 18px; padding: 30px 28px; border: 1px solid #ececec;">
+            <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Proposed: contact first</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #1a1a1a; color: #ffffff;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; opacity: .55;">01</span>
+                <span style="font-family: var(--head); font-weight: 600; font-size: 15px; letter-spacing: -0.015em;">Name, phone, email</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #f5f7f5; color: #6c726c;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; opacity: .6;">02</span>
+                <span style="font-size: 15px;">Roof details</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #f5f7f5; color: #6c726c;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; opacity: .6;">03</span>
+                <span style="font-size: 15px;">Energy needs</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #f5f7f5; color: #6c726c;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; opacity: .6;">04</span>
+                <span style="font-size: 15px;">Recommendation</span>
+              </div>
+            </div>
+            <span style="font-size: 14.5px; line-height: 1.55; color: #6c726c;">The ask lands before the user has seen a single reason to answer it.</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 18px; padding: 30px 28px; border: 1px solid #2e7d32;">
+            <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Shipped: contact last</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #f5f7f5;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #8a908a;">01</span>
+                <span style="font-size: 15px;">Roof details</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #f5f7f5;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #8a908a;">02</span>
+                <span style="font-size: 15px;">Energy needs</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #f5f7f5;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #8a908a;">03</span>
+                <span style="font-size: 15px;">Configuration</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #2e7d32; color: #ffffff;">
+                <span style="font-family: var(--head); font-weight: 700; font-size: 12px; opacity: .65;">04</span>
+                <span style="font-family: var(--head); font-weight: 600; font-size: 15px; letter-spacing: -0.015em;">Contact → see your results</span>
+              </div>
+            </div>
+            <span style="font-size: 14.5px; line-height: 1.55; color: #3a3f3a;">Contact capture becomes the gateway to something the user already wants.</span>
+          </div>
+        </div>
+
+        <blockquote style="margin: 16px 0 0; padding: clamp(32px, 5vw, 56px) clamp(24px, 4vw, 56px); background: #f5f7f5;">
+          <p style="font-family: var(--head); font-weight: 400; font-size: clamp(23px, 2.9vw, 40px); line-height: 1.25; letter-spacing: 0em; margin: 0; max-width: 40ch; text-wrap: pretty; text-align: left">A user who has already invested time answering questions about their roof and their electricity bill is far more motivated to finish than one asked for their phone number before they've seen any value.</p>
+          <p style="font-size: 15px; line-height: 1.6; color: #6c726c; margin: 22px 0 0; max-width: 62ch; text-align: left">They've built a stake in the outcome. Asking after that investment, rather than before, raises both the likelihood they'll give their details and the accuracy of what they give.</p>
+        </blockquote>
+
+      </section>
+
+      <section id="subsidy" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The subsidy most people never claim.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Indian homeowners are eligible for a central government subsidy on rooftop solar through <strong style="font-weight: 600; color: #1a1a1a;">PM Surya Ghar: Muft Bijli Yojana</strong>. The scheme is well publicised; the government is vocal about it. The gap isn't publicity, it's <strong style="font-weight: 600; color: #1a1a1a;">practical understanding</strong>: most homeowners don't know they qualify, what it's worth to them, or how to actually claim it.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">That made it the most persuasive fact Arkahub had, and the old site barely mentioned it. Rather than treat it as a footnote, I made it a <strong style="font-weight: 600; color: #1a1a1a;">structural part of how price is communicated</strong>, surfaced on the homepage, explained in the Learn section, and built into a subsidy calculation inside the Design Your Solar flow so users see what they actually pay.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">Say it early</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">A homeowner scanning the homepage should learn the government pays for part of this before they learn anything technical.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">Show the real number</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Subsidy calculation was built into Design Your Solar, so the recommendation shows cost before subsidy, subsidy applied, and net payable, not a price with an asterisk.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">Remove the paperwork fear</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Eligibility and claim steps were written in plain language, so a subsidy read as a benefit rather than a bureaucratic risk.</span>
+          </div>
+        </div>
+
+        <figure style="margin: 8px 0 0; display: flex; flex-direction: column; gap: 12px;">
+          <div style="border: 1px solid #e2e5e2; border-radius: 8px; background: #ffffff; padding: clamp(20px, 4vw, 48px); display: flex; justify-content: center;">
+            <img src="/assets/arkahub-subsidy-plans.png" alt="Subsidised vs non-subsidised plan cards, with subsidy applied in the price" style="display: block; width: 100%; max-width: 510px; height: auto;">
+          </div>
+          <figcaption style="font-size: 13.5px; color: #8a908a;">The cost breakdown, with subsidy applied in line rather than disclosed later.</figcaption>
+        </figure>
+      </section>
+
+      <section id="content" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Stripping back the content.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The original site leaned heavily on text: detailed explanations, technical specifications, lengthy process descriptions. I pushed to reduce the reading burden on every page.</p>
+
+        <blockquote style="margin: 4px 0; padding: 0; border-left: 3px solid #2e7d32; padding-left: clamp(20px, 3vw, 40px);">
+          <p style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.25; letter-spacing: 0em; margin: 0; max-width: 24ch; text-wrap: balance;">They needed to feel the benefit first.</p>
+          <p style="font-size: 16px; line-height: 1.6; color: #6c726c; margin: 18px 0 0; max-width: 62ch;">A user who doesn't understand solar won't read their way into understanding it. Once they're engaged, they'll seek out the detail themselves.</p>
+        </blockquote>
+
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">In practice: cutting copy, increasing visual weight, and restructuring sections so that key facts, warranty terms, maintenance coverage, investor backing, were <strong style="font-weight: 600; color: #1a1a1a;">scannable rather than buried</strong>.</p>
+
+        <figure style="margin: 8px 0 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+          <div style="display: inline-flex; gap: 4px; padding: 4px; background: #f0f3f0; border-radius: 999px;">
+            <button type="button" onClick="{{ homeBefore }}" style="{{ homeBeforeStyle }}">Before</button>
+            <button type="button" onClick="{{ homeAfter }}" style="{{ homeAfterStyle }}">After</button>
+          </div>
+          <div style="width: 100%; display: flex; flex-direction: column; border: 1px solid #e2e5e2; border-radius: 8px; overflow: hidden; background: #ffffff;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #eceeec; background: #fafbfa;">
+              <span style="display: flex; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span></span>
+              <span style="flex: 1; font-size: 12px; color: #8a908a; text-align: center;">arkahub.in</span>
+              <span style="font-size: 12px; color: #6c726c; display: inline-flex; align-items: center; gap: 6px;">Scroll to explore <span aria-hidden="true">↓</span></span>
+            </div>
+            <div style="position: relative;">
+              <div ref="{{ homeScrollRef }}" onScroll="{{ onHomeScroll }}" style="height: clamp(380px, 68vh, 720px); overflow-y: auto; overscroll-behavior: contain;">
+                <div style="display: {{ beforeDisplay }};">
+                  <sc-if value="{{ beforeOk }}" hint-placeholder-val="{{ true }}">
+                    <img src="/assets/arkahub-home-before.jpg" alt="Homepage: before" onError="{{ beforeErr }}" style="display: block; width: 100%; height: auto;">
+                  </sc-if>
+                  <sc-if value="{{ beforeMissing }}" hint-placeholder-val="{{ false }}">
+                    <div style="min-height: clamp(380px, 68vh, 720px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; box-sizing: border-box; background: repeating-linear-gradient(135deg, #f6f7f6 0 12px, #f0f2f0 12px 24px); color: #6c726c; font-size: 13.5px;">Homepage before: screenshot missing</div>
+                  </sc-if>
+                </div>
+                <div style="display: {{ afterDisplay }};">
+                  <sc-if value="{{ afterOk }}" hint-placeholder-val="{{ true }}">
+                    <img src="/assets/arkahub-home-after.jpg" alt="Homepage: after" onError="{{ afterErr }}" style="display: block; width: 100%; height: auto;">
+                  </sc-if>
+                  <sc-if value="{{ afterMissing }}" hint-placeholder-val="{{ false }}">
+                    <div style="min-height: clamp(380px, 68vh, 720px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; box-sizing: border-box; background: repeating-linear-gradient(135deg, #f6f7f6 0 12px, #f0f2f0 12px 24px); color: #6c726c; font-size: 13.5px;">Homepage after: screenshot missing</div>
+                  </sc-if>
+                </div>
+              </div>
+              <div aria-hidden="true" style="position: absolute; top: 10px; right: 6px; bottom: 10px; width: 3px; border-radius: 2px; background: rgba(26,26,26,0.08); pointer-events: none;">
+                <div style="width: 100%; height: {{ homePct }}; border-radius: 2px; background: #2e7d32; transition: height .08s linear;"></div>
+              </div>
+            </div>
+          </div>
+          <figcaption style="font-size: 13.5px; color: #8a908a;">Homepage: text-heavy information portal, and the restructured version.</figcaption>
+        </figure>
+      </section>
+
+      <section id="solution" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The solution.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The homepage was restructured to <strong style="font-weight: 600; color: #1a1a1a;">lead with outcome</strong>, what solar means for a homeowner, before introducing product complexity. Trust signals were surfaced earlier and made visually prominent. The product range (Arka Core, Arka Sky, Arka Scape) was given enough visual space to feel considered, not listed.</p>
+
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The tone shifted too. The previous version read like it was written for a procurement officer. The redesign speaks to a homeowner who is curious but cautious: warm, clear, and consistently reinforcing that switching to solar is a decision that pays for itself.</p>
+
+        <p style="margin: 0; font-size: 16px; line-height: 1.65; color: #6c726c; max-width: 92ch;">Every call to action across the site feeds into a guided flow rather than a contact form. Financing (EMI) sits inside these flows, not as a separate path.</p>
+        <div style="display: flex; flex-direction: column; gap: clamp(28px, 4vw, 44px); padding: clamp(28px, 4.5vw, 64px); background: #f3f5f2; border-radius: 12px; margin-top: 12px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 32px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c726c; font-weight: 500;">Flow 01 · Web + Mobile</span>
+              <span style="font-family: var(--head); font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -0.03em;">Calculate my payback</span>
+            </div>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 44ch;">For early browsers. A few questions about the home, then the number that matters, with nothing asked in return.</span>
+          </div>
+          <div style="border: 1px solid #dfe3df; border-radius: 10px; overflow: hidden; background: #ffffff; box-shadow: 0 24px 48px -28px rgba(26,26,26,0.28);">
+              <div style="display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid #eceeec; background: #fafbfa;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span></div>
+              <img src="/assets/payback-web.png" alt="Payback calculator: household details, web" style="display: block; width: 100%; height: auto;">
+            </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: clamp(16px, 2.5vw, 32px);">
+            <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+              <div style="aspect-ratio: 412 / 860; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfe3df; border-radius: 22px; background: #ffffff; box-shadow: 0 20px 40px -26px rgba(26,26,26,0.3);"><img src="/assets/payback-m1.png" alt="Household details, mobile" style="display: block; width: 100%; height: auto;"></div>
+              <figcaption style="display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: #3a3f3a;"><span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #2e7d32;">01</span>Household</figcaption>
+            </figure>
+            <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+              <div style="aspect-ratio: 412 / 860; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfe3df; border-radius: 22px; background: #ffffff; box-shadow: 0 20px 40px -26px rgba(26,26,26,0.3);"><img src="/assets/payback-m2.png" alt="Appliance usage, mobile" style="display: block; width: 100%; height: auto;"></div>
+              <figcaption style="display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: #3a3f3a;"><span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #2e7d32;">02</span>Appliances</figcaption>
+            </figure>
+            <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+              <div style="aspect-ratio: 412 / 860; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfe3df; border-radius: 22px; background: #ffffff; box-shadow: 0 20px 40px -26px rgba(26,26,26,0.3);"><img src="/assets/payback-m3.png" alt="Payback result, mobile" style="display: block; width: 100%; height: auto;"></div>
+              <figcaption style="display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: #3a3f3a;"><span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #2e7d32;">03</span>Your payback</figcaption>
+            </figure>
+          </div>
+          <span style="font-size: 13px; color: #6c726c;">Scroll inside each phone to see the full screen.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: clamp(28px, 4vw, 44px); padding: clamp(28px, 4.5vw, 64px); background: #f3f5f2; border-radius: 12px; margin-top: 12px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 32px;">
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6c726c; font-weight: 500;">Flow 02 · Web + Mobile</span>
+              <span style="font-family: var(--head); font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -0.03em;">Design your solar</span>
+            </div>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 44ch;">For browsers closer to buying. Roof, usage and plan, with the subsidy already applied to the price they see.</span>
+          </div>
+          <div style="border: 1px solid #dfe3df; border-radius: 10px; overflow: hidden; background: #ffffff; box-shadow: 0 24px 48px -28px rgba(26,26,26,0.28);">
+              <div style="display: flex; gap: 6px; padding: 10px 14px; border-bottom: 1px solid #eceeec; background: #fafbfa;"><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #dcdfdc;"></span></div>
+              <div style="width: 100%; aspect-ratio: 1200 / 877;"><img src="/assets/arkahub-dys-web.webp" alt="Design your solar: web screen" style="display: block; width: 100%; height: 100%; object-fit: cover;"></div>
+            </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: clamp(16px, 2.5vw, 32px);">
+            <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+              <div style="aspect-ratio: 412 / 860; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfe3df; border-radius: 22px; background: #ffffff; box-shadow: 0 20px 40px -26px rgba(26,26,26,0.3);"><img src="/assets/dys-m1.png" alt="Property details, mobile" style="display: block; width: 100%; height: auto;"></div>
+              <figcaption style="display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: #3a3f3a;"><span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #2e7d32;">01</span>Property</figcaption>
+            </figure>
+            <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+              <div style="aspect-ratio: 412 / 860; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfe3df; border-radius: 22px; background: #ffffff; box-shadow: 0 20px 40px -26px rgba(26,26,26,0.3);"><img src="/assets/dys-m2.png" alt="Your solar system and plan, mobile" style="display: block; width: 100%; height: auto;"></div>
+              <figcaption style="display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: #3a3f3a;"><span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: #2e7d32;">02</span>Your system</figcaption>
+            </figure>
+            <figure style="margin: 0; display: flex; flex-direction: column; gap: 14px; min-width: 0;">
+              <div style="aspect-ratio: 412 / 860; overflow-y: auto; overscroll-behavior: contain; border: 1px solid #dfe3df; border-radius: 22px; background: #ffffff; box-shadow: 0 20px 40px -26px rgba(26,26,26,0.3);"><img src="/assets/dys-m3.png" alt="Consultation booking, mobile" style="display: block; width: 100%; height: auto;"></div>
+              <figcaption style="display: flex; gap: 10px; align-items: baseline; font-size: 14px; color: #3a3f3a;"><span style="font-family: var(--head); font-weight: 700; font-size: 12px; color: rgb(46, 125, 50);">03</span>Summary<br></figcaption>
+            </figure>
+          </div>
+          <a href="https://www.figma.com/design/1WgGDUNzq7Bg9dZC7gZhUp/Arkahub-Portfolio-file?node-id=191-1311" target="_blank" style="align-self: flex-start; font-size: 14px; font-weight: 500; color: #1a1a1a; border-bottom: 1px solid #1a1a1a; padding-bottom: 2px;" style-hover="color: #2e7d32; border-color: #2e7d32;">View the full flow in Figma ↗</a>
+        </div>
+        <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px;">
+          <img src="/assets/arkahub-products.png" alt="Product range: Arka Core, Arka Sky, Arka Scape" style="display: block; width: 100%; height: auto; border-radius: 8px;">
+          <figcaption style="font-size: 13.5px; color: #8a908a;">The product range, given room to feel considered.</figcaption>
+        </figure>
+      </section>
+
+      <section id="pages" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Pages designed.</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">Homepage</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">How It Works</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">Learn / FAQs</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">Design Your Solar</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">Calculate My Payback</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">EMI Plans</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">About</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px solid #e2e5e2; border-radius: 999px; padding: 9px 18px;">Subsidy explainer</span>
+          <span style="font-family: var(--head); font-weight: 600; font-size: 15px; border: 1px dashed #cfd4cf; color: #6c726c; border-radius: 999px; padding: 9px 18px;">Satellite roof view (concept)</span>
+        </div>
+      </section>
+
+      <section id="reflection" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What I'm taking with me.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Arkahub was an exercise in designing for behaviour change as much as conversion. The product itself is genuinely good; the challenge was giving people a reason to believe that before asking them to commit.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">When we started, Arkahub had <strong style="font-weight: 600; color: #1a1a1a;">one client</strong>. Today they serve <strong style="font-weight: 600; color: #1a1a1a;">over 100 customers across multiple cities in India</strong>.</p>
+
+
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">01</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Pushing back is part of the job.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Moving contact capture to the end wasn't a radical idea, but it meant understanding the psychology of the journey and being willing to challenge a business instinct that felt safe and would have undermined the experience.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">02</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">What I'd do with more time.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">User-test the conversion flow, specifically the drop-off points in the multi-step process, and explore whether the satellite roof view could be simplified enough to be feasible without the full engineering lift it originally needed.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">03</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">When you ask for something matters as much as what you ask for.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">The same form, placed at the end of a flow rather than the start, stops being a toll gate and becomes the thing the user is reaching for. Timing is a design decision, not a detail.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
+    <a href="/fello" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+      <span style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
+        <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">Making an AI agent's work auditable</span>
+      </span>
+      <span style="font-size: 14px; font-weight: 500; color: #2e7d32;">Read it →</span>
+    </a>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin-top: clamp(48px, 8vh, 88px); padding-top: 22px; border-top: 1px solid #ececec; font-size: 13px; color: #8a908a;">
+      <span>© Rhea Thampy, 2026</span>
+      <a href="/">← Back to work</a>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const OFF = 'display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border: 0; border-radius: 999px; background: transparent; color: #6c726c; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.02em; cursor: pointer; transition: background .15s ease-out, color .15s ease-out;';
+const ON = 'display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border: 0; border-radius: 999px; background: #ffffff; color: #1a1a1a; font: 600 13px/1 Inter, sans-serif; letter-spacing: 0.02em; cursor: pointer; box-shadow: 0 1px 3px rgba(26,26,26,0.12); transition: background .15s ease-out, color .15s ease-out;';
+
+class Component extends DCLogic {
+  state = { home: 'after', pct: 0, err: {} };
+  renderVals() {
+    const isBefore = this.state.home === 'before';
+    return {
+      homeIsBefore: isBefore,
+      homeIsAfter: !isBefore,
+      homeBeforeStyle: isBefore ? ON : OFF,
+      homeAfterStyle: isBefore ? OFF : ON,
+      homeBefore: () => this.switchHome('before'),
+      homeAfter: () => this.switchHome('after'),
+      homeScrollRef: this._scrollRef || (this._scrollRef = (el) => { this._scroller = el; }),
+      onHomeScroll: () => this.syncPct(),
+      homePct: Math.round(this.state.pct * 100) + '%',
+      beforeDisplay: isBefore ? 'block' : 'none',
+      afterDisplay: isBefore ? 'none' : 'block',
+      beforeOk: !this.state.err.before, beforeMissing: !!this.state.err.before,
+      afterOk: !this.state.err.after, afterMissing: !!this.state.err.after,
+      beforeErr: () => this.setState((st) => ({ err: Object.assign({}, st.err, { before: true }) })),
+      afterErr: () => this.setState((st) => ({ err: Object.assign({}, st.err, { after: true }) }))
+    };
+  }
+  scrollRatio() { const el = this._scroller; if (!el) return 0; const max = el.scrollHeight - el.clientHeight; return max > 0 ? el.scrollTop / max : 0; }
+  syncPct() { const p = this.scrollRatio(); if (Math.abs(p - this.state.pct) > 0.004) this.setState({ pct: p }); }
+  switchHome(which) {
+    if (which === this.state.home) return;
+    const r = this.scrollRatio();
+    this.setState({ home: which }, () => requestAnimationFrame(() => { const el = this._scroller; if (el) { el.scrollTop = r * (el.scrollHeight - el.clientHeight); this.syncPct(); } }));
+  }
+  componentDidMount() { this._spy = initTocSpy(); }
+  componentWillUnmount() { if (this._spy) this._spy(); }
+}
+
+function initTocSpy() {
+  const links = Array.from(document.querySelectorAll('[data-toc]'));
+  if (!links.length) return () => {};
+  const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const paint = () => {
+    const line = window.innerHeight * 0.32;
+    let idx = 0;
+    targets.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= line) idx = i; });
+    links.forEach((a, i) => {
+      const on = i === idx;
+      a.style.color = on ? '#1a1a1a' : '#6c726c';
+      a.style.fontWeight = on ? '600' : '400';
+      a.style.opacity = on ? '1' : '0.72';
+    });
+  };
+  const schedule = () => requestAnimationFrame(paint);
+  schedule();
+  // IntersectionObserver is viewport-relative, so it fires no matter which
+  // ancestor container the host scrolls (window 'scroll' never fires here).
+  const cleanups = [];
+  if (typeof IntersectionObserver !== 'undefined') {
+    const io = new IntersectionObserver(schedule, {
+      threshold: [0, 0.01, 0.5, 1],
+      rootMargin: '-30% 0px -55% 0px'
+    });
+    targets.forEach((t) => io.observe(t));
+    // Sentinels every ~40% of viewport height keep the callback firing during
+    // long sections where no section edge crosses the band.
+    const rail = document.createElement('div');
+    rail.setAttribute('aria-hidden', 'true');
+    rail.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100%;pointer-events:none;';
+    const host = targets[0] && targets[0].parentElement;
+    if (host) {
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      const total = host.scrollHeight || 0;
+      const step = Math.max(240, Math.round(window.innerHeight * 0.4));
+      for (let y = 0; y < total; y += step) {
+        const s = document.createElement('div');
+        s.style.cssText = 'position:absolute;left:0;width:1px;height:1px;top:' + y + 'px;';
+        rail.appendChild(s);
+      }
+      host.appendChild(rail);
+      Array.from(rail.children).forEach((s) => io.observe(s));
+      cleanups.push(() => rail.remove());
+    }
+    cleanups.push(() => io.disconnect());
+  }
+  document.addEventListener('scroll', schedule, true);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
+  if (ro) targets.forEach((t) => ro.observe(t));
+  const t1 = setTimeout(paint, 300);
+  const t2 = setTimeout(paint, 1200);
+  return () => {
+    document.removeEventListener('scroll', schedule, true);
+    window.removeEventListener('resize', schedule);
+    window.removeEventListener('load', schedule);
+    if (ro) ro.disconnect();
+    cleanups.forEach((fn) => fn());
+    clearTimeout(t1); clearTimeout(t2);
+  };
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #ffffff; color: #1a1a1a; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #1a1a1a; text-decoration: none; }
+  a:hover { color: #2e7d32; }
+  ::selection { background: #2e7d32; color: #fff; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</helmet>
+<div style="--head: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 1600px; margin: 0 auto; padding: 0 clamp(22px, 4.5vw, 80px);">
+
+  <nav style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0 20px; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);">
+    <a href="/" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 19px; letter-spacing: -0.02em;">Rhea Thampy</a>
+    <a href="/#work" style="font-size: 15px; font-weight: 500; transition: color .2s;" style-hover="color: #2e7d32;">← Back to work</a>
+  </nav>
+
+  <header style="max-width: 1100px; padding: clamp(40px, 8vh, 88px) 0 clamp(32px, 5vh, 56px);">
+    <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Case study · Real estate CRM · 2024–25 · Under NDA</span>
+    <h1 style="font-family: var(--head); font-weight: 700; font-size: clamp(38px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -0.04em; margin: 22px 0 0; text-wrap: balance;">
+      Designing operational infrastructure for an AI-native real estate CRM.
+    </h1>
+    <p style="font-size: clamp(16px, 1.3vw, 18px); line-height: 1.65; color: #3a3f3a; max-width: 68ch; margin: 28px 0 0; text-wrap: pretty;">
+      Foundational experiences: communication, onboarding and team operations for a platform evolving from a marketing CRM extension into an independent AI-powered product.
+    </p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 24px 40px; padding: clamp(28px, 4vh, 40px) 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">My role</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Product Designer</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Timeline</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">2024–25 · 3 months</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Domain</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">AI · B2B SaaS</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Team</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">PM + product head</span>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+
+    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
+      <a href="#summary" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Summary</a>
+      <a href="#problem" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;The problem I owned</a>
+      <a href="#approach" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">03 &nbsp;How I approached it</a>
+      <a href="#scope" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">04 &nbsp;The wider surface</a>
+      <a href="#research" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">05 &nbsp;Grounded in research</a>
+      <a href="#team" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">06 &nbsp;Working with the team</a>
+      <a href="#other" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">07 &nbsp;Also at Fello</a>
+      <a href="#reflection" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">08 &nbsp;What I'd measure next</a>
+      <a href="#walkthrough" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">09 &nbsp;Want a closer look?</a>
+    </nav>
+
+    <main style="display: flex; flex-direction: column; gap: clamp(56px, 9vh, 104px); min-width: 0;">
+
+      <section id="summary" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Summary.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">As <strong style="font-weight: 600; color: #1a1a1a;">Fello</strong> evolved from a marketing CRM extension into an AI-powered real estate platform, I worked on the <strong style="font-weight: 600; color: #1a1a1a;">communication infrastructure</strong> that let teams call, text and email their clients directly through Fello.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">My core work was the <strong style="font-weight: 600; color: #1a1a1a;">phone number and calling setup</strong>: purchasing numbers and Copilot Seats for a team, number porting, and the compliance flows behind them. Alongside it I designed <strong style="font-weight: 600; color: #1a1a1a;">team management</strong> (seats, permissions, number assignment) and <strong style="font-weight: 600; color: #1a1a1a;">call settings</strong> at both individual and admin levels.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Each of these involved long, regulation-bound flows that had to feel simple for a non-technical admin to complete. The deep-dive below walks through the piece I owned most directly.</p>
+      </section>
+
+      <section id="problem" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The problem I owned.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Before a team could make a single call, text or email from Fello, an admin had to set up the whole phone system behind it: <strong style="font-weight: 600; color: #1a1a1a;">buying phone numbers and Copilot Seats, porting existing numbers, and clearing the compliance needed to legally use them</strong>.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The compliance was the tricky bit. It meant <strong style="font-weight: 600; color: #1a1a1a;">business registration, CNAM (caller-ID) setup, number-integrity checks and 10DLC registration</strong>, and 10DLC alone asked the admin to spell out what the number was for, how they'd use it, write sample messages, and work through a string of smaller steps. Each was a long, intimidating flow on its own, and a busy real-estate admin had little patience for any of them.</p>
+
+        
+
+        <blockquote style="margin: 4px 0; padding: 0; border-left: 3px solid #2e7d32; padding-left: clamp(20px, 3vw, 40px);">
+          <p style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); line-height: 1.25; letter-spacing: 0em; margin: 0; max-width: 30.76ch; text-wrap: balance; width: 100%">Multiple flows → one three-step setup.</p>
+          <p style="font-size: 16px; line-height: 1.6; color: #6c726c; margin: 18px 0 0; max-width: 66.47ch; width: 100%; min-width: 0px">Take a stack of required, multi-step regulatory processes and make them feel like a quick, guided setup, without losing any of the compliance the platform actually needed.</p>
+        </blockquote><p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">I got there by <strong style="font-weight: 600; color: #1a1a1a;">combining steps that belonged together</strong>, <strong style="font-weight: 600; color: #1a1a1a;">auto-filling info the platform already had</strong>, and <strong style="font-weight: 600; color: #1a1a1a;">using AI to draft the sample messages</strong> 10DLC needs, so the admin reviewed and confirmed instead of writing everything from scratch.</p>
+      </section>
+
+      <section id="approach" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">How I approached it.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">A few simple rules kept things on track as the flows got shorter.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">01</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Combine what belongs together</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Group the smaller steps into single, clear moments instead of walking the admin through each one.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">02</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Auto-fill what's already known</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Pre-fill every field the platform already had, so the admin just confirms instead of re-typing.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: 13px; color: #8a908a;">03</span>
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Let AI do the heavy lifting</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Use AI to draft the sample messages 10DLC needs, turning writing into a quick review.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="scope" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The wider surface.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The setup flow was part of a bigger set of communication experiences I designed.</p>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Number &amp; seat setup</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Buying numbers and Copilot Seats, number porting, and the business registration, CNAM and 10DLC compliance behind them.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Team management</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Admin tools to add and remove Copilot Seats, manage permissions, and assign phone numbers across a team.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Call settings</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Voicemail, call forwarding and related controls, for individuals and at the admin level.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="research" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Grounded in research.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This wasn't a space I could design on gut feel; calling and messaging is a mature, heavily regulated area with a lot of established patterns. So I did a fair bit of <strong style="font-weight: 600; color: #1a1a1a;">competitive research</strong>, looking at dedicated calling platforms and at CRMs that build communication into the product.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 4px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">Dedicated calling platforms</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 13px; color: #6c726c; border: 1px solid #ececec; border-radius: 999px; padding: 6px 14px;">Aircall</span>
+              <span style="font-size: 13px; color: #6c726c; border: 1px solid #ececec; border-radius: 999px; padding: 6px 14px;">JustCall</span>
+            </div>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">How mature telephony products handle buying numbers, porting and compliance as a first-class setup experience.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">CRMs with built-in comms</span>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="font-size: 13px; color: #6c726c; border: 1px solid #ececec; border-radius: 999px; padding: 6px 14px;">Follow Up Boss</span>
+              <span style="font-size: 13px; color: #6c726c; border: 1px solid #ececec; border-radius: 999px; padding: 6px 14px;">HubSpot</span>
+            </div>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">How communication setup sits inside a broader CRM, where it competes for an admin's limited attention.</span>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Seeing how each one handled buying numbers, porting and compliance helped me <strong style="font-weight: 600; color: #1a1a1a;">borrow what worked, skip the dead ends</strong>, and land on a flow that fit Fello's users rather than copying any one of them.</p>
+      </section>
+
+      <section id="team" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Working with the team.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This was a genuinely collaborative project; I worked closely with a <strong style="font-weight: 600; color: #1a1a1a;">product manager</strong> and the <strong style="font-weight: 600; color: #1a1a1a;">product head</strong>, and a lot of what made the final flows good came out of that.</p>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">With the PM</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">We worked out what actually mattered to the admin versus what was legacy or regulatory detail: which steps could be merged, which fields could be auto-filled, and where we could safely simplify without breaking compliance.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">With the product head</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">They gave me the bigger picture of where the platform was heading, and, since I was new, helped me understand what the AI could actually do here and how much we could realistically automate.</span>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Knowing that first-hand is what made the step reductions real; they weren't wishful thinking, they were grounded in what the system could genuinely pull off.</p>
+      </section>
+
+      <section id="other" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Also at Fello.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Beyond the communication setup, I owned two other core pieces of the platform.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">Redesigning the communication system</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">I reworked how conversations work on Fello so they could handle multiple participants and recipients, moving the platform past one-to-one messaging into something that could hold real, many-sided client conversations.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 30px 28px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 21px; letter-spacing: -0.025em;">CRM integration &amp; setup</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Simplifying the two-way data sync between Fello and an agency's existing CRM, refocusing what got shared while keeping users in control, and turning a dense permission flow into a single guided step.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="reflection" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What I'd measure next.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">I moved on before these flows shipped, so I can't speak to how they performed once live, and I'd rather be upfront about that than overclaim. If I'd stayed through launch, here's what I'd have wanted to know.</p>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">01</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Setup completion.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">How many admins get through the full compliance setup on their own, versus dropping off partway.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">02</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Time to first call.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">How quickly a new team goes from signing up to actually making calls.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">03</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Support &amp; compliance load.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Whether setup tickets and failed 10DLC registrations went down.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="walkthrough" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Want a closer look?</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This project is protected by NDA restrictions, so detailed workflows, designs and outcomes can't be shared publicly. I'm happy to discuss the project, my role and the design decisions in more detail during an interview or portfolio walkthrough.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: flex-end; justify-content: space-between; padding: clamp(30px, 4vw, 44px) clamp(26px, 3.5vw, 40px); background: #f5f7f5;">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: clamp(22px, 2.6vw, 34px); letter-spacing: -0.03em; line-height: 1.1;">I can share more on a call.</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Visuals, decisions, trade-offs, outcomes: all of it. Just reach out.</span>
+          </div>
+          <a href="mailto:rheathampy@gmail.com" style="font-size: 15px; font-weight: 600; color: #2e7d32; border-bottom: 1px solid #2e7d32; padding-bottom: 2px;">Get in touch →</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
+    <a href="/onboarding-retention" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+      <span style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
+        <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">17% uptick in onboarding success, 80% fewer HR queries</span>
+      </span>
+      <span style="font-size: 14px; font-weight: 500; color: #2e7d32;">Read it →</span>
+    </a>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin-top: clamp(48px, 8vh, 88px); padding-top: 22px; border-top: 1px solid #ececec; font-size: 13px; color: #8a908a;">
+      <span>© Rhea Thampy, 2026</span>
+      <a href="/">← Back to work</a>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() { this._spy = initTocSpy(); }
+  componentWillUnmount() { if (this._spy) this._spy(); }
+}
+
+function initTocSpy() {
+  const links = Array.from(document.querySelectorAll('[data-toc]'));
+  if (!links.length) return () => {};
+  const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const paint = () => {
+    const line = window.innerHeight * 0.32;
+    let idx = 0;
+    targets.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= line) idx = i; });
+    links.forEach((a, i) => {
+      const on = i === idx;
+      a.style.color = on ? '#1a1a1a' : '#6c726c';
+      a.style.fontWeight = on ? '600' : '400';
+      a.style.opacity = on ? '1' : '0.72';
+    });
+  };
+  const schedule = () => requestAnimationFrame(paint);
+  schedule();
+  const cleanups = [];
+  if (typeof IntersectionObserver !== 'undefined') {
+    const io = new IntersectionObserver(schedule, { threshold: [0, 0.01, 0.5, 1], rootMargin: '-30% 0px -55% 0px' });
+    targets.forEach((t) => io.observe(t));
+    const rail = document.createElement('div');
+    rail.setAttribute('aria-hidden', 'true');
+    rail.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100%;pointer-events:none;';
+    const host = targets[0] && targets[0].parentElement;
+    if (host) {
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      const total = host.scrollHeight || 0;
+      const step = Math.max(240, Math.round(window.innerHeight * 0.4));
+      for (let y = 0; y < total; y += step) {
+        const s = document.createElement('div');
+        s.style.cssText = 'position:absolute;left:0;width:1px;height:1px;top:' + y + 'px;';
+        rail.appendChild(s);
+      }
+      host.appendChild(rail);
+      Array.from(rail.children).forEach((s) => io.observe(s));
+      cleanups.push(() => rail.remove());
+    }
+    cleanups.push(() => io.disconnect());
+  }
+  document.addEventListener('scroll', schedule, true);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
+  if (ro) targets.forEach((t) => ro.observe(t));
+  const t1 = setTimeout(paint, 300);
+  const t2 = setTimeout(paint, 1200);
+  return () => {
+    document.removeEventListener('scroll', schedule, true);
+    window.removeEventListener('resize', schedule);
+    window.removeEventListener('load', schedule);
+    if (ro) ro.disconnect();
+    cleanups.forEach((fn) => fn());
+    clearTimeout(t1); clearTimeout(t2);
+  };
+}
+</script>
+</body>
+</html>

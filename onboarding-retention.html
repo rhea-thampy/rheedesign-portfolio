@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #ffffff; color: #1a1a1a; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #1a1a1a; text-decoration: none; }
+  a:hover { color: #2e7d32; }
+  ::selection { background: #2e7d32; color: #fff; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</helmet>
+<div style="--head: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 1600px; margin: 0 auto; padding: 0 clamp(22px, 4.5vw, 80px);">
+
+  <nav style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0 20px; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);">
+    <a href="/" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 19px; letter-spacing: -0.02em;">Rhea Thampy</a>
+    <a href="/#work" style="font-size: 15px; font-weight: 500; transition: color .2s;" style-hover="color: #2e7d32;">← Back to work</a>
+  </nav>
+
+  <header style="max-width: 1000px; padding: clamp(40px, 8vh, 88px) 0 clamp(32px, 5vh, 56px);">
+    <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Case study · Investment firm · 2024</span>
+    <h1 style="font-family: var(--head); font-weight: 700; font-size: clamp(38px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -0.04em; margin: 22px 0 0; text-wrap: balance;">
+      Designing for retention: a 17% uptick in onboarding success.
+    </h1>
+    <p style="font-size: clamp(16px, 1.3vw, 18px); line-height: 1.65; color: #3a3f3a; max-width: 62ch; margin: 28px 0 0; text-wrap: pretty;">
+      A revamped employee onboarding portal for a leading investment firm, built to engage a millennial &amp; Gen-Z workforce within the limits of a low-code platform.
+    </p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px 40px; padding: clamp(28px, 4vh, 40px) 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">My role</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Product Designer</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Timeline</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">2024 · ~6 weeks</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Domain</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">HR Tech · Fintech</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Team</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Design team, HR + devs</span>
+    </div>
+  </section>
+
+  <figure style="margin: clamp(32px, 5vh, 56px) 0 0;">
+    <img src="/assets/hr-cover.png" alt="Designing for Retention: cover" loading="lazy" style="display: block; width: 100%; height: auto; background: #f4f6f4;" />
+  </figure>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+
+    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
+      <a href="#brief" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Brief</a>
+      <a href="#problem" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;What we solved for</a>
+      <a href="#approach" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">03 &nbsp;Approach</a>
+      <a href="#insights" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">04 &nbsp;Research findings</a>
+      <a href="#constraints" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">05 &nbsp;Low-code constraints</a>
+      <a href="#module1" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">06 &nbsp;Module 1 · Clarity</a>
+      <a href="#module2" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">07 &nbsp;Module 2 · Streamlining</a>
+      <a href="#impact" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">08 &nbsp;Impact</a>
+      <a href="#takeaways" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">09 &nbsp;What I'm taking with me</a>
+    </nav>
+
+    <main style="display: flex; flex-direction: column; gap: clamp(56px, 9vh, 104px); min-width: 0;">
+
+      <section id="brief" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The brief.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This project was undertaken for one of <strong style="font-weight: 600; color: #1a1a1a;">India's leading investment firms</strong> struggling with high drop-off rates during new employee onboarding, directly affecting their hiring outcomes.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The objective was to <strong style="font-weight: 600; color: #1a1a1a;">revamp the employee onboarding portal</strong> to better cater to a growing workforce of millennials and Gen Z professionals. Within the constraints of a low-code development platform, the existing system was transformed into a more engaging, intuitive, and user-friendly experience.</p>
+      </section>
+
+      <section id="problem" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What we solved for.</h2>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Retention gap</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Younger prospective hires were dropping off before Day One.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Lack of personalisation</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">The onboarding experience lacked tailored content based on role, department, or individual preferences.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Inability to connect with the audience</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">The platform's tone and visuals failed to resonate with millennial and Gen-Z users.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Outdated process</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">The flow was rigid and inefficient, lacking modern UX patterns and mobile responsiveness.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Poor first impressions</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">The interface did not reflect the company's culture or create a welcoming first experience.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="approach" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Approach.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">To understand the needs and expectations of our users, I began by benchmarking onboarding best practice from industry research (<strong style="font-weight: 600; color: #1a1a1a;">SHRM, HBR, TechCrunch, Forbes, and Gallup</strong>). These references helped me identify best practices and the gaps in the existing system.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">In parallel, I ran <strong style="font-weight: 600; color: #1a1a1a;">in-depth interviews with recent hires and HR professionals</strong> within the company to uncover firsthand pain points, emotional responses, and unmet needs during onboarding. This dual approach, competitive analysis and qualitative research, gave me a well-rounded foundation for designing a more relevant and engaging experience.</p>
+      </section>
+
+      <section id="insights" style="display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Research findings.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 4px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">User goals</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Clarity</strong>: Understand role expectations, timelines, and responsibilities from the start</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Efficiency</strong>: Complete the onboarding process quickly</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Structure</strong>: A clear, guided path that shows progress and next steps</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Motivations</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Confidence</strong>: Feel prepared and capable before Day 1</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Belonging</strong>: Develop a connection with the company's culture early</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Engagement</strong>: Stay interested and involved throughout</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Behavioural patterns</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Skimming</strong>: Users skimmed long text and ignored non-essential details</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Avoiding redundancy</strong>: Repetitive forms or unclear steps were often skipped</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #2e7d32;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em; color: #1a1a1a;">Pain points</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Drop-off triggers</strong>: Confusing flows and lack of feedback led to incomplete onboarding</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Disconnection</strong>: The generic experience made users feel detached</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Anxiety</strong>: Uncertainty about what to expect caused hesitation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="constraints" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Designing within low-code constraints.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The platform was built on a low-code development environment, which introduced design limitations. I treated them as focus rather than friction.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Layout flexibility</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Limited flexibility in layout structures and grid customisation.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Interactions</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">No support for advanced interactions or dynamic micro-animations.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Visual control</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Restricted styling beyond a set of predefined components.</span>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">These constraints helped us focus on <strong style="font-weight: 600; color: #1a1a1a;">clarity, structure, and user flow</strong>, making sure the experience stayed intuitive despite the technical limits.</p>
+      </section>
+
+      <section id="module1" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Module 1</span>
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: -14px 0 0; text-wrap: balance;">Creating clarity &amp; confidence from Day One.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">To address user pain points and build trust early in the journey, I designed an onboarding experience that:</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch;">
+          <span><strong style="font-weight: 600; color: #1a1a1a;">Established a clear, structured flow</strong> to guide users and set the right expectations from the start.</span>
+          <span><strong style="font-weight: 600; color: #1a1a1a;">Built in accessible support touchpoints</strong>, making it easy for users to reach out for help when needed.</span>
+        </div>
+        <figure style="margin: 8px 0 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+          <div style="display: inline-flex; gap: 4px; padding: 4px; background: #f0f3f0; border-radius: 999px;">
+            <button type="button" onClick="{{ m1Before }}" style="{{ m1BeforeStyle }}">Before</button>
+            <button type="button" onClick="{{ m1After }}" style="{{ m1AfterStyle }}">After</button>
+          </div>
+          <img src="{{ m1Src }}" alt="Module 1: before and after" loading="lazy" style="display: block; width: 100%; height: auto; background: #f4f6f4; border: 1px solid #ececec;" />
+        </figure>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/hr-tasks.png" alt="Task management screen" loading="lazy" style="display: block; width: 100%; height: auto; background: #f4f6f4;" />
+        </figure>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h3 style="font-family: var(--head); font-weight: 600; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.025em; margin: 0;">Improving task management &amp; progress tracking.</h3>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch;">
+            <span>Introduced visual timelines and highlighted key tasks to give users a clear sense of structure and reduce ambiguity.</span>
+            <span>Added micro-interactions and visual feedback to make the experience more engaging.</span>
+          </div>
+        </div>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/hr-get-in-touch.png" alt="Get in touch: support touchpoints" loading="lazy" style="display: block; width: 100%; height: auto; background: #f4f6f4;" />
+        </figure>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <h3 style="font-family: var(--head); font-weight: 600; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.025em; margin: 0;">Providing a human-centred support system.</h3>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch;">
+            <span>Enabled users to connect with team members or managers early on, fostering a sense of belonging.</span>
+            <span>Designed personalised, conversational interfaces to make onboarding feel more approachable and human.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="module2" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Module 2</span>
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: -14px 0 0; text-wrap: balance;">Streamlining the experience to reduce effort &amp; uncertainty.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">To simplify the onboarding process and reduce user drop-offs, I made the following changes:</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch;">
+          <span><strong style="font-weight: 600; color: #1a1a1a;">Removed repetitive steps</strong> and made the total number of steps visible to set clear expectations.</span>
+          <span><strong style="font-weight: 600; color: #1a1a1a;">Enabled auto-fill from uploaded documents</strong> to reduce manual effort and speed up completion.</span>
+          <span><strong style="font-weight: 600; color: #1a1a1a;">Added visual cues and colour indicators</strong> to help users track progress effortlessly.</span>
+        </div>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/hr-progress-autofill.png" alt="Progress tracking and autofill" loading="lazy" style="display: block; width: 100%; max-width: 720px; height: auto; background: #f4f6f4;" />
+        </figure>
+        <figure style="margin: 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+          <div style="display: inline-flex; gap: 4px; padding: 4px; background: #f0f3f0; border-radius: 999px;">
+            <button type="button" onClick="{{ m2Before }}" style="{{ m2BeforeStyle }}">Before</button>
+            <button type="button" onClick="{{ m2After }}" style="{{ m2AfterStyle }}">After</button>
+          </div>
+          <img src="{{ m2Src }}" alt="Module 2: before and after" loading="lazy" style="display: block; width: 100%; height: auto; background: #f4f6f4; border: 1px solid #ececec;" />
+        </figure>
+      </section>
+
+      <section id="impact" style="display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Impact &amp; outcomes.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: clamp(40px, 4.4vw, 62px); letter-spacing: -0.035em; line-height: 1;">9.1<span style="font-size: 0.45em; color: #8a908a; letter-spacing: 0;"> /10</span></span>
+            <span style="font-size: 14px; color: #6c726c;">Onboarding experience score</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: clamp(40px, 4.4vw, 62px); letter-spacing: -0.035em; line-height: 1; color: #1a1a1a;">−80%</span>
+            <span style="font-size: 14px; color: #6c726c;">Employee queries</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 700; font-size: clamp(40px, 4.4vw, 62px); letter-spacing: -0.035em; line-height: 1; color: #1a1a1a;">+17%</span>
+            <span style="font-size: 14px; color: #6c726c;">Onboarding success (YoY)</span>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Reflecting high user satisfaction, improved clarity and usability, and a measurable lift in hiring outcomes year-over-year.</p>
+      </section>
+
+      <section id="takeaways" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What I'm taking with me.</h2>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">01</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Designing with restrictions sharpened our focus.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Working within low-code constraints pushed us to simplify layouts and interactions, helping us prioritise clarity and optimise the overall user experience.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">02</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Early stakeholder collaboration was critical.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Engaging closely with HR teams, developers, and business stakeholders helped align design decisions with organisational goals from the start.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">03</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">End-to-end project ownership.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Leading this project taught me how to manage client expectations, define priorities, set clear goals for the design team, and balance design quality with delivery timelines.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
+    <a href="/arkahub" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+      <span style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
+        <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">Making Indian homes, solar homes</span>
+      </span>
+      <span style="font-size: 14px; font-weight: 500; color: #2e7d32;">Read it →</span>
+    </a>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin-top: clamp(48px, 8vh, 88px); padding-top: 22px; border-top: 1px solid #ececec; font-size: 13px; color: #8a908a;">
+      <span>© Rhea Thampy, 2026</span>
+      <a href="/">← Back to work</a>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">const SHOTS = {
+  m1: {
+    before: '/assets/hr-module1-before-wl.png',
+    after: '/assets/hr-module1-after.png'
+  },
+  m2: {
+    before: '/assets/hr-module2-before-wl.png',
+    after: '/assets/hr-module2-after.jpg'
+  }
+};
+const OFF = 'display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border: 0; border-radius: 999px; background: transparent; color: #6c726c; font: 500 13px/1 Inter, sans-serif; letter-spacing: 0.02em; cursor: pointer; transition: background .15s ease-out, color .15s ease-out;';
+const ON = 'display: inline-flex; align-items: center; justify-content: center; padding: 8px 20px; border: 0; border-radius: 999px; background: #ffffff; color: #1a1a1a; font: 600 13px/1 Inter, sans-serif; letter-spacing: 0.02em; cursor: pointer; box-shadow: 0 1px 3px rgba(26,26,26,0.12); transition: background .15s ease-out, color .15s ease-out;';
+
+class Component extends DCLogic {
+  state = { m1: 'after', m2: 'after' };
+  renderVals() {
+    const set = (k, v) => () => this.setState({ [k]: v });
+    return {
+      m1Src: SHOTS.m1[this.state.m1],
+      m2Src: SHOTS.m2[this.state.m2],
+      m1BeforeStyle: this.state.m1 === 'before' ? ON : OFF,
+      m1AfterStyle: this.state.m1 === 'after' ? ON : OFF,
+      m2BeforeStyle: this.state.m2 === 'before' ? ON : OFF,
+      m2AfterStyle: this.state.m2 === 'after' ? ON : OFF,
+      m1Before: set('m1', 'before'), m1After: set('m1', 'after'),
+      m2Before: set('m2', 'before'), m2After: set('m2', 'after')
+    };
+  }
+  componentDidMount() { this._spy = initTocSpy(); }
+  componentWillUnmount() { if (this._spy) this._spy(); }
+}
+
+function initTocSpy() {
+  const links = Array.from(document.querySelectorAll('[data-toc]'));
+  if (!links.length) return () => {};
+  const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const paint = () => {
+    const line = window.innerHeight * 0.32;
+    let idx = 0;
+    targets.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= line) idx = i; });
+    links.forEach((a, i) => {
+      const on = i === idx;
+      a.style.color = on ? '#1a1a1a' : '#6c726c';
+      a.style.fontWeight = on ? '600' : '400';
+      a.style.opacity = on ? '1' : '0.72';
+    });
+  };
+  const schedule = () => requestAnimationFrame(paint);
+  schedule();
+  // IntersectionObserver is viewport-relative, so it fires no matter which
+  // ancestor container the host scrolls (window 'scroll' never fires here).
+  const cleanups = [];
+  if (typeof IntersectionObserver !== 'undefined') {
+    const io = new IntersectionObserver(schedule, {
+      threshold: [0, 0.01, 0.5, 1],
+      rootMargin: '-30% 0px -55% 0px'
+    });
+    targets.forEach((t) => io.observe(t));
+    // Sentinels every ~40% of viewport height keep the callback firing during
+    // long sections where no section edge crosses the band.
+    const rail = document.createElement('div');
+    rail.setAttribute('aria-hidden', 'true');
+    rail.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100%;pointer-events:none;';
+    const host = targets[0] && targets[0].parentElement;
+    if (host) {
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      const total = host.scrollHeight || 0;
+      const step = Math.max(240, Math.round(window.innerHeight * 0.4));
+      for (let y = 0; y < total; y += step) {
+        const s = document.createElement('div');
+        s.style.cssText = 'position:absolute;left:0;width:1px;height:1px;top:' + y + 'px;';
+        rail.appendChild(s);
+      }
+      host.appendChild(rail);
+      Array.from(rail.children).forEach((s) => io.observe(s));
+      cleanups.push(() => rail.remove());
+    }
+    cleanups.push(() => io.disconnect());
+  }
+  document.addEventListener('scroll', schedule, true);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
+  if (ro) targets.forEach((t) => ro.observe(t));
+  const t1 = setTimeout(paint, 300);
+  const t2 = setTimeout(paint, 1200);
+  return () => {
+    document.removeEventListener('scroll', schedule, true);
+    window.removeEventListener('resize', schedule);
+    window.removeEventListener('load', schedule);
+    if (ro) ro.disconnect();
+    cleanups.forEach((fn) => fn());
+    clearTimeout(t1); clearTimeout(t2);
+  };
+}
+</script>
+</body>
+</html>
