@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #ffffff; color: #1a1a1a; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #1a1a1a; text-decoration: none; }
+  a:hover { color: #2e7d32; }
+  ::selection { background: #2e7d32; color: #fff; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</helmet>
+<div style="--head: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 1600px; margin: 0 auto; padding: 0 clamp(22px, 4.5vw, 80px);">
+
+  <nav style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0 20px; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);">
+    <a href="/" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 19px; letter-spacing: -0.02em;">Rhea Thampy</a>
+    <a href="/#work" style="font-size: 15px; font-weight: 500; transition: color .2s;" style-hover="color: #2e7d32;">← Back to work</a>
+  </nav>
+
+  <header style="max-width: 1000px; padding: clamp(40px, 8vh, 88px) 0 clamp(32px, 5vh, 56px);">
+    <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Case study · Financial education · 2025</span>
+    <h1 style="font-family: var(--head); font-weight: 700; font-size: clamp(38px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -0.04em; margin: 22px 0 0; text-wrap: balance;">
+      Making financial education accessible.
+    </h1>
+    <p style="font-size: clamp(16px, 1.3vw, 18px); line-height: 1.65; color: #3a3f3a; max-width: 62ch; margin: 28px 0 0; text-wrap: pretty;">
+      A learning platform for Motilal Oswal that makes investing approachable for first-time investors in India's tier-2 and tier-3 cities, in jargon-free content and their own language.
+    </p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px 40px; padding: clamp(28px, 4vh, 40px) 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">My role</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">UX Lead</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Timeline</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">2025 · 1 month</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Domain</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Education · Fintech</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Team</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">3 designers, PMs</span>
+    </div>
+  </section>
+
+  <figure style="margin: clamp(32px, 5vh, 56px) 0 0;">
+    <img src="/assets/fe-cover.png" alt="Making financial education accessible: cover with course cards" loading="lazy" style="display: block; width: 100%; height: auto;" />
+  </figure>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+
+    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
+      <a href="#summary" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Summary</a>
+      <a href="#role" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;My role</a>
+      <a href="#problem" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">03 &nbsp;Problem</a>
+      <a href="#objectives" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">04 &nbsp;Objectives</a>
+      <a href="#challenges" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">05 &nbsp;Key challenges</a>
+      <a href="#landscape" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">06 &nbsp;Landscape analysis</a>
+      <a href="#approach" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">07 &nbsp;Design approach</a>
+      <a href="#solution" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">08 &nbsp;Solution</a>
+      <a href="#highlights" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">09 &nbsp;Solution highlights</a>
+      <a href="#takeaways" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">10 &nbsp;What I'm taking with me</a>
+    </nav>
+
+    <main style="display: flex; flex-direction: column; gap: clamp(56px, 9vh, 104px); min-width: 0;">
+
+      <section id="summary" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Summary.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Motilal Oswal, a legacy fintech company, set out to close the <strong style="font-weight: 600; color: #1a1a1a;">financial literacy gap in India's tier-2 and tier-3 cities</strong>. We designed a learning platform that made <strong style="font-weight: 600; color: #1a1a1a;">complex investment concepts accessible and comprehensible</strong>, by simplifying financial jargon and delivering content in multiple vernacular languages.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This initiative not only broadened access to financial education but also empowered a wider audience to make confident investment decisions.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The goal was to build a learning ecosystem that keeps users engaged, nurtures financial literacy, and <strong style="font-weight: 600; color: #1a1a1a;">drives conversions to demat account sign-ups</strong> on Motilal Oswal's main investment platform.</p>
+      </section>
+
+      <section id="role" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">My role.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">I was responsible for <strong style="font-weight: 600; color: #1a1a1a;">driving the UX strategy</strong>: leading research, facilitating stakeholder discussions, and turning insights into actionable design directions. Managing a <strong style="font-weight: 600; color: #1a1a1a;">team of three designers</strong>, I ensured our solutions balanced user needs with business growth goals, while collaborating closely with product managers on execution.</p>
+      </section>
+
+      <section id="problem" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Problem statement.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Novice investors often lack the confidence to make informed investment decisions, which limits their willingness to take calculated risks and learn through experience. Motilal Oswal wanted to address:</p>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Low retention</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Users weren't coming back to the existing learning content.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Limited engagement</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Engagement dropped away beyond the initial sign-up.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">No interactive learning</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">There was no gamified, interactive way to learn about investing.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="objectives" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Objectives.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px;">
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Increase retention</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Encourage users to return through progressive learning and challenges.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Boost engagement</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Add interactive and gamified elements like quizzes, prediction games, and leaderboards.</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px; background: #f5f7f5;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Drive conversions</span>
+            <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a;">Create smooth bridges to demat account sign-ups.</span>
+          </div>
+        </div>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/fe-hand-phone.png" alt="The learning platform's mobile home screen" loading="lazy" style="display: block; width: 100%; max-width: 420px; height: auto; margin: 0 auto;" />
+        </figure>
+      </section>
+
+      <section id="challenges" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Key challenges we focused on.</h2>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Language barrier</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Most financial content is available only in English, making it inaccessible for users who primarily consume content in regional languages.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Low digital literacy</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Many users from smaller cities are less familiar with advanced digital platforms, requiring simpler interfaces and guided flows.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Engagement &amp; retention</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Traditional e-learning formats often failed to hold user attention, leading to drop-offs before completing learning modules.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="landscape" style="display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Landscape analysis.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">We looked into multiple platforms to understand the current landscape of learning platforms in the finance sector. Since most competitors in the market have a learning platform, it was important to understand the key features and avoid obvious mistakes. We evaluated the <strong style="font-weight: 600; color: #1a1a1a;">top players in India and globally across four key parameters</strong>.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 4px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">User experience</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>Ease of navigation</span>
+              <span>Device optimisation</span>
+              <span>Accessibility features</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Language</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>Regional language support</span>
+              <span>Content localisation</span>
+              <span>Translation quality</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Content availability</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>Format diversity</span>
+              <span>Depth and accessibility</span>
+              <span>Learning style suitability</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #2e7d32;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em; color: #1a1a1a;">Engagement &amp; retention</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>Interactive features</span>
+              <span>Completion indicators</span>
+              <span>Community and support</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="approach" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Design approach.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Our focus was to make financial learning feel <strong style="font-weight: 600; color: #1a1a1a;">simple, familiar, and approachable</strong>, especially for users who may be interacting with an online learning platform for the first time. We approached the solution from three key directions:</p>
+        <figure style="margin: 8px 0 0;">
+          <img src="/assets/fe-approach.png" alt="Three design directions: simplifying the content, designing for vernacular, and a mobile-first guided experience" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+      </section>
+
+      <section id="solution" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Solution</span>
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: -14px 0 0; text-wrap: balance;">An end-to-end solution to every learner's financial learning needs.</h2>
+        <figure style="margin: 8px 0 0;">
+          <img src="/assets/fe-solution.png" alt="MarketMind home page on desktop and mobile" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+      </section>
+
+      <section id="highlights" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Solution highlights.</h2>
+        <figure style="margin: 0;">
+          <img src="/assets/fe-highlight-1.png" alt="Highlights: multiple modes of learning, smart recommendations, gamified learning and conversion hooks" loading="lazy" style="display: block; width: 100%; max-width: 880px; height: auto;" />
+        </figure>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/fe-highlight-2.png" alt="Learner dashboard, leaderboard and personalised home page" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/fe-highlight-3.png" alt="Daily feed, quizzes, e-books and blog pages" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/fe-highlight-4.png" alt="Module detail and video lesson pages" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+        <figure style="margin: 12px 0 0;">
+          <img src="/assets/fe-highlight-5.png" alt="Mobile screens: leaderboard, quiz results, personalised onboarding and webinars" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+      </section>
+
+      <section id="takeaways" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What I'm taking with me.</h2>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">01</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Language is access, not a feature.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Supporting regional languages meant localising examples, references and formats, not just translating copy. That is what made the content genuinely usable for the people it was built for.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">02</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Simplicity builds confidence.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Designing for first-time and less digitally confident users pushed us towards short micro-modules, a guided step-by-step path and clear progress cues, so the next step was always obvious.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">03</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">The real business goal isn't always the one in the brief.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">We were asked to build a learning platform to educate people about investing. Digging deeper, we realised the underlying goal was engagement on Motilal Oswal's main trading platform: another way to get people to open an account and start trading. Uncovering that early let us design conversion moments, like after finishing a module or a quiz, that served the business without undermining the learning.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
+    <a href="/onboarding-retention" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+      <span style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
+        <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">17% uptick in onboarding success, 80% fewer HR queries</span>
+      </span>
+      <span style="font-size: 14px; font-weight: 500; color: #2e7d32;">Read it →</span>
+    </a>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin-top: clamp(48px, 8vh, 88px); padding-top: 22px; border-top: 1px solid #ececec; font-size: 13px; color: #8a908a;">
+      <span>© Rhea Thampy, 2026</span>
+      <a href="/">← Back to work</a>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() { this._spy = initTocSpy(); }
+  componentWillUnmount() { if (this._spy) this._spy(); }
+}
+
+function initTocSpy() {
+  const links = Array.from(document.querySelectorAll('[data-toc]'));
+  if (!links.length) return () => {};
+  const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const paint = () => {
+    const line = window.innerHeight * 0.32;
+    let idx = 0;
+    targets.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= line) idx = i; });
+    links.forEach((a, i) => {
+      const on = i === idx;
+      a.style.color = on ? '#1a1a1a' : '#6c726c';
+      a.style.fontWeight = on ? '600' : '400';
+      a.style.opacity = on ? '1' : '0.72';
+    });
+  };
+  const schedule = () => requestAnimationFrame(paint);
+  schedule();
+  const cleanups = [];
+  if (typeof IntersectionObserver !== 'undefined') {
+    const io = new IntersectionObserver(schedule, { threshold: [0, 0.01, 0.5, 1], rootMargin: '-30% 0px -55% 0px' });
+    targets.forEach((t) => io.observe(t));
+    const rail = document.createElement('div');
+    rail.setAttribute('aria-hidden', 'true');
+    rail.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100%;pointer-events:none;';
+    const host = targets[0] && targets[0].parentElement;
+    if (host) {
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      const total = host.scrollHeight || 0;
+      const step = Math.max(240, Math.round(window.innerHeight * 0.4));
+      for (let y = 0; y < total; y += step) {
+        const s = document.createElement('div');
+        s.style.cssText = 'position:absolute;left:0;width:1px;height:1px;top:' + y + 'px;';
+        rail.appendChild(s);
+      }
+      host.appendChild(rail);
+      Array.from(rail.children).forEach((s) => io.observe(s));
+      cleanups.push(() => rail.remove());
+    }
+    cleanups.push(() => io.disconnect());
+  }
+  document.addEventListener('scroll', schedule, true);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
+  if (ro) targets.forEach((t) => ro.observe(t));
+  const t1 = setTimeout(paint, 300);
+  const t2 = setTimeout(paint, 1200);
+  return () => {
+    document.removeEventListener('scroll', schedule, true);
+    window.removeEventListener('resize', schedule);
+    window.removeEventListener('load', schedule);
+    if (ro) ro.disconnect();
+    cleanups.forEach((fn) => fn());
+    clearTimeout(t1); clearTimeout(t2);
+  };
+}
+</script>
+</body>
+</html>
