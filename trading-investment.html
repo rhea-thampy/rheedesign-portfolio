@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&family=Instrument+Sans:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #ffffff; color: #1a1a1a; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #1a1a1a; text-decoration: none; }
+  a:hover { color: #2e7d32; }
+  ::selection { background: #2e7d32; color: #fff; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+</helmet>
+<div style="--head: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 1600px; margin: 0 auto; padding: 0 clamp(22px, 4.5vw, 80px);">
+
+  <nav style="position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0 20px; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);">
+    <a href="/" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 19px; letter-spacing: -0.02em;">Rhea Thampy</a>
+    <a href="/#work" style="font-size: 15px; font-weight: 500; transition: color .2s;" style-hover="color: #2e7d32;">← Back to work</a>
+  </nav>
+
+  <header style="max-width: 1000px; padding: clamp(40px, 8vh, 88px) 0 clamp(32px, 5vh, 56px);">
+    <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Case study · Trading platform · [Year]</span>
+    <h1 style="font-family: var(--head); font-weight: 700; font-size: clamp(38px, 5.6vw, 82px); line-height: 1.02; letter-spacing: -0.04em; margin: 22px 0 0; text-wrap: balance;">
+      Enhancing the trading &amp; investment experience.
+    </h1>
+    <p style="font-size: clamp(16px, 1.3vw, 18px); line-height: 1.65; color: #3a3f3a; max-width: 62ch; margin: 28px 0 0; text-wrap: pretty;">
+      Basket orders with a floating order pad, and a simpler Stock SIP flow, for one of India's top three brokers, with around 10 million active users and 75 million transactions.
+    </p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px 40px; padding: clamp(28px, 4vh, 40px) 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">My role</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">UX Lead</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Timeline</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">[Year] · ~1 year</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Domain</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Fintech · Trading</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Team</span>
+      <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">UI designers, consultant, PMs</span>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+
+    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+      <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
+      <a href="#brief" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;The brief</a>
+      <a href="#team" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;Working with the team</a>
+      <a href="#basket" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">03 &nbsp;Basket orders</a>
+      <a href="#persona" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">04 &nbsp;Persona &amp; use cases</a>
+      <a href="#journey" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">05 &nbsp;User journey</a>
+      <a href="#orderpad" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">06 &nbsp;Floating order pad</a>
+      <a href="#positions" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">07 &nbsp;Baskets in positions</a>
+      <a href="#sip" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">08 &nbsp;Stock SIP</a>
+      <a href="#sip-scope" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">09 &nbsp;Scope &amp; wireframes</a>
+      <a href="#sip-final" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">10 &nbsp;The final SIP flow</a>
+      <a href="#results" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">11 &nbsp;Testing &amp; results</a>
+      <a href="#takeaways" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">12 &nbsp;What I'm taking with me</a>
+    </nav>
+
+    <main style="display: flex; flex-direction: column; gap: clamp(56px, 9vh, 104px); min-width: 0;">
+
+      <section id="brief" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The brief.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This project was for one of <strong style="font-weight: 600; color: #1a1a1a;">India's top brokerage companies</strong>, with an active user base of around <strong style="font-weight: 600; color: #1a1a1a;">10 million and 75 million transactions</strong>. The company is among the top three brokers in the country, so our design decisions could influence how Indians invest and trade.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">It was an ongoing, long-term engagement: regularly updating the mobile and web platforms based on user input and competitive analysis. Over a year I worked across nine modules, including Stock SIP, KYC, profit &amp; loss, watchlist, basket orders, onboarding, the order pad, calculators, and trades &amp; charges. This case study focuses on the two where I made the most impact: <strong style="font-weight: 600; color: #1a1a1a;">basket orders with a floating order pad</strong>, and <strong style="font-weight: 600; color: #1a1a1a;">Stock SIP</strong>.</p>
+      </section>
+
+      <section id="team" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Working with the team.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">I <strong style="font-weight: 600; color: #1a1a1a;">led the UX team</strong>, working alongside UI designers, a product consultant and several product managers. The constant back-and-forth with experts helped me understand the product from different perspectives and its complete life cycle. I was also part of user testing sessions, seeing first-hand how people interacted with our designs.</p>
+      </section>
+
+      <section id="basket" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Module 1</span>
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: -14px 0 0; text-wrap: balance;">Basket orders.</h2>
+        <blockquote style="margin: 0; padding: 0; border-left: 3px solid #2e7d32; padding-left: clamp(20px, 3vw, 40px);">
+          <p style="font-size: 16px; line-height: 1.6; color: #6c726c; margin: 0; max-width: 72ch;">A basket order lets a user place multiple orders at the same time, across different scripts and products like equity and securities, all in one go.</p>
+        </blockquote>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Cumulative margin</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">See the total margin required for multi-leg orders.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Saved baskets</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Save multi-leg orders and contracts as a basket, instead of repeating the same process.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Quick entry &amp; exit</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Partially enter or exit multi-leg positions quickly.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">One view to monitor</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Monitor multi-leg positions together as one basket.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="persona" style="display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Persona &amp; use cases.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">From user feedback and research with the product team, we defined the persona we were solving for. It kept us focused on real needs, and stopped us from going overboard with features.</p>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: 26px; background: #f5f7f5;">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.025em;">Pranay Shanbagh, 35</span>
+            <span style="font-size: 13.5px; color: #6c726c;">India · MNC employee · Trades on desktop</span>
+          </div>
+          <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch;">Pranay has traded since his 20s. He works from home and trades on a separate system; during market hours he focuses on day trading and catches up on work after the close. He researches carefully, follows the news, and hopes to trade full-time on his own terms.</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 4px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Goals</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>Trading as a primary or secondary income</span>
+              <span>Leverage market opportunities for profit</span>
+              <span>Focused work hours for work-life balance</span>
+              <span>Retire early and work at will</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">Needs</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>Real-time market data &amp; quotes</span>
+              <span>Advanced charts, tools, indicators &amp; patterns</span>
+              <span>A quick, seamless order execution tool</span>
+              <span>A simple, flexible, widget-style platform</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #2e7d32;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em; color: #1a1a1a;">Pain points</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Fixed order pad</strong>: no flexibility to move it on screen</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Missing data</strong>: market depth, average price, OHLC, 52W high/low</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Bulky</strong>: the order pad takes up too much screen space</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">No edits</strong>: contracts can't be edited during execution</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; padding-bottom: 14px;">Use cases</span>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Bundling orders</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Add multiple items to a basket, check margin and payoff, then move and edit contracts as needed.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Executing orders</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Execute in one click, or leg-wise (buy first, then sell), by expiry or by value.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Adjusting positions</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Exit and re-enter multiple positions with one click.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Monitoring positions</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Monitor multiple legs as a single item, with nested positions.</span>
+          </div>
+          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Saving &amp; editing baskets</span>
+            <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Name, schedule and edit baskets, set conditional baskets, and invoke them from any screen.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="journey" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">User journey.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">From the requirement document, I built a journey map covering every use case and edge case, from adding to a basket and executing it, through partial execution, to how baskets show up in positions. It took a few iterations with the product team to get right.</p>
+        <figure style="margin: 8px 0 0; display: flex; flex-direction: column; gap: 12px;">
+          <img src="/assets/ti-journey.png" alt="Basket order user journey map" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+      </section>
+
+      <section id="orderpad" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0; text-wrap: balance;">A floating order pad.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Wireframing was iterative: each round was prototyped end to end, discussed with the product team and tested with users. Alongside basket orders, we <strong style="font-weight: 600; color: #1a1a1a;">redesigned the entire order pad</strong>. It's no longer docked to one side of the screen: the new <strong style="font-weight: 600; color: #1a1a1a;">floating order pad</strong> gives traders the flexibility to work the way they want, a step towards a console-like trading experience.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">A basket can be started from the watchlist, and holds <strong style="font-weight: 600; color: #1a1a1a;">up to 20 orders</strong> to execute together.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px 20px;">
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <img src="/assets/ti-basket-hover.png" alt="Adding a stock to a basket from the watchlist" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <figcaption style="font-size: 13.5px; color: #8a908a;">Add to a basket straight from the watchlist.</figcaption>
+          </figure>
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <img src="/assets/ti-basket-single.png" alt="Floating basket order pad with a single order" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <figcaption style="font-size: 13.5px; color: #8a908a;">The floating pad, with live margin and charges.</figcaption>
+          </figure>
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <img src="/assets/ti-basket-clone.png" alt="Cloning an order inside the basket" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <figcaption style="font-size: 13.5px; color: #8a908a;">Clone an order to build multi-leg baskets quickly.</figcaption>
+          </figure>
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <img src="/assets/ti-basket-mode.png" alt="Basket mode with multiple orders" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <figcaption style="font-size: 13.5px; color: #8a908a;">Basket mode: many orders, executed together.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="positions" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Baskets in positions.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Baskets had to fit into the existing positions page <strong style="font-weight: 600; color: #1a1a1a;">without changing its structure</strong>. Because a basket holds several orders, the table could only show so much, so each basket collapses into one row that expands into its legs.</p>
+        <figure style="margin: 8px 0 0;">
+          <img src="/assets/ti-positions.png" alt="Positions page with a pending basket" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+        </figure>
+      </section>
+
+      <section id="sip" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #2e7d32; font-weight: 500;">Module 2</span>
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: -14px 0 0; text-wrap: balance;">Stock SIP.</h2>
+        <blockquote style="margin: 0; padding: 0; border-left: 3px solid #2e7d32; padding-left: clamp(20px, 3vw, 40px);">
+          <p style="font-size: 16px; line-height: 1.6; color: #6c726c; margin: 0; max-width: 72ch;">A Systematic Investment Plan (SIP) invests a fixed amount at regular intervals, in a stock or a mutual fund.</p>
+        </blockquote>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The client had already designed a Stock SIP flow but wasn't happy with it, and needed it reworked to be <strong style="font-weight: 600; color: #1a1a1a;">more user-friendly</strong>. I started by using SIPs on different platforms myself, which doubled as a competitive analysis.</p>
+        <figure style="margin: 8px 0 0; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 14px;">
+            <img src="/assets/ti-competitor-1.png" alt="Competitor SIP flow 1" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <img src="/assets/ti-competitor-2.png" alt="Competitor SIP flow 2" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <img src="/assets/ti-competitor-3.png" alt="Competitor SIP flow 3" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+          </div>
+          <figcaption style="font-size: 13.5px; color: #8a908a;">Competitor analysis: SIP flows on three leading Indian platforms.</figcaption>
+        </figure>
+      </section>
+
+      <section id="sip-scope" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Narrowing the scope, then wireframing.</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 4px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #1a1a1a;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em;">What we learnt</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span>The existing design wasn't intuitive.</span>
+              <span>First-time users who don't know what an SIP is may never use it without proper onboarding.</span>
+              <span>Users needed more options while creating SIPs.</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 24px 0; border-top: 2px solid #2e7d32;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.02em; color: #1a1a1a;">How the wireframes answered it</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.75; color: #3a3f3a;">
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Less cognitive load</strong> for a quicker journey</span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Important information upfront</strong></span>
+              <span><strong style="font-weight: 600; color: #1a1a1a;">Clear visual hierarchy</strong> by grouping elements</span>
+            </div>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">I shared wireframes with the product team for feedback on layout and flow, and mapped the full SIP creation journey: every entry point, and the different paths for different user types.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px 20px; align-items: start;">
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <img src="/assets/ti-sip-current.png" alt="The client's existing Stock SIP design" loading="lazy" style="display: block; width: 100%; max-width: 420px; height: auto; border: 1px solid #ececec;" />
+            <figcaption style="font-size: 13.5px; color: #8a908a;">Before: the client's existing SIP screens.</figcaption>
+          </figure>
+          <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px;">
+            <img src="/assets/ti-sip-wireframes.png" alt="Stock SIP wireframes: onboarding, create and review" loading="lazy" style="display: block; width: 100%; height: auto; border: 1px solid #ececec;" />
+            <figcaption style="font-size: 13.5px; color: #8a908a;">Wireframes: onboarding for first-timers, create, and review.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="sip-final" style="display: flex; flex-direction: column; gap: 24px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The final SIP flow.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">After a few rounds of iteration with the product team: create an SIP by quantity or amount, pick a frequency and date, review, and confirm, then manage, modify or pause SIPs and their e-mandates from one place.</p>
+        <figure style="margin: 8px 0 0;">
+          <img src="/assets/ti-sip-final.png" alt="Final Stock SIP flow: create, review, success, orders, history and e-mandates" loading="lazy" style="display: block; width: 100%; height: auto;" />
+        </figure>
+      </section>
+
+      <section id="results" style="display: flex; flex-direction: column; gap: 20px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Testing &amp; results.</h2>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">I worked with the development team to <strong style="font-weight: 600; color: #1a1a1a;">test every implementation</strong> for missing interactions or broken flows, verified that design elements were built correctly, and fed issues and improvement ideas back to the team.</p>
+        <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Since launch, we've seen a <strong style="font-weight: 600; color: #1a1a1a;">significant decrease in customer complaints</strong>. Involving customers throughout the design process built trust in the platform, and they now give constructive feedback on every new feature.</p>
+      </section>
+
+      <section id="takeaways" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
+        <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">What I'm taking with me.</h2>
+        <div style="display: flex; flex-direction: column; gap: 0;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">01</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Launch big features as an MVP.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">A minimum viable product makes it easier for users to adapt to new changes in a system they're already used to.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">02</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Test with users at every step.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">User testing is the clearest way to know whether a design decision actually works for the people using it.</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px 20px; padding: 24px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+            <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">03</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-family: var(--head); font-weight: 600; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.025em;">Multidisciplinary teams make well-rounded solutions.</span>
+              <span style="font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 88ch;">Working with UI, product and consulting experts meant our solutions covered every kind of user need.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
+    <a href="/onboarding-retention" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+      <span style="display: flex; flex-direction: column; gap: 12px;">
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
+        <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">17% uptick in onboarding success, 80% fewer HR queries</span>
+      </span>
+      <span style="font-size: 14px; font-weight: 500; color: #2e7d32;">Read it →</span>
+    </a>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin-top: clamp(48px, 8vh, 88px); padding-top: 22px; border-top: 1px solid #ececec; font-size: 13px; color: #8a908a;">
+      <span>© Rhea Thampy, 2026</span>
+      <a href="/">← Back to work</a>
+    </div>
+  </section>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+class Component extends DCLogic {
+  componentDidMount() { this._spy = initTocSpy(); }
+  componentWillUnmount() { if (this._spy) this._spy(); }
+}
+
+function initTocSpy() {
+  const links = Array.from(document.querySelectorAll('[data-toc]'));
+  if (!links.length) return () => {};
+  const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const paint = () => {
+    const line = window.innerHeight * 0.32;
+    let idx = 0;
+    targets.forEach((sec, i) => { if (sec.getBoundingClientRect().top <= line) idx = i; });
+    links.forEach((a, i) => {
+      const on = i === idx;
+      a.style.color = on ? '#1a1a1a' : '#6c726c';
+      a.style.fontWeight = on ? '600' : '400';
+      a.style.opacity = on ? '1' : '0.72';
+    });
+  };
+  const schedule = () => requestAnimationFrame(paint);
+  schedule();
+  const cleanups = [];
+  if (typeof IntersectionObserver !== 'undefined') {
+    const io = new IntersectionObserver(schedule, { threshold: [0, 0.01, 0.5, 1], rootMargin: '-30% 0px -55% 0px' });
+    targets.forEach((t) => io.observe(t));
+    const rail = document.createElement('div');
+    rail.setAttribute('aria-hidden', 'true');
+    rail.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:100%;pointer-events:none;';
+    const host = targets[0] && targets[0].parentElement;
+    if (host) {
+      if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+      const total = host.scrollHeight || 0;
+      const step = Math.max(240, Math.round(window.innerHeight * 0.4));
+      for (let y = 0; y < total; y += step) {
+        const s = document.createElement('div');
+        s.style.cssText = 'position:absolute;left:0;width:1px;height:1px;top:' + y + 'px;';
+        rail.appendChild(s);
+      }
+      host.appendChild(rail);
+      Array.from(rail.children).forEach((s) => io.observe(s));
+      cleanups.push(() => rail.remove());
+    }
+    cleanups.push(() => io.disconnect());
+  }
+  document.addEventListener('scroll', schedule, true);
+  window.addEventListener('resize', schedule);
+  window.addEventListener('load', schedule);
+  const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(schedule) : null;
+  if (ro) targets.forEach((t) => ro.observe(t));
+  const t1 = setTimeout(paint, 300);
+  const t2 = setTimeout(paint, 1200);
+  return () => {
+    document.removeEventListener('scroll', schedule, true);
+    window.removeEventListener('resize', schedule);
+    window.removeEventListener('load', schedule);
+    if (ro) ro.disconnect();
+    cleanups.forEach((fn) => fn());
+    clearTimeout(t1); clearTimeout(t2);
+  };
+}
+</script>
+</body>
+</html>
