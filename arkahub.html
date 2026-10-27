@@ -17,6 +17,11 @@
   a { color: #1a1a1a; text-decoration: none; }
   a:hover { color: #2e7d32; }
   ::selection { background: #2e7d32; color: #fff; }
+  @media (max-width: 760px) {
+    [data-m="case-layout"] { grid-template-columns: minmax(0, 1fr) !important; }
+    [data-m="case-toc"] { display: none !important; }
+    [data-m="row2"] { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
+  }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&amp;display=swap" rel="stylesheet">
 </helmet>
@@ -60,9 +65,9 @@
     <img src="/assets/arkahub-cover.webp" alt="Redesigned Arkahub homepage" style="display: block; width: 100%; height: clamp(320px, 44vw, 620px); object-fit: cover; object-position: 50% 60%;">
   </figure>
 
-  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+  <div data-m="case-layout" style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
 
-    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+    <nav data-m="case-toc" style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
       <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
       <a href="#brief" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Background</a>
       <a href="#problem" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;What we solved for</a>
@@ -116,7 +121,7 @@
         <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Arkahub operates in a new market category, so a single competitive sweep wouldn't have said much. I looked at three different sets of players, each answering a different question.</p>
 
         <div style="display: flex; flex-direction: column; gap: 0;">
-          <div style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 2px solid #1a1a1a;">
+          <div data-m="row2" style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 2px solid #1a1a1a;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">L1</span>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Indian solar companies</span>
@@ -127,7 +132,7 @@
               <span style="font-family: var(--head); font-weight: 600; font-size: 16px; letter-spacing: -0.015em; color: #2e7d32;">Almost none were selling the idea to someone who didn't.</span>
             </div>
           </div>
-          <div style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">L2</span>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">International residential solar</span>
@@ -138,7 +143,7 @@
               <span style="font-family: var(--head); font-weight: 600; font-size: 16px; letter-spacing: -0.015em; color: #2e7d32;">They weren't selling technology. They were selling savings and peace of mind.</span>
             </div>
           </div>
-          <div style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: 56px minmax(0, 0.6fr) minmax(0, 1fr); gap: 14px 28px; align-items: start; padding: 30px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 15px; color: #8a908a;">L3</span>
             <div style="display: flex; flex-direction: column; gap: 8px;">
               <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Indirect &amp; category builders</span>

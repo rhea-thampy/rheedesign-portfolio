@@ -17,6 +17,11 @@
   a { color: #1a1a1a; text-decoration: none; }
   a:hover { color: #2e7d32; }
   ::selection { background: #2e7d32; color: #fff; }
+  @media (max-width: 760px) {
+    [data-m="case-layout"] { grid-template-columns: minmax(0, 1fr) !important; }
+    [data-m="case-toc"] { display: none !important; }
+    [data-m="row2"] { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
+  }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 </helmet>
@@ -60,9 +65,9 @@
     <img src="/assets/fe-cover.png" alt="Making financial education accessible: cover with course cards" loading="lazy" style="display: block; width: 100%; height: auto;" />
   </figure>
 
-  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+  <div data-m="case-layout" style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
 
-    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+    <nav data-m="case-toc" style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
       <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
       <a href="#summary" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Summary</a>
       <a href="#role" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;My role</a>
@@ -94,15 +99,15 @@
         <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Problem statement.</h2>
         <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">Novice investors often lack the confidence to make informed investment decisions, which limits their willingness to take calculated risks and learn through experience. Motilal Oswal wanted to address:</p>
         <div style="display: flex; flex-direction: column; gap: 0;">
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Low retention</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Users weren't coming back to the existing learning content.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Limited engagement</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Engagement dropped away beyond the initial sign-up.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">No interactive learning</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">There was no gamified, interactive way to learn about investing.</span>
           </div>
@@ -133,15 +138,15 @@
       <section id="challenges" style="display: flex; flex-direction: column; gap: 26px; scroll-margin-top: 100px;">
         <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Key challenges we focused on.</h2>
         <div style="display: flex; flex-direction: column; gap: 0;">
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Language barrier</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Most financial content is available only in English, making it inaccessible for users who primarily consume content in regional languages.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Low digital literacy</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Many users from smaller cities are less familiar with advanced digital platforms, requiring simpler interfaces and guided flows.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Engagement &amp; retention</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Traditional e-learning formats often failed to hold user attention, leading to drop-offs before completing learning modules.</span>
           </div>
