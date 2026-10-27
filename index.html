@@ -22,9 +22,21 @@
     [data-m="hero-h1"] { width: auto !important; height: auto !important; max-width: none !important; }
     [data-m="hero-h1"], [data-m="hero-h1"] span { font-size: clamp(44px, 13vw, 72px) !important; line-height: 1 !important; }
     [data-m="side-layout"] { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; }
-    [data-m="side"] { position: static !important; flex-direction: row !important; flex-wrap: wrap; align-items: center; gap: 2px 20px; padding-top: 12px !important; }
-    [data-m="side"] > * { width: auto !important; }
-    [data-m="side-label"], [data-m="side"] [data-side-dot] { display: none !important; }
+    [data-m="side"] { display: none !important; }
+    [data-m="hero"] { align-items: center; text-align: center; }
+    [data-m="hero-h1"], [data-m="hero-h1"] span { text-align: center !important; }
+    [data-m="hero-h1"] { margin-left: auto !important; margin-right: auto !important; }
+    [data-m="hero-row"] { flex-direction: column; align-items: center !important; justify-content: center !important; gap: 32px !important; }
+    [data-m="hero-body"] { margin-left: auto !important; margin-right: auto !important; }
+    [data-m="markets"] { align-items: center; min-width: 0 !important; }
+    [data-m="markets"] > div { justify-content: center; }
+    [data-m="brands"] { flex-direction: column; align-items: center !important; gap: 22px !important; }
+    [data-m="brand-grid"] { gap: 26px 24px !important; }
+    [data-m="brand-grid"] img:nth-child(1) { height: 20px !important; }
+    [data-m="brand-grid"] img:nth-child(2) { height: 22px !important; }
+    [data-m="brand-grid"] img:nth-child(3) { height: 15px !important; }
+    [data-m="brand-grid"] img:nth-child(4) { height: 20px !important; }
+    footer { justify-content: center !important; text-align: center; }
     [data-m="work-grid"] { grid-template-columns: minmax(0, 1fr) !important; gap: 44px !important; }
     [data-m="work-grid"] > * { grid-column: 1 / -1 !important; }
     [data-m="work-grid"] > * > div:first-child { height: clamp(280px, 82vw, 400px) !important; }
@@ -54,24 +66,24 @@
     </div>
   </nav>
 
-  <header id="top" style="position: relative; isolation: isolate; box-sizing: border-box; min-height: calc(100svh - 84px); display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 5vh, 64px) 0 clamp(32px, 7vh, 80px);">
+  <header id="top" data-m="hero" style="position: relative; isolation: isolate; box-sizing: border-box; min-height: calc(100svh - 84px); display: flex; flex-direction: column; justify-content: center; padding: clamp(24px, 5vh, 64px) 0 clamp(32px, 7vh, 80px);">
     <sc-if value="{{ leafOn }}" hint-placeholder-val="{{ false }}">
       <canvas data-leaves="" aria-hidden="true" style="position: absolute; top: -84px; left: 50%; width: 100vw; height: calc(100% + 84px); transform: translateX(-50%); z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%);"></canvas>
       <div data-grain="" aria-hidden="true" style="position: absolute; top: -84px; left: 50%; width: 100vw; height: calc(100% + 84px); transform: translateX(-50%); z-index: -1; pointer-events: none; opacity: 0.18; mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%);"></div>
     </sc-if>
     <h1 data-reveal="" data-m="hero-h1" style="font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 800; font-size: 100px; line-height: 0.92; letter-spacing: -0.04em; margin: 0; max-width: 15ch; text-wrap: balance; text-align: left; width: 834px; height: 196px">
-    <span style="font-weight: normal; font-size: 80px; text-align: left">
+    <span style="font-weight: 500; font-size: 80px; text-align: left">
       I make the complex <br>feel&nbsp;<span data-ink-target="" style="color: rgb(46, 125, 50); font-size: 80px;">obvious.</span></span></h1>
-    <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 6vw, 96px); align-items: flex-end; justify-content: space-between; margin-top: clamp(28px, 6vh, 64px);">
-      <p data-reveal="" style="font-size: 14px; line-height: 1.8; max-width: 42ch; margin: 0; color: #3a3f3a; text-wrap: pretty; overflow: visible; font-weight: 400">
+    <div data-m="hero-row" style="display: flex; flex-wrap: wrap; gap: clamp(32px, 6vw, 96px); align-items: flex-end; justify-content: space-between; margin-top: clamp(28px, 6vh, 64px);">
+      <p data-reveal="" data-m="hero-body" style="font-size: 16px; line-height: 1.7; max-width: 42ch; margin: 0; color: #3a3f3a; text-wrap: pretty; overflow: visible; font-weight: 400">
         Six years of <span data-ink-target="">end-to-end product design</span> across <span style="font-weight: 600; color: #1a1a1a;">fintech and enterprise</span>. Lately, that means the messy intersection of AI and enterprise software.
       </p>
-      <div data-reveal="" style="display: flex; flex-direction: column; gap: 12px; min-width: 190px;">
+      <div data-reveal="" data-m="markets" style="display: flex; flex-direction: column; gap: 12px; min-width: 190px;">
         <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #5f665f; font-weight: 500;">Markets designed for</span>
         <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 600; font-size: 15px; border: 1px solid #d3d8d0; border-radius: 999px; padding: 8px 16px; border-color: #ADB3AB"><span style="font-size: 16px; line-height: 1;">🇮🇳</span>India</span>
-          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 600; font-size: 15px; border: 1px solid #d3d8d0; border-radius: 999px; padding: 8px 16px; border-color: #ADB3AB"><span style="font-size: 16px; line-height: 1;">🇦🇪</span>UAE</span>
-          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 600; font-size: 15px; border: 1px solid #d3d8d0; border-radius: 999px; padding: 8px 16px; border-color: #ADB3AB"><span style="font-size: 16px; line-height: 1;">🇺🇸</span>USA</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 400; font-size: 15px; border: 1px solid #d3d8d0; border-radius: 999px; padding: 8px 16px; border-color: #ADB3AB"><span style="font-size: 16px; line-height: 1;">🇮🇳</span>India</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 400; font-size: 15px; border: 1px solid #d3d8d0; border-radius: 999px; padding: 8px 16px; border-color: #ADB3AB"><span style="font-size: 16px; line-height: 1;">🇦🇪</span>UAE</span>
+          <span style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 400; font-size: 15px; border: 1px solid #d3d8d0; border-radius: 999px; padding: 8px 16px; border-color: #ADB3AB"><span style="font-size: 16px; line-height: 1;">🇺🇸</span>USA</span>
         </div>
       </div>
     </div>
@@ -178,7 +190,7 @@
     </div>
   </section>
 
-  <section id="brands" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px clamp(32px, 6vw, 96px); padding: clamp(26px, 4vh, 40px) 0; margin-top: clamp(88px, 14vh, 160px); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+  <section id="brands" data-m="brands" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px clamp(32px, 6vw, 96px); padding: clamp(26px, 4vh, 40px) 0; margin-top: clamp(88px, 14vh, 160px); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
     <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; flex: 0 0 auto;">Brands I've worked with</span>
     <div data-m="brand-grid" style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; justify-items: center; gap: 20px clamp(16px, 3vw, 48px);">
       <img src="/assets/logos/thence.svg" alt="Thence Digital" title="Thence" style="display: block; height: 30px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0); opacity: .45; transition: opacity .2s ease;" style-hover="opacity: 1;">
@@ -203,6 +215,11 @@
 
   <footer style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; margin-top: clamp(32px, 6vh, 64px); padding: 22px 0 clamp(32px, 5vh, 48px); border-top: 1px solid #ececec; font-size: 13px; color: #8a908a;">
     <span>© Rhea Thampy, 2026</span>
+    <span data-m="foot-links" style="display: flex; flex-wrap: wrap; gap: 8px 22px;">
+      <button type="button" onClick="{{ copyEmail }}" title="Copy rheathampy@gmail.com" style="display: inline-flex; align-items: center; gap: 6px; padding: 0; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 13px; color: #6c726c; transition: color .15s ease-out;" style-hover="color: #1a1a1a;"><span>{{ emailLabel }}</span><span aria-hidden="true">{{ emailIcon }}</span></button>
+      <a href="https://www.linkedin.com/in/rheathampy/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; color: #6c726c; transition: color .15s ease-out;" style-hover="color: #1a1a1a;"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
+      <a href="/assets/Rhea-Thampy-Product-Designer.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: #6c726c; transition: color .15s ease-out;" style-hover="color: #1a1a1a;"><span>Resume</span><span aria-hidden="true">↗</span></a>
+    </span>
     <span>Product Designer, open to new roles</span>
   </footer>
 </div>
@@ -306,6 +323,12 @@ class Component extends DCLogic {
     L.last = now;
     if (L.w !== w || L.h !== h) { cv.width = w; cv.height = h; L.w = w; L.h = h; }
     if (L.still === undefined) L.still = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (L.canFilter === undefined) {
+      // Safari ignores ctx.filter, which left the leaves sharp; test it and fall back to a CSS blur.
+      const tc = document.createElement('canvas'); tc.width = tc.height = 9;
+      const tx = tc.getContext('2d'); tx.filter = 'blur(2px)'; tx.fillStyle = '#000'; tx.fillRect(4, 4, 1, 1);
+      L.canFilter = tx.getImageData(1, 4, 1, 1).data[3] > 0;
+    }
     const ctx = L.ctx, U = Math.max(w, h * 1.4), t = L.still ? 0 : now / 1000;
     // Wind: three slow, unrelated waves (~9s, 23s, 47s), squared so it is mostly calm with soft gusts.
     const WIND = 1;
@@ -323,12 +346,14 @@ class Component extends DCLogic {
     const warm = ctx.createRadialGradient(w * 0.48, h * 0.05, 0, w * 0.48, h * 0.05, w * 0.3);
     warm.addColorStop(0, 'rgba(236,214,120,0.38)'); warm.addColorStop(1, 'rgba(236,214,120,0)');
     ctx.fillStyle = warm; ctx.fillRect(0, 0, w, h);
-    ctx.filter = 'blur(' + Math.max(8, Math.round(U * 0.022)) + 'px)';
+    const blurPx = Math.max(8, Math.round(U * 0.022));
+    if (L.canFilter) ctx.filter = 'blur(' + blurPx + 'px)';
+    else if (L.cssBlur !== blurPx) { L.cssBlur = blurPx; cv.style.filter = 'blur(' + (blurPx / S).toFixed(1) + 'px)'; cv.style.transform = 'translateX(-50%) scale(1.15)'; }
     L.fronds.forEach((f) => {
       // The gust reaches fronds further right a little later; heavier fronds (larger k) move less.
       const g = gust(t - f.x * 1.2), heavy = 1 / f.k;
       const lean = g * 0.10 * heavy;
-      const osc = Math.sin(t * 5.0 + f.ph) * (0.012 + 0.03 * g) * heavy;
+      const osc = Math.sin(t * 2.6 + f.ph) * (0.012 + 0.025 * g) * heavy;
       const a = f.ang + lean + osc;
       const ox = (f.x + g * 0.015 * heavy + Math.sin(t * 0.21 + f.ph) * 0.006) * w, oy = f.y * h;
       const len = 0.62 * f.k * U;
@@ -337,7 +362,7 @@ class Component extends DCLogic {
       ctx.beginPath(); ctx.ellipse(len * 0.5, 0, len * 0.5, U * 0.012, 0, 0, Math.PI * 2); ctx.fill();
       f.leaflets.forEach((l) => {
         const px = len * (0.08 + l.t * 0.88);
-        const flutter = Math.sin(t * (13 + l.t * 6) + f.ph * 2 + l.t * 5) * (0.03 + 0.15 * g);
+        const flutter = Math.sin(t * (6 + l.t * 3) + f.ph * 2 + l.t * 5) * (0.03 + 0.1 * g);
         ctx.save(); ctx.translate(px, 0); ctx.rotate(l.side * (l.ang + flutter));
         const ll = l.len * f.k * U, ww = l.wid * f.k * U;
         ctx.fillStyle = 'rgba(88, 118, 52, ' + (0.27 + 0.09 * (1 - l.t)).toFixed(3) + ')';
