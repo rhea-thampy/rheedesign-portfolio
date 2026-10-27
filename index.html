@@ -18,6 +18,19 @@
   a:hover { color: #2e7d32; }
   ::selection { background: #2e7d32; color: #fff; }
   @keyframes pulseDot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.8); } }
+  @media (max-width: 760px) {
+    [data-m="hero-h1"] { width: auto !important; height: auto !important; max-width: none !important; }
+    [data-m="hero-h1"], [data-m="hero-h1"] span { font-size: clamp(44px, 13vw, 72px) !important; line-height: 1 !important; }
+    [data-m="side-layout"] { grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; }
+    [data-m="side"] { position: static !important; flex-direction: row !important; flex-wrap: wrap; align-items: center; gap: 2px 20px; padding-top: 12px !important; }
+    [data-m="side"] > * { width: auto !important; }
+    [data-m="side-label"], [data-m="side"] [data-side-dot] { display: none !important; }
+    [data-m="work-grid"] { grid-template-columns: minmax(0, 1fr) !important; gap: 44px !important; }
+    [data-m="work-grid"] > * { grid-column: 1 / -1 !important; }
+    [data-m="work-grid"] > * > div:first-child { height: clamp(280px, 82vw, 400px) !important; }
+    [data-m="brand-grid"] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; flex-basis: 100% !important; }
+  }
+  @media (max-width: 420px) { [data-m="nav-time"] { display: none !important; } }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 </helmet>
@@ -28,7 +41,7 @@
   <nav data-nav="" style="position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 84px; box-sizing: border-box; padding: 22px 0 20px;">
     <a href="#top" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 19px; letter-spacing: -0.02em; justify-self: start">Rhea Thampy</a>
     <div style="display: flex; gap: 8px; justify-self: end; align-items: center;">
-      <span style="display: flex; align-items: center; gap: 8px; margin-right: 14px; font-size: 13px; color: #6c726c; white-space: nowrap;"><span>India</span><span aria-hidden="true" style="width: 3px; height: 3px; border-radius: 50%; background: #b5bab5;"></span><span style="font-variant-numeric: tabular-nums; color: #1a1a1a;">{{ indiaTime }}</span></span>
+      <span data-m="nav-time" style="display: flex; align-items: center; gap: 8px; margin-right: 14px; font-size: 13px; color: #6c726c; white-space: nowrap;"><span>India</span><span aria-hidden="true" style="width: 3px; height: 3px; border-radius: 50%; background: #b5bab5;"></span><span style="font-variant-numeric: tabular-nums; color: #1a1a1a;">{{ indiaTime }}</span></span>
       <a href="https://www.linkedin.com/in/rheathampy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #e2e5e2; border-radius: 50%; color: #1a1a1a; transition: background .15s ease-out, color .15s ease-out, border-color .15s ease-out;" style-hover="background: #2e7d32; border-color: #2e7d32; color: #ffffff;">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95C21.4 8.75 23 10.9 23 14.3V21h-4v-6c0-1.5-.54-2.5-1.9-2.5-1.1 0-1.75.74-2.03 1.46-.1.26-.13.62-.13.98V21h-4V9Z"></path></svg>
       </a>
@@ -46,7 +59,7 @@
       <canvas data-leaves="" aria-hidden="true" style="position: absolute; top: -84px; left: 50%; width: 100vw; height: calc(100% + 84px); transform: translateX(-50%); z-index: -1; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%);"></canvas>
       <div data-grain="" aria-hidden="true" style="position: absolute; top: -84px; left: 50%; width: 100vw; height: calc(100% + 84px); transform: translateX(-50%); z-index: -1; pointer-events: none; opacity: 0.18; mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 64%, transparent 100%);"></div>
     </sc-if>
-    <h1 data-reveal="" style="font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 800; font-size: 100px; line-height: 0.92; letter-spacing: -0.04em; margin: 0; max-width: 15ch; text-wrap: balance; text-align: left; width: 834px; height: 196px">
+    <h1 data-reveal="" data-m="hero-h1" style="font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 800; font-size: 100px; line-height: 0.92; letter-spacing: -0.04em; margin: 0; max-width: 15ch; text-wrap: balance; text-align: left; width: 834px; height: 196px">
     <span style="font-weight: normal; font-size: 80px; text-align: left">
       I make the complex <br>feel&nbsp;<span data-ink-target="" style="color: rgb(46, 125, 50); font-size: 80px;">obvious.</span></span></h1>
     <div style="display: flex; flex-wrap: wrap; gap: clamp(32px, 6vw, 96px); align-items: flex-end; justify-content: space-between; margin-top: clamp(28px, 6vh, 64px);">
@@ -64,12 +77,12 @@
     </div>
   </header>
 
-  <div style="display: grid; grid-template-columns: clamp(150px, 14vw, 200px) minmax(0, 1fr); gap: clamp(16px, 3vw, 48px); align-items: start;">
-    <aside style="position: sticky; top: 32px; padding-top: clamp(26px, 4vh, 40px); display: flex; flex-direction: column;">
+  <div data-m="side-layout" style="display: grid; grid-template-columns: clamp(150px, 14vw, 200px) minmax(0, 1fr); gap: clamp(16px, 3vw, 48px); align-items: start;">
+    <aside data-m="side" style="position: sticky; top: 32px; padding-top: clamp(26px, 4vh, 40px); display: flex; flex-direction: column;">
       <a href="#work" data-side="work" style="display: flex; align-items: center; gap: 10px; padding: 9px 0; font-size: 14px; font-weight: 500; color: #8a908a; transition: color .15s ease-out" style-hover="color: #1a1a1a;"><span data-side-dot="" style="width: 0; height: 2px; background: #2e7d32; border-radius: 1px; transition: width .2s cubic-bezier(.34,1.56,.64,1);"></span>Work</a>
       <a href="#about" data-side="about" style="display: flex; align-items: center; gap: 10px; padding: 9px 0; font-size: 14px; font-weight: 500; color: #8a908a; transition: color .15s ease-out" style-hover="color: #1a1a1a;"><span data-side-dot="" style="width: 0; height: 2px; background: #2e7d32; border-radius: 1px; transition: width .2s cubic-bezier(.34,1.56,.64,1);"></span>About</a>
       
-      <span style="margin: 26px 0 6px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Links</span>
+      <span data-m="side-label" style="margin: 26px 0 6px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Links</span>
       <button type="button" onClick="{{ copyEmail }}" title="Copy rheathampy@gmail.com" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 5px 0; font-size: 13px; color: #6c726c; transition: color .15s ease-out; border: 0; background: transparent; cursor: pointer; font: inherit; font-size: 13px; text-align: left;" style-hover="color: #1a1a1a;"><span style="font-size: 13px">{{ emailLabel }}</span><span aria-hidden="true">{{ emailIcon }}</span></button>
       <a href="https://www.linkedin.com/in/rheathampy/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 5px 0; font-size: 13px; color: #6c726c; transition: color .15s ease-out;" style-hover="color: #1a1a1a;"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
       <a href="/assets/Rhea-Thampy-Product-Designer.pdf" target="_blank" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 5px 0; font-size: 13px; color: #6c726c; transition: color .15s ease-out;" style-hover="color: #1a1a1a;"><span>Resume</span><span aria-hidden="true">↗</span></a>
@@ -80,7 +93,7 @@
       <h2 style="font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0">Selected work</h2>
       <span style="font-size: 13px; color: #8a908a;">2021–2026</span>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; align-items: stretch;">
+    <div data-m="work-grid" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; align-items: stretch;">
       <a href="/onboarding-retention" onMouseEnter="{{ hov0 }}" onMouseLeave="{{ unhov }}" data-reveal="" style="grid-column: 1 / span 7;  display: flex; flex-direction: column; gap: 16px; min-width: 0;">
         <div aria-label="Onboarding app screens" style="position: relative; overflow: hidden; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease-out; height: clamp(300px, 36vw, 540px); background: #dcd3f2; background-image: radial-gradient(80% 70% at 0% 100%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 65%);" style-hover="transform: translateY(-8px) rotate(-0.6deg); box-shadow: 0 22px 44px -18px rgba(26,26,26,0.28);">
           <div aria-hidden="true" style="position: absolute; top: 16px; left: 16px; right: 16px; z-index: 2; display: flex; flex-wrap: wrap; gap: 8px; pointer-events: none; opacity: {{ tagOp0 }}; transform: {{ tagY0 }}; transition: opacity .18s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1);"><span style="font-size: 12px; font-weight: 500; color: #1a1a1a; background: rgba(255,255,255,0.94); border-radius: 999px; padding: 6px 12px; box-shadow: 0 4px 14px -6px rgba(26,26,26,0.25); white-space: nowrap;">HR Tech</span><span style="font-size: 12px; font-weight: 500; color: #1a1a1a; background: rgba(255,255,255,0.94); border-radius: 999px; padding: 6px 12px; box-shadow: 0 4px 14px -6px rgba(26,26,26,0.25); white-space: nowrap;">Fintech</span></div>
@@ -167,7 +180,7 @@
 
   <section id="brands" style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px clamp(32px, 6vw, 96px); padding: clamp(26px, 4vh, 40px) 0; margin-top: clamp(88px, 14vh, 160px); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
     <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; flex: 0 0 auto;">Brands I've worked with</span>
-    <div style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; justify-items: center; gap: 20px clamp(16px, 3vw, 48px);">
+    <div data-m="brand-grid" style="flex: 1 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: center; justify-items: center; gap: 20px clamp(16px, 3vw, 48px);">
       <img src="/assets/logos/thence.svg" alt="Thence Digital" title="Thence" style="display: block; height: 30px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0); opacity: .45; transition: opacity .2s ease;" style-hover="opacity: 1;">
       <img src="/assets/logos/fello-logo.svg" alt="Fello" title="Fello" style="display: block; height: 34px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0); opacity: .45; transition: opacity .2s ease;" style-hover="opacity: 1;">
       <img src="/assets/logos/arkahub-logo.svg" alt="Arkahub" title="Arkahub" style="display: block; height: 22px; width: auto; max-width: 100%; object-fit: contain; filter: brightness(0); opacity: .45; transition: opacity .2s ease;" style-hover="opacity: 1;">
@@ -292,7 +305,11 @@ class Component extends DCLogic {
     if (now - L.last < 40) return;
     L.last = now;
     if (L.w !== w || L.h !== h) { cv.width = w; cv.height = h; L.w = w; L.h = h; }
-    const ctx = L.ctx, U = Math.max(w, h * 1.4), t = now / 1000;
+    if (L.still === undefined) L.still = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const ctx = L.ctx, U = Math.max(w, h * 1.4), t = L.still ? 0 : now / 1000;
+    // Wind: three slow, unrelated waves (~9s, 23s, 47s), squared so it is mostly calm with soft gusts.
+    const WIND = 1;
+    const gust = (tt) => { const s = (Math.sin(tt * 0.698) * 0.5 + Math.sin(tt * 0.273 + 1.3) * 0.8 + Math.sin(tt * 0.134 + 2.1)) / 2.3; const v = 0.5 + 0.5 * s; return v * v * WIND; };
     const base = ctx.createLinearGradient(0, 0, w, h);
     base.addColorStop(0, '#dfe8cf'); base.addColorStop(0.38, '#f8f6e6'); base.addColorStop(0.72, '#f1ebc6'); base.addColorStop(1, '#ddd29a');
     ctx.filter = 'none';
@@ -308,16 +325,19 @@ class Component extends DCLogic {
     ctx.fillStyle = warm; ctx.fillRect(0, 0, w, h);
     ctx.filter = 'blur(' + Math.max(8, Math.round(U * 0.022)) + 'px)';
     L.fronds.forEach((f) => {
-      const sway = Math.sin(t * 0.28 + f.ph) * 0.05 + Math.sin(t * 0.63 + f.ph * 1.7) * 0.02;
-      const a = f.ang + sway * 0.6;
-      const ox = (f.x + Math.sin(t * 0.21 + f.ph) * 0.012) * w, oy = f.y * h;
+      // The gust reaches fronds further right a little later; heavier fronds (larger k) move less.
+      const g = gust(t - f.x * 1.2), heavy = 1 / f.k;
+      const lean = g * 0.10 * heavy;
+      const osc = Math.sin(t * 5.0 + f.ph) * (0.012 + 0.03 * g) * heavy;
+      const a = f.ang + lean + osc;
+      const ox = (f.x + g * 0.015 * heavy + Math.sin(t * 0.21 + f.ph) * 0.006) * w, oy = f.y * h;
       const len = 0.62 * f.k * U;
       ctx.save(); ctx.translate(ox, oy); ctx.rotate(a);
       ctx.fillStyle = 'rgba(96, 124, 58, 0.36)';
       ctx.beginPath(); ctx.ellipse(len * 0.5, 0, len * 0.5, U * 0.012, 0, 0, Math.PI * 2); ctx.fill();
       f.leaflets.forEach((l) => {
         const px = len * (0.08 + l.t * 0.88);
-        const flutter = Math.sin(t * 0.9 + f.ph + l.t * 3) * 0.08;
+        const flutter = Math.sin(t * (13 + l.t * 6) + f.ph * 2 + l.t * 5) * (0.03 + 0.15 * g);
         ctx.save(); ctx.translate(px, 0); ctx.rotate(l.side * (l.ang + flutter));
         const ll = l.len * f.k * U, ww = l.wid * f.k * U;
         ctx.fillStyle = 'rgba(88, 118, 52, ' + (0.27 + 0.09 * (1 - l.t)).toFixed(3) + ')';

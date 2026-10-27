@@ -17,6 +17,12 @@
   a { color: #1a1a1a; text-decoration: none; }
   a:hover { color: #2e7d32; }
   ::selection { background: #2e7d32; color: #fff; }
+  @media (max-width: 760px) {
+    [data-m="case-layout"] { grid-template-columns: minmax(0, 1fr) !important; }
+    [data-m="case-toc"] { display: none !important; }
+    [data-m="row2"] { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
+    [data-m="next"] { margin: 0 -16px !important; padding-left: 16px !important; padding-right: 16px !important; }
+  }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 </helmet>
@@ -56,9 +62,9 @@
     </div>
   </section>
 
-  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+  <div data-m="case-layout" style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
 
-    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+    <nav data-m="case-toc" style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
       <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
       <a href="#brief" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;The brief</a>
       <a href="#team" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;Working with the team</a>
@@ -88,19 +94,19 @@
           <p style="font-size: 16px; line-height: 1.6; color: #6c726c; margin: 0; max-width: 72ch;">A basket order lets a user place multiple orders at the same time, across different scrips and products like equity and securities, all in one go.</p>
         </blockquote>
         <div style="display: flex; flex-direction: column; gap: 0;">
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Cumulative margin</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">See the total margin required for multi-leg orders.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Saved baskets</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Save multi-leg orders and contracts as a basket, instead of repeating the same process.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Quick entry &amp; exit</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Partially enter or exit multi-leg positions quickly.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">One view to monitor</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Monitor multi-leg positions together as one basket.</span>
           </div>
@@ -148,23 +154,23 @@
         </div>
         <div style="display: flex; flex-direction: column; gap: 0;">
           <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; padding-bottom: 14px;">Use cases</span>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Bundling orders</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Add multiple items to a basket, check margin and payoff, then move and edit contracts as needed.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Executing orders</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Execute in one click, or leg-wise (buy first, then sell), by expiry or by value.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Adjusting positions</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Exit and re-enter multiple positions with one click.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Monitoring positions</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Monitor multiple legs as a single item, with nested positions.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 8px 32px; padding: 20px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 18px; letter-spacing: -0.02em;">Saving &amp; editing baskets</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Name, schedule and edit baskets, set conditional baskets, and invoke them from any screen.</span>
           </div>
@@ -305,7 +311,7 @@
   </div>
 
   <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
-    <a href="/onboarding-retention" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+    <a href="/onboarding-retention" data-m="next" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
       <span style="display: flex; flex-direction: column; gap: 12px;">
         <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
         <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">17% uptick in onboarding success, 80% fewer HR queries</span>

@@ -17,6 +17,12 @@
   a { color: #1a1a1a; text-decoration: none; }
   a:hover { color: #2e7d32; }
   ::selection { background: #2e7d32; color: #fff; }
+  @media (max-width: 760px) {
+    [data-m="case-layout"] { grid-template-columns: minmax(0, 1fr) !important; }
+    [data-m="case-toc"] { display: none !important; }
+    [data-m="row2"] { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
+    [data-m="next"] { margin: 0 -16px !important; padding-left: 16px !important; padding-right: 16px !important; }
+  }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
 </helmet>
@@ -56,9 +62,9 @@
     </div>
   </section>
 
-  <div style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
+  <div data-m="case-layout" style="display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: clamp(24px, 5vw, 80px); align-items: start; padding: clamp(48px, 9vh, 104px) 0 0;">
 
-    <nav style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
+    <nav data-m="case-toc" style="position: sticky; top: 92px; display: flex; flex-direction: column; gap: 18px; font-size: 15px;">
       <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500; margin-bottom: 8px;">Contents</span>
       <a href="#summary" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">01 &nbsp;Summary</a>
       <a href="#problem" data-toc="" style="color: #6c726c; transition: color .18s, opacity .18s; line-height: 1.35;" style-hover="color: #2e7d32;">02 &nbsp;The problem I owned</a>
@@ -119,15 +125,15 @@
         <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">The wider surface.</h2>
         <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">The setup flow was part of a bigger set of communication experiences I designed.</p>
         <div style="display: flex; flex-direction: column; gap: 0;">
-          <div style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 2px solid #1a1a1a;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 2px solid #1a1a1a;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Number &amp; seat setup</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Buying numbers and Copilot Seats, number porting, and the business registration, CNAM and 10DLC compliance behind them.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Team management</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Admin tools to add and remove Copilot Seats, manage permissions, and assign phone numbers across a team.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.55fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 20px; letter-spacing: -0.025em;">Call settings</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">Voicemail, call forwarding and related controls, for individuals and at the admin level.</span>
           </div>
@@ -162,11 +168,11 @@
         <h2 style="font-family: var(--head); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0;">Working with the team.</h2>
         <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #3a3f3a; max-width: 92ch; text-wrap: pretty;">This was a genuinely collaborative project; I worked closely with a <strong style="font-weight: 600; color: #1a1a1a;">product manager</strong> and the <strong style="font-weight: 600; color: #1a1a1a;">product head</strong>, and a lot of what made the final flows good came out of that.</p>
         <div style="display: flex; flex-direction: column; gap: 0;">
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">With the PM</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">We worked out what actually mattered to the admin versus what was legacy or regulatory detail: which steps could be merged, which fields could be auto-filled, and where we could safely simplify without breaking compliance.</span>
           </div>
-          <div style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
+          <div data-m="row2" style="display: grid; grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr); gap: 12px 32px; align-items: start; padding: 26px 0; border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;">
             <span style="font-family: var(--head); font-weight: 600; font-size: 19px; letter-spacing: -0.025em;">With the product head</span>
             <span style="font-size: 16px; line-height: 1.6; color: #3a3f3a;">They gave me the bigger picture of where the platform was heading, and, since I was new, helped me understand what the AI could actually do here and how much we could realistically automate.</span>
           </div>
@@ -232,7 +238,7 @@
   </div>
 
   <section style="padding: clamp(64px, 11vh, 120px) 0 clamp(40px, 6vh, 64px);">
-    <a href="/financial-education" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
+    <a href="/financial-education" data-m="next" style="display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; padding: clamp(28px, 4vw, 44px) 24px; margin: 0 -24px; transition: background .12s ease-out, transform .22s cubic-bezier(.34,1.56,.64,1); border-top: 1px solid #ececec; border-bottom: 1px solid #ececec;" style-hover="background: #f3f6f3; transform: translateX(22px);">
       <span style="display: flex; flex-direction: column; gap: 12px;">
         <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8a908a; font-weight: 500;">Next project</span>
         <span style="font-family: var(--head); font-weight: 700; font-size: clamp(26px, 3.4vw, 46px); letter-spacing: -0.035em; line-height: 1.04;">Making financial education accessible</span>
