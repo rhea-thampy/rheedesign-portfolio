@@ -12,6 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Wooden Tilt Maze">
 <meta property="og:description" content="Tilt your phone to roll a polished steel ball through a wooden maze. Best played on mobile.">
+<meta property="og:url" content="https://rheedesign.netlify.app/tilt-maze/">
 <meta property="og:image" content="https://rheedesign.netlify.app/tilt-maze/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -218,6 +219,34 @@
 <script>
 (() => {
 'use strict';
+
+// ---------- Play statistics (PostHog) ----------
+// Paste your PostHog project token between the quotes to collect stats; empty means stats are off.
+// The token is public by design (it can only send events, not read them).
+const STATS_TOKEN = 'phc_nSQBUBb5KrgTBbaPugQ8Pao7mSUR4sPDk5JmGu2fS4xA', STATS_HOST = 'https://us.i.posthog.com';
+const statsOn = !!STATS_TOKEN && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) && location.protocol !== 'file:';
+(() => {
+  // Visiting the page once with ?me tags this browser as yours, so you can filter out your own plays (?me=off undoes it).
+  const me = new URLSearchParams(location.search).get('me');
+  try { if (me === 'off') localStorage.removeItem('tiltmaze-owner'); else if (me !== null) localStorage.setItem('tiltmaze-owner', '1'); } catch (e) {}
+  if (!statsOn) return;
+  // PostHog's standard loader.
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init(STATS_TOKEN, {
+    api_host: STATS_HOST, persistence: 'localStorage',
+    autocapture: false, capture_pageview: true, capture_pageleave: true, disable_session_recording: true,
+  });
+  let owner = false; try { owner = localStorage.getItem('tiltmaze-owner') === '1'; } catch (e) {}
+  const touch = matchMedia('(pointer: coarse)').matches;
+  posthog.register({
+    game: 'wooden-tilt-maze', owner,
+    device_kind: touch ? (Math.min(screen.width, screen.height) >= 600 ? 'tablet' : 'phone') : 'computer',
+  });
+})();
+function track(event, props) {
+  if (!statsOn) return;
+  try { window.posthog.capture(event, Object.assign({ layout: wide ? 'landscape' : 'portrait' }, props)); } catch (e) {}
+}
 
 // ---------- Board geometry (units: board is 12 x 18 upright, 18 x 12 on wide screens) ----------
 let BW = 12, BH = 18, wide = false, FRAME, LEVELS;
@@ -956,10 +985,12 @@ function requestMotion() {
   } catch (e) { return Promise.resolve(false); }
 }
 
+let inputNow = 'none';
 function computeTarget() {
   const kx = (keys.ArrowRight ? 1 : 0) - (keys.ArrowLeft ? 1 : 0);
   const ky = (keys.ArrowDown ? 1 : 0) - (keys.ArrowUp ? 1 : 0);
   const dz = a => Math.sign(a) * Math.max(0, Math.abs(a) - 0.01);
+  inputNow = drag.active ? 'drag' : (kx || ky) ? 'keys' : motion.active ? 'tilt' : 'none';
   if (drag.active) {
     const u = 3 * scale;
     target.x = clamp((drag.x - drag.x0) / u, -1, 1) * DRAG_TILT;
@@ -987,7 +1018,7 @@ canvas.addEventListener('pointercancel', endDrag);
 
 addEventListener('keydown', e => {
   if (e.key.startsWith('Arrow')) { keys[e.key] = true; e.preventDefault(); }
-  if ((e.key === 'r' || e.key === 'R') && state === 'playing') startLevel(level);
+  if ((e.key === 'r' || e.key === 'R') && state === 'playing') { track('level_restarted', { level: level + 1, seconds_in: +time.toFixed(1) }); startLevel(level); }
 });
 addEventListener('keyup', e => { keys[e.key] = false; });
 addEventListener('blur', () => { for (const k in keys) keys[k] = false; drag.active = false; });
@@ -999,6 +1030,7 @@ document.addEventListener('dblclick', e => e.preventDefault());
 
 // ---------- Game state ----------
 let level = 0, state = 'title', time = 0, fall = null;
+let inputUse = {}, playSecs = 0, lastSent = 0;
 const ball = { x: 0, y: 0, vx: 0, vy: 0 };
 const times = [], falls = [];
 let lastTock = 0, toastTimer = 0;
@@ -1013,6 +1045,7 @@ function fmt(t) {
 }
 
 function startLevel(i) {
+  if (i !== level || state === 'title' || state === 'won' || state === 'celebrate') inputUse = {};
   level = i;
   renderStatic();
   const s = LEVELS[i].start;
@@ -1041,11 +1074,15 @@ function showMsg(title, body, btn, onClick) {
 function levelComplete() {
   times[level] = time;
   const isBest = !best[level] || time < best[level];
+  const input = Object.keys(inputUse).sort((a, b) => inputUse[b] - inputUse[a])[0] || 'none';
+  track('level_completed', { level: level + 1, seconds: +time.toFixed(1), falls: falls[level] || 0, input, new_best: isBest });
   if (isBest) { best[level] = time; saveBest(best); }
   const bestLine = isBest ? 'New best time!' : 'Best: ' + fmt(best[level]);
   if (level < LEVELS.length - 1) {
     state = 'won';
-    showMsg(`Level ${level + 1} done`, `Time <b>${fmt(time)}</b><br>${bestLine}`, 'Next level', () => startLevel(level + 1));
+    showMsg(`Level ${level + 1} done`, `Time <b>${fmt(time)}</b><br>${bestLine}`, 'Next level', () => {
+      startLevel(level + 1); track('level_started', { level: level + 1 });
+    });
   } else {
     startCelebration();
   }
@@ -1164,15 +1201,19 @@ function showResults() {
     }
   });
   const shareStars = stars.reduce((a, b) => a + b, 0);
+  track('game_completed', { total_seconds: +total.toFixed(1), stars: shareStars,
+    falls: falls.reduce((a, b) => a + (b || 0), 0), new_best_total: isBest });
   $('#shareBtn').onclick = () => {
     const url = location.origin + location.pathname;
     const text = `I cleared all 3 levels of the Wooden Tilt Maze in ${fmt(total)} with ${shareStars}/9 ★. Can you beat it?`;
+    track('share_clicked', { method: navigator.share ? 'share_sheet' : 'copy_link', stars: shareStars });
     if (navigator.share) navigator.share({ title: 'Wooden Tilt Maze', text, url }).catch(() => {});
     else if (navigator.clipboard) navigator.clipboard.writeText(text + ' ' + url).then(() => showToast('Copied! Paste it anywhere'), () => showToast('Could not copy'));
   };
 }
 
 function playAgain() {
+  track('play_again', {});
   $('#results').classList.add('hidden');
   tray = false; shower = []; fadeC = null; fadeT = 1;
   times.length = 0; falls.length = 0;
@@ -1273,7 +1314,9 @@ function update(dt) {
   tilt.y += (target.y - tilt.y) * k;
 
   const paused = phoneLandscape.matches || document.hidden;
+  if (state !== 'title' && !paused) playSecs += dt;
   if (state === 'playing' && !paused) {
+    if (inputNow !== 'none') inputUse[inputNow] = (inputUse[inputNow] || 0) + dt;
     time += dt;
     const impact = physics(dt);
     if (impact > 1.0 && last - lastTock > 60) {
@@ -1286,7 +1329,10 @@ function update(dt) {
     fall.t += dt;
     if (fall.t > (fall.goal ? 0.55 : 0.9)) {
       if (fall.goal) levelComplete();
-      else { falls[level] = (falls[level] || 0) + 1; showToast('Into the hole! Try again'); startLevel(level); }
+      else {
+        falls[level] = (falls[level] || 0) + 1;
+        track('hole_fall', { level: level + 1, hole: LEVELS[level].holes.findIndex(h => h[0] === fall.hx && h[1] === fall.hy) + 1, seconds_in: +time.toFixed(1) });
+        showToast('Into the hole! Try again'); startLevel(level); }
     }
   } else if (state === 'celebrate' && !paused) {
     celebT += dt;
@@ -1327,7 +1373,15 @@ let wakeLock = null;
 async function requestWake() {
   try { if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
 }
+function sendPlayTime() {
+  const secs = playSecs - lastSent;
+  if (secs < 1) return;
+  lastSent = playSecs;
+  track('play_time', { seconds: Math.round(secs), level: level + 1, finished_game: state === 'celebrate' });
+}
+addEventListener('pagehide', sendPlayTime);
 document.addEventListener('visibilitychange', () => {
+  if (document.hidden) sendPlayTime();
   if (!AC) return;
   if (document.hidden) AC.suspend();
   else { AC.resume(); if (state !== 'title') requestWake(); }
@@ -1343,10 +1397,15 @@ $('#startBtn').addEventListener('click', () => {
   requestWake();
   $('#title').classList.add('hidden');
   startLevel(0);
+  track('game_started', { returning: best.length > 0 });
+  track('level_started', { level: 1 });
   perm.then(ok => {
     if (!isTouch) return;
-    if (!ok) { showToast('No motion access. Drag the board to tilt', 3500); return; }
-    setTimeout(() => { if (!motion.active) showToast('No tilt data. Drag the board to tilt', 3500); }, 1500);
+    if (!ok) { track('motion_access', { result: 'denied' }); showToast('No motion access. Drag the board to tilt', 3500); return; }
+    setTimeout(() => {
+      track('motion_access', { result: motion.active ? 'tilt_working' : 'no_sensor' });
+      if (!motion.active) showToast('No tilt data. Drag the board to tilt', 3500);
+    }, 1500);
   });
 });
 
@@ -1356,7 +1415,7 @@ $('#showRes').addEventListener('click', () => { $('#resCard').classList.remove('
 
 $('#resetBtn').addEventListener('click', () => {
   initAudio();
-  if (state === 'playing' || state === 'falling') { startLevel(level); showToast('Level restarted', 1200); }
+  if (state === 'playing' || state === 'falling') { track('level_restarted', { level: level + 1, seconds_in: +time.toFixed(1) }); startLevel(level); showToast('Level restarted', 1200); }
   else if (state === 'celebrate') { playAgain(); showToast('Starting over', 1200); }
 });
 function showSound() {
@@ -1372,11 +1431,12 @@ $('#soundBtn').addEventListener('click', () => {
   if (master) master.gain.setTargetAtTime(soundOn ? 0.9 : 0, AC.currentTime, 0.02);
   showSound();
   showToast(soundOn ? 'Sound on' : 'Sound off', 1000);
+  track('sound_toggled', { on: soundOn });
 });
 showSound();
 
 $('#calBtn').addEventListener('click', () => {
-  if (motion.active) { calibrate(); showToast('Board leveled', 1200); }
+  if (motion.active) { calibrate(); showToast('Board leveled', 1200); track('recalibrated', {}); }
   else showToast(isTouch ? 'Drag the board to tilt' : 'Drag the board or use arrow keys', 1800);
 });
 
