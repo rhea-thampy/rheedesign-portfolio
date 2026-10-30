@@ -214,11 +214,28 @@
   <button id="showRes" class="pill hidden">Show results ↑</button>
 </div>
 
+<div id="inapp" class="overlay hidden">
+  <div class="card">
+    <h2>Tilt is switched off here</h2>
+    <p id="inappBody"></p>
+    <button class="big" id="inappOpen">Open in Chrome</button>
+    <p class="hint" id="inappSteps"></p>
+    <button class="linkish" id="inappCopy">Copy link</button>
+    <button class="linkish" id="inappDrag">Play by dragging instead</button>
+  </div>
+</div>
+
 <div id="rotate" class="overlay"><div class="card"><h2>Turn upright</h2><p>This maze plays in portrait.</p></div></div>
 
 <script>
 (() => {
 'use strict';
+
+// Apps that open links in their own built-in browser, where motion access is often blocked.
+const UA = navigator.userAgent, isAndroid = /Android/i.test(UA);
+const inApp = /Instagram/i.test(UA) ? 'instagram' : /FBAN|FBAV|FB_IAB|FBIOS/.test(UA) ? 'facebook'
+  : /musical_ly|BytedanceWebview|TikTok/i.test(UA) ? 'tiktok' : /LinkedInApp/i.test(UA) ? 'linkedin'
+  : /Snapchat/i.test(UA) ? 'snapchat' : /\bLine\//.test(UA) ? 'line' : /; wv\)/.test(UA) ? 'other_app' : '';
 
 // ---------- Play statistics (PostHog) ----------
 // Paste your PostHog project token between the quotes to collect stats; empty means stats are off.
@@ -239,7 +256,7 @@ const statsOn = !!STATS_TOKEN && !/^(localhost|127\.0\.0\.1|\[::1\])$/.test(loca
   let owner = false; try { owner = localStorage.getItem('tiltmaze-owner') === '1'; } catch (e) {}
   const touch = matchMedia('(pointer: coarse)').matches;
   posthog.register({
-    game: 'wooden-tilt-maze', owner,
+    game: 'wooden-tilt-maze', owner, in_app: inApp || 'none',
     device_kind: touch ? (Math.min(screen.width, screen.height) >= 600 ? 'tablet' : 'phone') : 'computer',
   });
 })();
@@ -371,6 +388,7 @@ const phoneLandscape = matchMedia('(orientation: landscape) and (pointer: coarse
 // The whole screen is the wooden board; the maze sits in it with the HUD above.
 function layout() {
   const W = innerWidth, Hh = innerHeight;
+  if (!W || !Hh) return;   // not on screen yet; the resize that follows lays it out
   if ((W > Hh) !== wide && !phoneLandscape.matches) {
     setWide(W > Hh);
     const sw = b => { [b.x, b.y, b.vx, b.vy] = [b.y, b.x, b.vy, b.vx]; };
@@ -1313,7 +1331,7 @@ function update(dt) {
   tilt.x += (target.x - tilt.x) * k;
   tilt.y += (target.y - tilt.y) * k;
 
-  const paused = phoneLandscape.matches || document.hidden;
+  const paused = phoneLandscape.matches || document.hidden || inappShown;
   if (state !== 'title' && !paused) playSecs += dt;
   if (state === 'playing' && !paused) {
     if (inputNow !== 'none') inputUse[inputNow] = (inputUse[inputNow] || 0) + dt;
@@ -1401,13 +1419,59 @@ $('#startBtn').addEventListener('click', () => {
   track('level_started', { level: 1 });
   perm.then(ok => {
     if (!isTouch) return;
-    if (!ok) { track('motion_access', { result: 'denied' }); showToast('No motion access. Drag the board to tilt', 3500); return; }
+    if (!ok) {
+      track('motion_access', { result: 'denied' });
+      if (inApp) showInApp('denied'); else showToast('No motion access. Drag the board to tilt', 3500);
+      return;
+    }
     setTimeout(() => {
       track('motion_access', { result: motion.active ? 'tilt_working' : 'no_sensor' });
-      if (!motion.active) showToast('No tilt data. Drag the board to tilt', 3500);
+      if (motion.active) return;
+      if (inApp) showInApp('no_sensor'); else showToast('No tilt data. Drag the board to tilt', 3500);
     }, 1500);
   });
 });
+
+// ---------- Tilt blocked inside another app's browser ----------
+let inappShown = false;
+const APP_NAMES = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', linkedin: 'LinkedIn', snapchat: 'Snapchat', line: 'LINE' };
+const gameUrl = () => location.origin + location.pathname + location.search;
+function showInApp(reason) {
+  const app = APP_NAMES[inApp];
+  $('#inappBody').textContent = (app ? app + '\u2019s' : 'This app\u2019s') +
+    ' built-in browser won\u2019t let the game feel your phone tilt. Open it in your browser to roll the ball by tilting.';
+  // Android can hand the page straight to Chrome; iPhones only allow the app's own menu.
+  $('#inappOpen').classList.toggle('hidden', !isAndroid);
+  $('#inappSteps').innerHTML = isAndroid
+    ? 'Or tap <b>\u22ee</b> at the top right and choose <b>Open in Chrome</b>.'
+    : 'Tap <b>\u22ef</b> at the top right, then <b>Open in external browser</b>.';
+  $('#inapp').classList.remove('hidden');
+  inappShown = true;
+  track('inapp_prompt_shown', { reason });
+}
+function hideInApp(action) {
+  $('#inapp').classList.add('hidden');
+  inappShown = false;
+  track('inapp_action', { action });
+}
+$('#inappOpen').addEventListener('click', () => {
+  track('inapp_action', { action: 'open_chrome' });
+  const u = gameUrl();
+  location.href = 'intent://' + u.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=' + encodeURIComponent(u) + ';end';
+});
+$('#inappCopy').addEventListener('click', () => {
+  const u = gameUrl(), done = () => showToast('Link copied. Paste it into ' + (isAndroid ? 'Chrome' : 'Safari'), 2500);
+  const fallback = () => {
+    const t = document.createElement('textarea');
+    t.value = u; t.setAttribute('readonly', ''); t.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(t); t.select();
+    try { document.execCommand('copy'); done(); } catch (e) { showToast(u, 5000); }
+    t.remove();
+  };
+  track('inapp_action', { action: 'copy_link' });
+  if (navigator.clipboard) navigator.clipboard.writeText(u).then(done, fallback); else fallback();
+});
+$('#inappDrag').addEventListener('click', () => { hideInApp('play_dragging'); showToast('Drag the board to tilt it', 2500); });
 
 $('#againBtn').addEventListener('click', playAgain);
 $('#hideRes').addEventListener('click', () => { $('#resCard').classList.add('hidden'); $('#showRes').classList.remove('hidden'); });
