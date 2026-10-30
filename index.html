@@ -38,6 +38,7 @@
     [data-m="brand-grid"] img:nth-child(4) { height: 20px !important; }
     footer { justify-content: center !important; text-align: center; }
     [data-m="otc-card"] { grid-template-columns: minmax(0, 1fr) !important; gap: 20px !important; padding: 14px 14px 22px !important; }
+    [data-m="otc-thumb"] { width: 100%; max-width: 230px; margin: 0 auto; }
     [data-m="work-grid"] { grid-template-columns: minmax(0, 1fr) !important; gap: 44px !important; }
     [data-m="work-grid"] > * { grid-column: 1 / -1 !important; }
     [data-m="work-grid"] > * > div:first-child { height: clamp(280px, 82vw, 400px) !important; }
@@ -215,9 +216,9 @@
   <section id="offclock" style="padding: 0 0 clamp(88px, 14vh, 160px); display: flex; flex-direction: column; gap: clamp(28px, 5vh, 48px);">
     <h2 style="font-family: var(--head, 'Helvetica Neue', Helvetica, Arial, sans-serif); font-weight: 400; font-size: clamp(30px, 3.4vw, 46px); letter-spacing: 0em; margin: 0">Off the clock</h2>
     <div style="display: flex; flex-direction: column; gap: 28px;">
-      <a href="/tilt-maze/" data-reveal="" data-m="otc-card" style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(16px, 2vw, 24px); background: #f5f7f5; border-radius: 10px; color: #1a1a1a; transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 22px 44px -22px rgba(26,26,26,0.28);">
-        <div style="overflow: hidden; border-radius: 6px; aspect-ratio: 1200 / 630; background: #1c120b;">
-          <img src="/tilt-maze/preview.png" alt="Wooden Tilt Maze: a steel ball rolling through a wooden maze" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover;" />
+      <a href="/tilt-maze/" data-reveal="" data-m="otc-card" style="display: grid; grid-template-columns: clamp(170px, 20vw, 260px) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(16px, 2vw, 24px); background: #f5f7f5; border-radius: 10px; color: #1a1a1a; transition: transform .22s cubic-bezier(.34,1.56,.64,1), box-shadow .22s ease-out;" style-hover="transform: translateY(-4px); box-shadow: 0 22px 44px -22px rgba(26,26,26,0.28);">
+        <div data-m="otc-thumb" style="overflow: hidden; border-radius: 6px; aspect-ratio: 358 / 510; background: #6b4425;">
+          <img src="/tilt-maze/thumb.png" alt="Wooden Tilt Maze: the wooden maze board, from start to finish" loading="lazy" style="display: block; width: 100%; height: 100%; object-fit: cover;" />
         </div>
         <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 14px;">
           <span style="font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #6c726c; font-weight: 500;">Personal project · Game</span>
