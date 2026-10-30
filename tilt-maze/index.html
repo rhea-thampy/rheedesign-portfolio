@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1c120b">
+<title>Wooden Tilt Maze</title>
+<meta name="description" content="Tilt your phone to roll a polished steel ball through a wooden maze. Three levels, no download.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wooden Tilt Maze">
+<meta property="og:description" content="Tilt your phone to roll a polished steel ball through a wooden maze. Best played on mobile.">
+<meta property="og:image" content="https://rheedesign.netlify.app/tilt-maze/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  html, body {
+    margin: 0; height: 100%; overflow: hidden;
+    touch-action: none; overscroll-behavior: none;
+    -webkit-user-select: none; user-select: none;
+    -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    position: fixed; inset: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #f3e2c7;
+    background: radial-gradient(ellipse at 50% 35%, #3b2817 0%, #1f140b 60%, #120b06 100%);
+  }
+  #hud {
+    position: absolute; top: 0; left: 0; right: 0;
+    padding: calc(env(safe-area-inset-top) + 8px) 14px 8px;
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 8px;
+    z-index: 2; pointer-events: none;
+  }
+  #hud button { pointer-events: auto; }
+  .lvl { font-size: 13px; letter-spacing: .14em; color: #f0d9b5; text-shadow: 0 1px 2px rgba(0,0,0,.8); }
+  .lvl b { font-size: 20px; color: #f6e6c8; letter-spacing: 0; margin: 0 1px 0 4px; }
+  #timer {
+    text-align: center;
+    font: 600 24px/1 ui-monospace, "SF Mono", Menlo, monospace;
+    font-variant-numeric: tabular-nums; color: #f8ead2;
+    text-shadow: 0 1px 0 #000, 0 0 8px rgba(0,0,0,.6);
+  }
+  .btns { display: flex; gap: 8px; justify-content: flex-end; }
+  .icon {
+    width: 40px; height: 40px; border-radius: 50%; border: 0; padding: 0;
+    display: grid; place-items: center; cursor: pointer; color: #3a220e;
+    background: radial-gradient(circle at 35% 30%, #f6dc95, #c99a3e 55%, #8a6220 100%);
+    box-shadow: 0 2px 4px rgba(0,0,0,.6), inset 0 1px 1px rgba(255,255,255,.6), inset 0 -2px 3px rgba(0,0,0,.3);
+  }
+  .icon:active { transform: translateY(1px); }
+  .icon svg { width: 21px; height: 21px; }
+  #board { position: fixed; inset: 0; display: block; touch-action: none; cursor: grab; z-index: 0; }
+  #safe { position: fixed; bottom: 0; left: 0; width: 0; height: env(safe-area-inset-bottom); }
+  #board:active { cursor: grabbing; }
+  #toast {
+    z-index: 6;
+    position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 26px);
+    transform: translateX(-50%) translateY(20px); opacity: 0;
+    background: rgba(25,14,6,.88); color: #f6e6c8; padding: 10px 16px; border-radius: 20px;
+    font-size: 15px; white-space: nowrap; pointer-events: none;
+    transition: opacity .25s, transform .25s;
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .overlay {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(14,8,3,.55); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    padding: 16px; box-sizing: border-box; z-index: 5;
+  }
+  .hidden { display: none !important; }
+  .card {
+    max-width: 340px; width: 100%; text-align: center; color: #3b210c;
+    padding: 26px 22px 22px; border-radius: 18px; box-sizing: border-box;
+    background:
+      repeating-linear-gradient(92deg, rgba(120,70,30,.10) 0 2px, transparent 2px 7px),
+      linear-gradient(160deg, #e2b57c, #c48a4f 60%, #a96f39);
+    box-shadow: 0 20px 50px rgba(0,0,0,.6), inset 0 2px 0 rgba(255,240,210,.5), inset 0 -3px 0 rgba(80,40,10,.4);
+  }
+  .card h1, .card h2 {
+    margin: 0 0 8px; font-family: Georgia, "Times New Roman", serif;
+    color: #4a250b; text-shadow: 0 1px 0 rgba(255,230,190,.5);
+  }
+  .card h1 { font-size: 34px; }
+  .card h2 { font-size: 26px; }
+  .card p { margin: 8px 0; font-size: 15px; line-height: 1.4; }
+  .card .hint { font-size: 13px; opacity: .8; }
+  .card .mobile-note {
+    display: inline-flex; align-items: center; gap: 6px; margin: 12px 0 0;
+    padding: 6px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;
+    background: rgba(70,35,10,.14); box-shadow: inset 0 1px 2px rgba(60,30,8,.25);
+  }
+  .card .mobile-note svg { width: 16px; height: 16px; flex: none; }
+  .big {
+    margin: 14px 0 6px; border: 0; cursor: pointer;
+    font: 700 19px Georgia, serif; color: #3a210c;
+    padding: 14px 30px; border-radius: 30px;
+    background: linear-gradient(180deg, #fbe6a8, #d7aa4c 55%, #a77a2a);
+    box-shadow: 0 4px 10px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.8), inset 0 -2px 3px rgba(0,0,0,.25);
+  }
+  .big:active { transform: translateY(1px); }
+  #rotate { display: none; z-index: 10; }
+
+  #results {
+    position: fixed; inset: 0; z-index: 5; pointer-events: none;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    padding: 16px 16px calc(env(safe-area-inset-bottom) + 16px); box-sizing: border-box;
+  }
+  #results .card, #showRes { pointer-events: auto; }
+  .res-card { padding: 20px 18px 12px; animation: rise .7s cubic-bezier(.2, 1.25, .4, 1) both; }
+  @keyframes rise { from { transform: translateY(120%); } to { transform: none; } }
+  .res-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+  .res-head h2 { margin: 0; font-size: 24px; text-align: left; }
+  .res-total-stars { font: 700 15px Georgia, serif; white-space: nowrap; }
+  .res-total-stars b { font-size: 22px; }
+  .res-total-stars span { color: #b8860b; }
+  .res-row {
+    display: grid; grid-template-columns: 1fr auto auto; gap: 10px; align-items: center;
+    padding: 8px 2px; border-top: 1px solid rgba(80,40,10,.22); font-size: 15px; text-align: left;
+  }
+  .res-name small {
+    display: inline-grid; place-items: center; width: 20px; height: 20px; margin-right: 8px;
+    border-radius: 50%; background: rgba(70,35,10,.18); font-size: 12px; font-weight: 700;
+  }
+  .res-time { font: 600 15px ui-monospace, "SF Mono", Menlo, monospace; }
+  .res-stars i { font-style: normal; font-size: 19px; color: rgba(80,40,10,.25); display: inline-block; transition: color .2s; }
+  .res-stars i.on { color: #f2c14e; text-shadow: 0 1px 0 #7a5418, 0 0 8px rgba(255,210,90,.8); animation: pop .45s cubic-bezier(.2, 1.6, .4, 1); }
+  @keyframes pop { 0% { transform: scale(.2) rotate(-40deg); } 100% { transform: none; } }
+  .res-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 10px 2px 2px; border-top: 2px solid rgba(80,40,10,.35); font-weight: 700;
+  }
+  .res-total b { font: 700 22px ui-monospace, "SF Mono", Menlo, monospace; }
+  .res-best {
+    display: inline-block; margin: 8px 0 0 !important; padding: 4px 12px; border-radius: 999px;
+    background: #2f7f8a; color: #f6f0e1; font-size: 13px !important; font-weight: 700;
+  }
+  .res-btns { display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .res-btns .big { margin: 14px 0 4px; }
+  .ghost {
+    margin: 14px 0 4px; border: 2px solid rgba(70,35,10,.5); background: transparent; cursor: pointer;
+    font: 700 16px Georgia, serif; color: #3a210c; padding: 11px 20px; border-radius: 30px;
+  }
+  .linkish { border: 0; background: none; cursor: pointer; color: #4a250b; font-size: 13px; padding: 8px; opacity: .8; }
+  .pill {
+    border: 0; cursor: pointer; padding: 12px 20px; border-radius: 999px;
+    font: 700 15px Georgia, serif; color: #3a210c;
+    background: linear-gradient(180deg, #fbe6a8, #d7aa4c 55%, #a77a2a);
+    box-shadow: 0 4px 12px rgba(0,0,0,.5);
+  }
+  @media (orientation: landscape) and (pointer: coarse) and (max-height: 500px) { #rotate { display: flex; } }
+</style>
+</head>
+<body>
+<div id="hud">
+  <div class="lvl">LEVEL<b id="lvl">1</b>/ 3</div>
+  <div id="timer">0:00.0</div>
+  <div class="btns">
+    <button class="icon" id="soundBtn" aria-label="Sound on" aria-pressed="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><g id="sndOn"><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19 6a8.5 8.5 0 0 1 0 12"/></g><g id="sndOff" style="display:none"><path d="M16 9l6 6M22 9l-6 6"/></g></svg>
+    </button>
+    <button class="icon" id="calBtn" aria-label="Level the board (recalibrate tilt)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5" fill="currentColor"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>
+    </button>
+    <button class="icon" id="resetBtn" aria-label="Restart level">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3v5h-5"/></svg>
+    </button>
+  </div>
+</div>
+<canvas id="board"></canvas>
+<div id="safe"></div>
+<div id="toast"></div>
+
+<div id="title" class="overlay">
+  <div class="card">
+    <h1>Tilt Maze</h1>
+    <p>Roll the steel ball into the brass-ringed hole. Steer clear of the other holes.</p>
+    <button class="big" id="startBtn">Tap to start</button>
+    <p class="hint" id="startHint">Tilt your phone to roll the ball.</p>
+    <p class="mobile-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
+      Best experienced on a mobile device
+    </p>
+  </div>
+</div>
+
+<div id="msg" class="overlay hidden">
+  <div class="card">
+    <h2 id="msgTitle"></h2>
+    <p id="msgBody"></p>
+    <button class="big" id="msgBtn"></button>
+  </div>
+</div>
+
+<div id="results" class="hidden">
+  <div class="card res-card" id="resCard">
+    <div class="res-head">
+      <h2>Maze conquered!</h2>
+      <div class="res-total-stars"><b id="resStars">0</b>/9 <span>★</span></div>
+    </div>
+    <div id="resRows"></div>
+    <div class="res-total"><span>Total time</span><b id="resTotal"></b></div>
+    <p id="resBest" class="res-best hidden">New personal best!</p>
+    <div class="res-btns">
+      <button class="big" id="shareBtn">Share my time</button>
+      <button class="ghost" id="againBtn">Play again</button>
+    </div>
+    <button class="linkish" id="hideRes">Play with the balls ↓</button>
+  </div>
+  <button id="showRes" class="pill hidden">Show results ↑</button>
+</div>
+
+<div id="rotate" class="overlay"><div class="card"><h2>Turn upright</h2><p>This maze plays in portrait.</p></div></div>
+
+<script>
+(() => {
+'use strict';
+
+// ---------- Board geometry (units: board is 12 x 18 upright, 18 x 12 on wide screens) ----------
+let BW = 12, BH = 18, wide = false, FRAME, LEVELS;
+const BALL_R = 0.4, HOLE_R = 0.52, T = 0.3, TAU = Math.PI * 2;
+const H = (x1, x2, y) => [x1 - T / 2, y - T / 2, x2 - x1 + T, T];
+const V = (x, y1, y2) => [x - T / 2, y1 - T / 2, T, y2 - y1 + T];
+const UPRIGHT = [
+  {
+    name: 'Easy Going',
+    start: [1.5, 1.5], startLabel: [3.3, 1.55],
+    goal: [2, 13.8], goalLabel: [2, 15.1],
+    wideGoalLabel: [15.75, 2.05],
+    walls: [H(0.5, 9, 4), H(3, 11.5, 8), H(0.5, 9, 12), V(6, 12, 15.8)],
+    holes: [[6, 2.6], [5, 6.2], [4, 9.8], [8, 10.4], [8.6, 14.4], [3.8, 13.0]],
+  },
+  {
+    name: 'The Spiral',
+    start: [1.6, 6], startLabel: [1.65, 7.3],
+    goal: [4.8, 8.2], goalLabel: [4.8, 9.45],
+    wideStartLabel: [7.3, 2.45],
+    walls: [H(0.5, 3, 4), V(3, 4, 15), H(4.8, 9, 3), V(9, 3, 15), H(3, 9, 15),
+            H(3, 6.5, 6), V(6.5, 6, 12), H(4.6, 6.5, 12)],
+    holes: [[1.2, 9], [2.2, 12.5], [5, 16.7], [8, 15.9], [10.7, 12.5], [9.9, 8.5], [10.7, 4.5],
+            [7.5, 1.4], [5.5, 2.2], [5.5, 4.5], [7.4, 9], [6.5, 13.2], [5.6, 10.6]],
+  },
+  {
+    name: 'Switchbacks',
+    start: [1.6, 1.6], startLabel: [1.7, 2.9],
+    goal: [10.4, 1.6], goalLabel: [10.4, 2.75],
+    wideStartLabel: [3.35, 1.65], wideGoalLabel: [3.35, 10.45],
+    walls: [V(3, 0.5, 15), V(6, 3, 17.5), V(9, 0.5, 15),
+            H(0.5, 1.45, 4.5), H(1.9, 3, 8), H(0.5, 1.45, 11.5),
+            H(4.55, 6, 13), H(3, 4.45, 9.5), H(4.55, 6, 6),
+            H(6, 7.45, 5), H(7.55, 9, 8.5), H(6, 7.45, 12),
+            H(10.55, 11.5, 12.5), H(9, 9.95, 9.5), H(10.55, 11.5, 6.5), H(9, 9.95, 3.8)],
+    holes: [[2.3, 6.6], [1.0, 9.9], [1.1, 13.6], [3.0, 16.6], [3.8, 11.3], [5.2, 7.8], [3.8, 4.3],
+            [6, 1.4], [8.2, 6.6], [6.8, 10.2], [8.2, 13.8], [8.9, 16.5], [10.8, 14.2], [9.8, 11.0],
+            [10.8, 8.0], [9.8, 5.1]],
+  },
+];
+
+// Wide screens get each maze mirrored across its diagonal, so it fills a landscape screen.
+// Labels default to just below the marker; a level can place them itself.
+function setWide(w) {
+  wide = w; BW = w ? 18 : 12; BH = w ? 12 : 18;
+  FRAME = [[0, 0, BW, 0.5], [0, BH - 0.5, BW, 0.5], [0, 0, 0.5, BH], [BW - 0.5, 0, 0.5, BH]];
+  const fp = p => [p[1], p[0]], fr = r => [r[1], r[0], r[3], r[2]];
+  const label = m => [m[1], m[0] + 1.3];
+  LEVELS = w ? UPRIGHT.map(L => ({
+    name: L.name, start: fp(L.start), goal: fp(L.goal),
+    startLabel: L.wideStartLabel || label(L.start), goalLabel: L.wideGoalLabel || label(L.goal),
+    walls: L.walls.map(fr), holes: L.holes.map(fp),
+  })) : UPRIGHT;
+}
+setWide(false);
+
+// ---------- Physics tuning ----------
+const G = 230;          // effective rolling acceleration per unit sin(tilt)
+const ROLL_FRICTION = 1.2, DAMPING = 0.25, MAX_SPEED = 28;
+const RESTITUTION = 0.28, HOLE_PULL = 260, FALL_R = HOLE_R * 0.55;
+const MAX_TILT = 0.45, KEY_TILT = 0.22, DRAG_TILT = 0.35;
+
+// ---------- Noise for wood grain ----------
+const perm = new Uint8Array(512), rnd = new Float32Array(256);
+(() => {
+  let s = 1337;
+  const next = () => (s = (s * 16807) % 2147483647);
+  const p = Array.from({ length: 256 }, (_, i) => i);
+  for (let i = 255; i > 0; i--) { const j = next() % (i + 1); [p[i], p[j]] = [p[j], p[i]]; }
+  for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+  for (let i = 0; i < 256; i++) rnd[i] = (next() % 10000) / 10000;
+})();
+function vnoise(x, y) {
+  const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+  const X = xi & 255, Y = yi & 255;
+  const a = rnd[perm[perm[X] + Y]], b = rnd[perm[perm[X + 1] + Y]];
+  const c = rnd[perm[perm[X] + Y + 1]], d = rnd[perm[perm[X + 1] + Y + 1]];
+  const u = xf * xf * (3 - 2 * xf), v = yf * yf * (3 - 2 * yf);
+  return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+}
+const fbm = (x, y) => (vnoise(x, y) * 0.5 + vnoise(x * 2.03, y * 2.03) * 0.25 + vnoise(x * 4.1, y * 4.1) * 0.125) / 0.875;
+function mulberry32(a) {
+  return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
+
+// Chestnut: warm brown, ring-porous (a band of open pores starts each growth ring), dense latewood.
+// Grain runs vertically.
+function makeWood(w, h, ps) {
+  const c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d'), img = g.createImageData(w, h), d = img.data;
+  const L0 = 170, L1 = 102, L2 = 54, D0 = 82, D1 = 40, D2 = 17;
+  let i = 0;
+  for (let py = 0; py < h; py++) {
+    const y = py / ps;
+    for (let px = 0; px < w; px++) {
+      const x = px / ps;
+      const warp = fbm(x * 0.3 + 11.3, y * 0.06 + 3.1);
+      const r = x * 1.25 + warp * 6 + vnoise(x * 1.1 + 7, y * 0.2) * 0.8;
+      const f = r - Math.floor(r);
+      let t = 0.26 + f * 0.34;
+      if (f < 0.16) { const pr = vnoise(x * 70 + 3, y * 2.2); if (pr > 0.45) t += (pr - 0.45) * 1.3; }
+      t += (vnoise(x * 34, y * 1.1) - 0.5) * 0.18;
+      t += (vnoise(x * 0.45 + 40, y * 0.1 + 9) - 0.5) * 0.3 + (warp - 0.5) * 0.15;
+      t = t < 0 ? 0 : t > 1 ? 1 : t;
+      d[i++] = L0 + (D0 - L0) * t; d[i++] = L1 + (D1 - L1) * t; d[i++] = L2 + (D2 - L2) * t; d[i++] = 255;
+    }
+  }
+  g.putImageData(img, 0, 0);
+  return c;
+}
+
+// ---------- Canvas & layout ----------
+const $ = s => document.querySelector(s);
+const canvas = $('#board'), ctx = canvas.getContext('2d');
+const staticC = document.createElement('canvas'), sctx = staticC.getContext('2d');
+let scale = 30, dpr = 1, ps = 60, woodTex = null;
+let TX = 0, TY = 0, sticker = null;   // playfield origin in canvas px; sticker spot in CSS px
+const isTouch = matchMedia('(pointer: coarse)').matches;
+const phoneLandscape = matchMedia('(orientation: landscape) and (pointer: coarse) and (max-height: 500px)');
+
+// The whole screen is the wooden board; the maze sits in it with the HUD above.
+function layout() {
+  const W = innerWidth, Hh = innerHeight;
+  if ((W > Hh) !== wide && !phoneLandscape.matches) {
+    setWide(W > Hh);
+    const sw = b => { [b.x, b.y, b.vx, b.vy] = [b.y, b.x, b.vy, b.vx]; };
+    sw(ball); shower.forEach(sw);
+    if (fall) [fall.hx, fall.hy, fall.x0, fall.y0] = [fall.hy, fall.hx, fall.y0, fall.x0];
+    if (motion.active) calibrate();
+  }
+  const hudB = $('#hud').getBoundingClientRect().bottom, sb = $('#safe').offsetHeight;
+  const m = 14, top = hudB + 4, availH = Hh - top - sb - m, availW = W - 2 * m;
+  // Leave a strip of open board under the HUD for the sticker if it costs little maze size.
+  const full = Math.min(availW / BW, availH / BH), roomy = Math.min(availW / BW, (availH - 66) / BH);
+  scale = Math.max(8, roomy >= full * 0.86 ? roomy : full);
+  const pw = BW * scale, ph = BH * scale;
+  const ox = (W - pw) / 2, oy = top + Math.max(0, availH - ph);
+  dpr = Math.min(2, window.devicePixelRatio || 1, Math.sqrt(2.6e6 / (W * Hh)));
+  ps = scale * dpr; TX = ox * dpr; TY = oy * dpr;
+
+  // The sticker sits under the level text, on open board above the maze, never over the raised frame.
+  const pad = 6, above = oy - hudB - 2 * pad;
+  sticker = null;
+  if (above >= 50) {
+    const z = Math.min(110, above);
+    sticker = { x: Math.max(14, ox) + z / 2, y: hudB + pad + above / 2, size: z };
+  } else if (ox - 2 * pad >= 60) {
+    // Wide screens: the open board beside the maze.
+    const z = Math.min(110, ox - 2 * pad);
+    sticker = { x: ox / 2, y: oy + z / 2 + 4, size: z };
+  }
+
+  const cw = Math.round(W * dpr), ch = Math.round(Hh * dpr);
+  if (canvas.width !== cw || canvas.height !== ch || !woodTex) {
+    canvas.width = staticC.width = cw;
+    canvas.height = staticC.height = ch;
+    woodTex = makeWood(cw, ch, ps);
+  }
+  canvas.style.width = W + 'px';
+  canvas.style.height = Hh + 'px';
+  renderStatic();
+}
+
+function rrPath(c, x, y, w, h, r) {
+  r = Math.min(r, w / 2, h / 2);
+  c.moveTo(x + r, y);
+  c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r);
+  c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath();
+}
+
+// ---------- Static board rendering (wood, holes, walls, shadows) ----------
+function renderStatic() {
+  const L = LEVELS[level], c = sctx, w = staticC.width, h = staticC.height;
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.drawImage(woodTex, 0, 0);
+
+  // Satin varnish: soft light from the top-left, darker toward the edges.
+  let g = c.createRadialGradient(w * 0.3, h * 0.2, 0, w * 0.5, h * 0.5, Math.hypot(w, h) * 0.62);
+  g.addColorStop(0, 'rgba(255,225,185,0.12)'); g.addColorStop(0.6, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(20,8,0,0.45)');
+  c.fillStyle = g; c.fillRect(0, 0, w, h);
+  g = c.createLinearGradient(0, 0, w, h);
+  g.addColorStop(0.3, 'rgba(255,235,205,0)'); g.addColorStop(0.42, 'rgba(255,235,205,0.06)'); g.addColorStop(0.55, 'rgba(255,235,205,0)');
+  c.fillStyle = g; c.fillRect(0, 0, w, h);
+
+  // Grime and rubbed patches.
+  const rand = mulberry32(977 + 13);
+  for (let i = 0; i < 90; i++) {
+    const x = rand() * w, y = rand() * h, r = (10 + rand() * 40) * dpr, light = rand() < 0.4;
+    g = c.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, light ? 'rgba(255,220,175,0.05)' : 'rgba(30,12,2,0.07)');
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill();
+  }
+  drawScratches(c, w, h, dpr);
+
+  // Rounded-over edges of the board at the screen edges.
+  const b = 4 * dpr;
+  c.fillStyle = 'rgba(255,220,170,0.2)'; c.fillRect(0, 0, w, b); c.fillRect(0, 0, b, h);
+  c.fillStyle = 'rgba(25,10,2,0.45)'; c.fillRect(0, h - b, w, b); c.fillRect(w - b, 0, b, h);
+
+  // Maze, in board units.
+  c.setTransform(ps, 0, 0, ps, TX, TY);
+  if (tray) burnText(c, 'WELL ROLLED!', BW / 2, 3.2, 0.8);
+  else {
+  c.save();
+  c.strokeStyle = 'rgba(35,14,3,0.55)'; c.lineWidth = 0.05; c.setLineDash([0.12, 0.09]);
+  c.beginPath(); c.arc(L.start[0], L.start[1], 0.58, 0, TAU); c.stroke();
+  c.restore();
+  burnText(c, 'START', L.startLabel[0], L.startLabel[1], 0.42);
+  burnText(c, 'FINISH', L.goalLabel[0], L.goalLabel[1], 0.42);
+
+  for (const hl of L.holes) drawHole(c, hl[0], hl[1], HOLE_R, false);
+  drawHole(c, L.goal[0], L.goal[1], HOLE_R, true);
+  }
+
+  // In the finale the maze lifts away, leaving an open tray.
+  const walls = tray ? FRAME : L.walls.concat(FRAME);
+  shadowPass(c, walls, 'rgba(15,6,1,0.7)', 0.32, 0.17, 0.27);
+  shadowPass(c, walls, 'rgba(10,4,0,0.6)', 0.07, 0.04, 0.06);
+  walls.forEach((wl, i) => drawWall(c, wl, i, tray || i >= L.walls.length));
+
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  if (sticker) drawSticker(c, sticker.x * dpr, sticker.y * dpr, sticker.size * dpr);
+  staticPix = c.getImageData(0, 0, w, h).data;
+}
+
+// Old-board wear: grain-following scratches, random nicks, dents, gouges and a faint cup ring.
+function drawScratches(c, w, h, k) {
+  const rand = mulberry32(4242);
+  const n = Math.round(w * h / (k * k) / 2200);
+  c.save(); c.lineCap = 'round';
+  for (let i = 0; i < n; i++) {
+    const x = rand() * w, y = rand() * h, len = (6 + Math.pow(rand(), 2) * 130) * k;
+    const ang = rand() < 0.55 ? Math.PI / 2 + (rand() - 0.5) * 0.4 : rand() * Math.PI;
+    const ex = x + Math.cos(ang) * len, ey = y + Math.sin(ang) * len;
+    const bend = (rand() - 0.5) * len * 0.15;
+    const cx = (x + ex) / 2 - Math.sin(ang) * bend, cy = (y + ey) / 2 + Math.cos(ang) * bend;
+    const deep = rand() < 0.06, wd = (deep ? 1.8 + rand() * 1.2 : 0.5 + rand() * 0.8) * k;
+    c.beginPath(); c.moveTo(x, y); c.quadraticCurveTo(cx, cy, ex, ey);
+    c.strokeStyle = `rgba(28,10,2,${(deep ? 0.35 : 0.12) + rand() * 0.18})`; c.lineWidth = wd; c.stroke();
+    c.beginPath(); c.moveTo(x + 0.7 * k, y + 0.7 * k); c.quadraticCurveTo(cx + 0.7 * k, cy + 0.7 * k, ex + 0.7 * k, ey + 0.7 * k);
+    c.strokeStyle = `rgba(240,190,135,${0.06 + rand() * (deep ? 0.25 : 0.14)})`; c.lineWidth = Math.max(0.5 * k, wd * 0.5); c.stroke();
+  }
+  for (let i = 0; i < 40; i++) {
+    const x = rand() * w, y = rand() * h, r = (1 + rand() * 2.5) * k;
+    const g = c.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, 'rgba(25,9,1,0.35)'); g.addColorStop(1, 'rgba(25,9,1,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill();
+  }
+  const rx = w * (0.15 + rand() * 0.2), ry = h * (0.86 + rand() * 0.08), rr = 32 * k;
+  c.strokeStyle = 'rgba(40,16,3,0.13)'; c.lineWidth = 3 * k;
+  c.beginPath(); c.arc(rx, ry, rr, 0.3, 2.6); c.stroke();
+  c.beginPath(); c.arc(rx, ry, rr, 3.0, 5.6); c.stroke();
+  c.restore();
+}
+
+// An original cartoon fox sticker, faded, scuffed and partly peeled off.
+function drawSticker(c, cx, cy, size) {
+  const S = Math.ceil(size), sc = document.createElement('canvas');
+  sc.width = sc.height = S;
+  const s = sc.getContext('2d'), u = S / 100;
+  s.scale(u, u);
+  s.lineJoin = 'round'; s.lineCap = 'round';
+  const ink = '#2b1a12';
+  s.fillStyle = '#f6f0e1'; s.beginPath(); s.arc(50, 50, 48, 0, TAU); s.fill();
+  s.fillStyle = '#2f7f8a'; s.beginPath(); s.arc(50, 50, 43, 0, TAU); s.fill();
+  s.strokeStyle = 'rgba(246,240,225,0.7)'; s.lineWidth = 1.2; s.beginPath(); s.arc(50, 50, 40, 0, TAU); s.stroke();
+  // Ears
+  s.fillStyle = '#e8742a'; s.strokeStyle = ink; s.lineWidth = 1.8;
+  for (const m of [1, -1]) {
+    s.beginPath(); s.moveTo(50 - 26 * m, 34); s.lineTo(50 - 17 * m, 10); s.lineTo(50 - 5 * m, 28); s.closePath(); s.fill(); s.stroke();
+    s.fillStyle = '#7a2e12'; s.beginPath(); s.moveTo(50 - 21 * m, 31); s.lineTo(50 - 17 * m, 17); s.lineTo(50 - 10 * m, 28); s.closePath(); s.fill();
+    s.fillStyle = '#e8742a';
+  }
+  // Head
+  s.fillStyle = '#ef7f31';
+  s.beginPath(); s.moveTo(20, 40); s.quadraticCurveTo(50, 16, 80, 40); s.quadraticCurveTo(84, 60, 50, 78); s.quadraticCurveTo(16, 60, 20, 40); s.closePath();
+  s.fill(); s.stroke();
+  // Cheeks
+  s.fillStyle = '#fff6e8';
+  s.beginPath(); s.moveTo(22, 50); s.quadraticCurveTo(38, 52, 50, 77); s.quadraticCurveTo(28, 70, 22, 50); s.fill();
+  s.beginPath(); s.moveTo(78, 50); s.quadraticCurveTo(62, 52, 50, 77); s.quadraticCurveTo(72, 70, 78, 50); s.fill();
+  // Face
+  s.fillStyle = ink;
+  s.beginPath(); s.ellipse(39, 47, 3.8, 5, 0, 0, TAU); s.fill();
+  s.beginPath(); s.ellipse(61, 47, 3.8, 5, 0, 0, TAU); s.fill();
+  s.fillStyle = '#fff'; s.beginPath(); s.arc(40.3, 45.2, 1.3, 0, TAU); s.arc(62.3, 45.2, 1.3, 0, TAU); s.fill();
+  s.fillStyle = 'rgba(240,110,110,0.55)';
+  s.beginPath(); s.ellipse(31, 56, 4, 2.4, 0, 0, TAU); s.ellipse(69, 56, 4, 2.4, 0, 0, TAU); s.fill();
+  s.fillStyle = ink; s.beginPath(); s.ellipse(50, 63, 4.4, 3.1, 0, 0, TAU); s.fill();
+  s.strokeStyle = ink; s.lineWidth = 1.5;
+  s.beginPath(); s.moveTo(50, 66); s.quadraticCurveTo(50, 70, 45, 70.5); s.moveTo(50, 66); s.quadraticCurveTo(50, 70, 55, 70.5); s.stroke();
+  // Banner
+  s.fillStyle = '#c4452f'; s.strokeStyle = ink; s.lineWidth = 1.4;
+  s.beginPath(); rrPath(s, 22, 78, 56, 13, 3); s.fill(); s.stroke();
+  s.fillStyle = '#f6f0e1'; s.font = '900 9px Georgia, serif'; s.textAlign = 'center'; s.textBaseline = 'middle';
+  s.fillText('ROLL ON!', 50, 85);
+
+  // Scratches through the ink show the white paper...
+  const rand = mulberry32(777);
+  s.globalCompositeOperation = 'source-atop';
+  for (let i = 0; i < 14; i++) {
+    const x = rand() * 100, y = rand() * 100, a = rand() * Math.PI, l = 10 + rand() * 40;
+    s.strokeStyle = `rgba(246,240,225,${0.5 + rand() * 0.4})`; s.lineWidth = 0.4 + rand() * 0.8;
+    s.beginPath(); s.moveTo(x, y); s.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); s.stroke();
+  }
+  // ...and some go through the paper to the wood.
+  s.globalCompositeOperation = 'destination-out';
+  for (let i = 0; i < 9; i++) {
+    const x = rand() * 100, y = rand() * 100, a = rand() * Math.PI, l = 8 + rand() * 35;
+    s.strokeStyle = 'rgba(0,0,0,0.9)'; s.lineWidth = 0.5 + rand() * 1.2;
+    s.beginPath(); s.moveTo(x, y); s.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); s.stroke();
+  }
+  s.globalCompositeOperation = 'source-over';
+
+  // Fading, rubbed-off ink and torn, peeled edges.
+  const img = s.getImageData(0, 0, S, S), d = img.data;
+  for (let py = 0, i = 0; py < S; py++) {
+    for (let px = 0; px < S; px++, i += 4) {
+      if (!d[i + 3]) continue;
+      const x = px / u, y = py / u, dd = Math.hypot(x - 50, y - 50) / 48;
+      const keep = fbm(x * 0.12 + 3, y * 0.12) + (0.97 - dd) * 2.6 - 0.32 - (x > 60 && y < 40 ? 0.35 : 0);
+      if (keep < 0) { d[i + 3] = 0; continue; }
+      let r = d[i], g = d[i + 1], b = d[i + 2];
+      const rub = vnoise(x * 0.22 + 5, y * 0.22 + 1);
+      if (rub > 0.68) { const m = Math.min(1, (rub - 0.68) * 5) * 0.75; r += (238 - r) * m; g += (230 - g) * m; b += (210 - b) * m; }
+      r += (222 - r) * 0.16; g += (205 - g) * 0.16; b += (170 - b) * 0.2;
+      d[i] = r; d[i + 1] = g; d[i + 2] = b;
+      d[i + 3] = d[i + 3] * Math.min(1, keep / 0.08) * 0.92;
+    }
+  }
+  s.putImageData(img, 0, 0);
+
+  c.save();
+  c.translate(cx, cy); c.rotate(-0.14);
+  c.shadowColor = 'rgba(15,5,0,0.35)'; c.shadowBlur = 1.5 * dpr; c.shadowOffsetY = 0.5 * dpr;
+  c.drawImage(sc, -S / 2, -S / 2);
+  c.restore();
+}
+
+function burnText(c, text, x, y, size) {
+  c.save();
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.font = `700 ${size * ps}px Georgia, "Times New Roman", serif`;
+  c.textAlign = 'center'; c.textBaseline = 'middle';
+  c.shadowColor = 'rgba(30,10,0,0.6)'; c.shadowBlur = 0.08 * ps;
+  c.fillStyle = 'rgba(30,12,2,0.62)';
+  c.fillText(text, x * ps + TX, y * ps + TY);
+  c.restore();
+}
+
+function shadowPass(c, walls, color, blur, ox, oy) {
+  // Draw the shapes far off to the left and shift only their shadows back.
+  const SH = BW + BH;
+  c.save();
+  c.shadowColor = color; c.shadowBlur = blur * ps;
+  c.shadowOffsetX = (SH + ox) * ps; c.shadowOffsetY = oy * ps;
+  c.fillStyle = '#000';
+  c.beginPath();
+  for (const w of walls) rrPath(c, w[0] - SH, w[1], w[2], w[3], 0.06);
+  c.fill();
+  c.restore();
+}
+
+function drawWall(c, r, i, isFrame) {
+  const [x, y, w, h] = r;
+  c.save();
+  c.beginPath(); rrPath(c, x, y, w, h, isFrame ? 0.02 : 0.07); c.clip();
+  const fx = (i * 0.618 + 0.31) % 1, fy = (i * 0.381 + 0.17) % 1;
+  if (w >= h) {
+    // Horizontal wall: rotate the vertical-grain texture so grain runs along the wall.
+    const sw = Math.min(woodTex.width, Math.ceil(h * ps)), sh = Math.min(woodTex.height, Math.ceil(w * ps));
+    c.translate(x, y + h); c.rotate(-Math.PI / 2);
+    c.drawImage(woodTex, Math.floor(fx * (woodTex.width - sw)), Math.floor(fy * (woodTex.height - sh)), sw, sh, 0, 0, h, w);
+    c.setTransform(ps, 0, 0, ps, 0, 0);
+  } else {
+    const sw = Math.min(woodTex.width, Math.ceil(w * ps)), sh = Math.min(woodTex.height, Math.ceil(h * ps));
+    c.drawImage(woodTex, Math.floor(fx * (woodTex.width - sw)), Math.floor(fy * (woodTex.height - sh)), sw, sh, x, y, w, h);
+  }
+  // Top faces catch more light than the board.
+  let g = c.createLinearGradient(x, y, x + w, y + h);
+  g.addColorStop(0, 'rgba(255,220,180,0.14)'); g.addColorStop(1, 'rgba(255,215,170,0.04)');
+  c.fillStyle = g; c.fillRect(x, y, w, h);
+
+  // Bevels: lit top/left, shaded bottom/right.
+  const b = isFrame ? 0.1 : 0.055;
+  c.fillStyle = 'rgba(250,205,155,0.4)'; c.fillRect(x, y, w, b);
+  c.fillStyle = 'rgba(250,205,155,0.25)'; c.fillRect(x, y, b, h);
+  c.fillStyle = 'rgba(55,26,8,0.42)'; c.fillRect(x, y + h - b, w, b);
+  c.fillStyle = 'rgba(55,26,8,0.32)'; c.fillRect(x + w - b, y, b, h);
+
+  // Worn nicks along the edges.
+  const rand = mulberry32(i * 131 + level * 7 + 1);
+  const n = Math.round((w + h) * (isFrame ? 2 : 1.5));
+  for (let k = 0; k < n; k++) {
+    const t = rand(), side = rand();
+    let px, py;
+    if (w >= h) { px = x + t * w; py = side < 0.5 ? y + 0.03 : y + h - 0.03; }
+    else { py = y + t * h; px = side < 0.5 ? x + 0.03 : x + w - 0.03; }
+    c.fillStyle = side < 0.5 ? `rgba(225,165,105,${0.1 + rand() * 0.15})` : `rgba(30,12,2,${0.1 + rand() * 0.15})`;
+    c.beginPath(); c.ellipse(px, py, 0.03 + rand() * 0.09, 0.02 + rand() * 0.04, 0, 0, TAU); c.fill();
+  }
+  c.restore();
+}
+
+function drawHole(c, x, y, R, goal) {
+  // Darkened, worn countersink around the drilled hole.
+  let g = c.createRadialGradient(x, y, R * 0.95, x, y, R * 1.3);
+  g.addColorStop(0, 'rgba(70,36,12,0.6)'); g.addColorStop(1, 'rgba(70,36,12,0)');
+  c.fillStyle = g; c.beginPath(); c.arc(x, y, R * 1.3, 0, TAU); c.fill();
+
+  c.save();
+  c.beginPath(); c.arc(x, y, R, 0, TAU); c.clip();
+  c.fillStyle = '#0a0502'; c.fillRect(x - R, y - R, R * 2, R * 2);
+  // Light from the top-left reaches the far (bottom-right) inner wall.
+  g = c.createRadialGradient(x - R * 0.35, y - R * 0.45, R * 0.7, x - R * 0.35, y - R * 0.45, R * 1.45);
+  g.addColorStop(0, 'rgba(110,64,28,0)'); g.addColorStop(0.75, 'rgba(110,64,28,0.55)'); g.addColorStop(1, 'rgba(160,100,50,0.95)');
+  c.fillStyle = g; c.fillRect(x - R, y - R, R * 2, R * 2);
+  g = c.createRadialGradient(x, y, 0, x, y, R * 0.75);
+  g.addColorStop(0, 'rgba(0,0,0,0.9)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  c.fillStyle = g; c.fillRect(x - R, y - R, R * 2, R * 2);
+  c.restore();
+
+  c.lineWidth = R * 0.07; c.strokeStyle = 'rgba(28,12,3,0.75)';
+  c.beginPath(); c.arc(x, y, R, 0, TAU); c.stroke();
+  c.lineWidth = R * 0.08; c.strokeStyle = 'rgba(255,226,185,0.28)';
+  c.beginPath(); c.arc(x, y, R * 1.07, -0.15 * Math.PI, 0.65 * Math.PI); c.stroke();
+
+  if (goal) {
+    g = c.createLinearGradient(x - R, y - R, x + R, y + R);
+    g.addColorStop(0, '#fff2b8'); g.addColorStop(0.35, '#d4a245'); g.addColorStop(0.6, '#7d5519'); g.addColorStop(1, '#efcd77');
+    c.lineWidth = R * 0.22; c.strokeStyle = g;
+    c.beginPath(); c.arc(x, y, R * 1.11, 0, TAU); c.stroke();
+    c.lineWidth = R * 0.03; c.strokeStyle = 'rgba(60,35,5,0.6)';
+    c.beginPath(); c.arc(x, y, R * 1.23, 0, TAU); c.stroke();
+  }
+}
+
+// ---------- Steel ball ----------
+// The ball is a mirror: each pixel traces a reflected ray into the room or onto the board.
+const norm3 = (x, y, z) => { const l = Math.hypot(x, y, z); return [x / l, y / l, z / l]; };
+const LIGHT = norm3(-0.45, -0.55, 0.75);
+const WU = norm3(LIGHT[1], -LIGHT[0], 0);
+const WW = [WU[1] * LIGHT[2] - WU[2] * LIGHT[1], WU[2] * LIGHT[0] - WU[0] * LIGHT[2], WU[0] * LIGHT[1] - WU[1] * LIGHT[0]];
+const envC = document.createElement('canvas'), envX = envC.getContext('2d');
+let envImg = null, staticPix = null;
+
+function renderBallSprite(bx, by) {
+  const N = Math.max(24, Math.ceil(BALL_R * ps * 4));   // 2x supersampled diameter
+  if (envC.width !== N || !envImg) { envC.width = envC.height = N; envImg = envX.createImageData(N, N); }
+  const d = envImg.data, half = N / 2, sw = staticC.width, sp = staticPix;
+  let i = 0;
+  for (let py = 0; py < N; py++) {
+    const ny = (py + 0.5 - half) / half;
+    for (let px = 0; px < N; px++, i += 4) {
+      const nx = (px + 0.5 - half) / half, rho2 = nx * nx + ny * ny;
+      if (rho2 >= 1) { d[i + 3] = 0; continue; }
+      const nz = Math.sqrt(1 - rho2);
+      const rx = 2 * nz * nx, ry = 2 * nz * ny, rz = 2 * nz * nz - 1;
+      let r, g, b;
+      if (rz < 0) {
+        // Ray heads down: find where it meets the board.
+        const t = -BALL_R * (1 + nz) / rz;
+        const hx = bx + nx * BALL_R + t * rx, hy = by + ny * BALL_R + t * ry;
+        const qx = hx * ps + TX | 0, qy = hy * ps + TY | 0;
+        if (sp && qx >= 0 && qy >= 0 && qx < sw && qy < staticC.height) {
+          const k = (qy * sw + qx) * 4;
+          r = sp[k]; g = sp[k + 1]; b = sp[k + 2];
+          const dd = Math.hypot(hx - bx - 0.1, hy - by - 0.14);   // the ball's own shadow
+          if (dd < 0.75) { const s = 0.72 + 0.28 * dd / 0.75; r *= s; g *= s; b *= s; }
+        } else { r = 30; g = 21; b = 14; }
+      } else {
+        // Ray heads up: dark room walls near the horizon, bright ceiling overhead, two windows.
+        const dl = rx * LIGHT[0] + ry * LIGHT[1] + rz * LIGHT[2];
+        const sky = rz < 0.06 ? 0 : rz > 0.6 ? 1 : (rz - 0.06) / 0.54, ss = sky * sky * (3 - 2 * sky);
+        const lift = 40 * Math.max(0, dl);
+        r = 30 + 135 * ss + lift; g = 30 + 141 * ss + lift; b = 32 + 152 * ss + lift;
+        const az = Math.atan2(ry, rx);
+        if (rz > 0.07 && rz < 0.3 && az > 0.3 && az < 1.0 && Math.abs(az - 0.65) > 0.03 && Math.abs(rz - 0.185) > 0.012) {
+          r = 200; g = 208; b = 220;
+        }
+        if (dl > 0.7) {
+          const a = Math.abs(rx * WU[0] + ry * WU[1] + rz * WU[2]);
+          const w = Math.abs(rx * WW[0] + ry * WW[1] + rz * WW[2]);
+          if (a < 0.27 && w < 0.2 && a > 0.022 && w > 0.022) r = g = b = 900;
+          else { const glow = Math.pow(dl, 40) * 200; r += glow; g += glow; b += glow; }
+        }
+      }
+      // Polished steel: strong, slightly cool reflection that rises at grazing angles.
+      const f = 0.8 + 0.2 * Math.pow(1 - nz, 3);
+      d[i] = r * f * 0.94; d[i + 1] = g * f * 0.97; d[i + 2] = b * f;
+      const edge = (1 - Math.sqrt(rho2)) * half;
+      d[i + 3] = edge >= 1 ? 255 : edge * 255;
+    }
+  }
+  envX.putImageData(envImg, 0, 0);
+}
+
+function drawBall(c, x, y, k, dark, hgt = 0) {
+  const r = BALL_R * k;
+  if (dark < 1) {
+    c.globalAlpha = (1 - dark) / (1 + hgt * 0.8);
+    // Soft cast shadow away from the light, a darker core, and a tight contact shadow.
+    const sx = x + r * 0.42 + hgt * 0.35, sy = y + r * 0.58 + hgt * 0.5;
+    let g = c.createRadialGradient(sx, sy, 0, sx, sy, r * 1.5);
+    g.addColorStop(0, 'rgba(10,4,0,0.6)'); g.addColorStop(0.45, 'rgba(10,4,0,0.32)'); g.addColorStop(1, 'rgba(10,4,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(sx, sy, r * 1.5, 0, TAU); c.fill();
+    c.globalAlpha *= Math.max(0, 1 - hgt * 1.5);
+    g = c.createRadialGradient(x + r * 0.22, y + r * 0.3, 0, x + r * 0.22, y + r * 0.3, r * 1.05);
+    g.addColorStop(0, 'rgba(5,2,0,0.55)'); g.addColorStop(1, 'rgba(5,2,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(x + r * 0.22, y + r * 0.3, r * 1.05, 0, TAU); c.fill();
+    g = c.createRadialGradient(x + r * 0.08, y + r * 0.12, 0, x + r * 0.08, y + r * 0.12, r * 0.6);
+    g.addColorStop(0, 'rgba(0,0,0,0.85)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = g; c.beginPath(); c.arc(x + r * 0.08, y + r * 0.12, r * 0.6, 0, TAU); c.fill();
+    c.globalAlpha = 1;
+  }
+
+  renderBallSprite(x, y);
+  c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high';
+  c.drawImage(envC, x - r, y - r, r * 2, r * 2);
+
+  // Form shading: the side turned away from the light falls off, so the ball reads as round.
+  let sh = c.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.3, x - r * 0.1, y - r * 0.1, r * 1.3);
+  sh.addColorStop(0, 'rgba(0,0,0,0)'); sh.addColorStop(0.6, 'rgba(0,0,0,0.12)'); sh.addColorStop(1, 'rgba(0,0,0,0.5)');
+  c.fillStyle = sh; c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill();
+
+  // Bloom around the window highlight.
+  const hx = x - r * 0.27, hy = y - r * 0.33;
+  c.globalCompositeOperation = 'lighter';
+  const g = c.createRadialGradient(hx, hy, 0, hx, hy, r * 0.32);
+  g.addColorStop(0, `rgba(255,255,255,${0.3 * (1 - dark)})`); g.addColorStop(1, 'rgba(255,255,255,0)');
+  c.fillStyle = g; c.beginPath(); c.arc(hx, hy, r * 0.32, 0, TAU); c.fill();
+  c.globalCompositeOperation = 'source-over';
+
+  c.lineWidth = r * 0.03; c.strokeStyle = 'rgba(0,0,0,0.4)';
+  c.beginPath(); c.arc(x, y, r * 0.985, 0, TAU); c.stroke();
+
+  if (dark > 0) {
+    c.fillStyle = `rgba(6,3,0,${dark})`;
+    c.beginPath(); c.arc(x, y, r, 0, TAU); c.fill();
+  }
+}
+
+// ---------- Audio (Web Audio, all synthesized) ----------
+let soundOn = true;
+try { soundOn = localStorage.getItem('tiltmaze-sound') !== 'off'; } catch (e) {}
+let AC = null, master = null, echo = null, whiteBuf = null, brownBuf = null, roll = null;
+
+function initAudio() {
+  if (AC) { AC.resume(); return; }
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  if (!Ctx) return;
+  AC = new Ctx();
+  const comp = AC.createDynamicsCompressor();
+  comp.threshold.value = -12; comp.ratio.value = 4;
+  comp.connect(AC.destination);
+  master = AC.createGain(); master.gain.value = soundOn ? 0.9 : 0; master.connect(comp);
+
+  const len = AC.sampleRate * 2;
+  whiteBuf = AC.createBuffer(1, len, AC.sampleRate);
+  brownBuf = AC.createBuffer(1, len, AC.sampleRate);
+  const wd = whiteBuf.getChannelData(0), bd = brownBuf.getChannelData(0);
+  let last = 0;
+  for (let i = 0; i < len; i++) {
+    const w = Math.random() * 2 - 1;
+    wd[i] = w;
+    last = (last + 0.02 * w) / 1.02;
+    bd[i] = last * 3.5;
+  }
+
+  // Short echo for the chime.
+  echo = AC.createDelay(1); echo.delayTime.value = 0.21;
+  const fb = AC.createGain(); fb.gain.value = 0.32;
+  const wet = AC.createGain(); wet.gain.value = 0.35;
+  echo.connect(fb).connect(echo); echo.connect(wet).connect(master);
+
+  // Rolling: smooth low noise through two resonant filters, a rumbling roll tone and the
+  // board's own hollow ring. No high frequencies, so it never sounds sandy.
+  const loopSrc = buf => { const n = AC.createBufferSource(); n.buffer = buf; n.loop = true; return n; };
+  const rollSrc = loopSrc(brownBuf), ringSrc = loopSrc(brownBuf);
+  const rollF = AC.createBiquadFilter(); rollF.type = 'bandpass'; rollF.frequency.value = 150; rollF.Q.value = 2.5;
+  const ringF = AC.createBiquadFilter(); ringF.type = 'bandpass'; ringF.frequency.value = 400; ringF.Q.value = 3;
+  const tame = AC.createBiquadFilter(); tame.type = 'lowpass'; tame.frequency.value = 1100; tame.Q.value = 0.5;
+  const gRoll = AC.createGain(), gRing = AC.createGain();
+  gRoll.gain.value = gRing.gain.value = 0;
+  rollSrc.connect(rollF).connect(gRoll).connect(tame);
+  ringSrc.connect(ringF).connect(gRing).connect(tame);
+  tame.connect(master);
+  rollSrc.start(0, 0); ringSrc.start(0, 0.9);
+  roll = { rollSrc, ringSrc, rollF, ringF, gRoll, gRing };
+
+  // iOS unlock.
+  const s = AC.createBufferSource(); s.buffer = AC.createBuffer(1, 1, 22050); s.connect(AC.destination); s.start(0);
+  AC.resume();
+}
+
+function updateRoll(speed, on) {
+  if (!roll) return;
+  const t = AC.currentTime, v = on ? Math.min(1, speed / 16) : 0;
+  const amp = Math.pow(v, 0.8);
+  roll.gRoll.gain.setTargetAtTime(amp * 2.4, t, 0.06);
+  roll.gRing.gain.setTargetAtTime(amp * 1.1, t, 0.06);
+  roll.rollF.frequency.setTargetAtTime(140 + v * 260, t, 0.06);
+  roll.ringF.frequency.setTargetAtTime(380 + v * 520, t, 0.06);
+  roll.rollSrc.playbackRate.setTargetAtTime(0.8 + v * 0.8, t, 0.06);
+  roll.ringSrc.playbackRate.setTargetAtTime(0.8 + v * 0.8, t, 0.06);
+}
+
+function tone(f0, f1, dur, amp, type, t, dest) {
+  const o = AC.createOscillator(); o.type = type;
+  o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  const g = AC.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(Math.max(amp, 0.0002), t + 0.003);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(dest || master);
+  o.start(t); o.stop(t + dur + 0.03);
+}
+
+function noiseBurst(freq, q, dur, amp, t) {
+  const s = AC.createBufferSource(); s.buffer = whiteBuf;
+  const f = AC.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = q;
+  const g = AC.createGain();
+  g.gain.setValueAtTime(0.0001, t);
+  g.gain.exponentialRampToValueAtTime(Math.max(amp, 0.0002), t + 0.002);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  s.connect(f).connect(g).connect(master);
+  s.start(t, Math.random() * 1.5); s.stop(t + dur + 0.03);
+}
+
+// Small steel ball striking solid hardwood: a hard contact tick, a dense broadband knock and a
+// heavily damped low thud. No clean ringing pitch, which is what made it sound hollow.
+function clack(v, t) {
+  noiseBurst(3200, 1.0, 0.006, v * 0.7, t);
+  noiseBurst(900, 0.7, 0.03, v * 1.0, t);
+  noiseBurst(1800, 0.9, 0.018, v * 0.4, t);
+  tone(210, 140, 0.05, v * 0.75, 'sine', t);
+  tone(110, 80, 0.07, v * 0.55, 'sine', t);
+  tone(320, 260, 0.03, v * 0.3, 'triangle', t);
+}
+
+function tock(v) {
+  if (AC) clack(v, AC.currentTime + 0.003);
+}
+
+function dropSound() {
+  if (!AC) return;
+  const t = AC.currentTime + 0.01;
+  clack(0.8, t);                                   // clips the lip of the hole
+  tone(190, 150, 0.25, 0.45, 'sine', t + 0.12);    // lands in the hollow box below
+  noiseBurst(420, 7, 0.35, 0.9, t + 0.12);
+  let tt = t + 0.26, gap = 0.14, a = 0.7;
+  for (let i = 0; i < 9; i++) {                    // bounces, closer together and quieter
+    clack(a, tt);
+    noiseBurst(420, 8, 0.15, a * 0.45, tt);
+    tt += gap; gap *= 0.75; a *= 0.78;
+  }
+}
+
+// Steel ball striking steel ball: a bright, short tink.
+function tink(v) {
+  if (!AC) return;
+  const t = AC.currentTime + 0.003, f = 3600 + Math.random() * 900;
+  tone(f, f * 0.995, 0.07, v * 0.22, 'sine', t);
+  tone(f * 1.47, f * 1.46, 0.04, v * 0.1, 'sine', t);
+  noiseBurst(6000, 2, 0.004, v * 0.35, t);
+}
+
+function fanfare() {
+  if (!AC) return;
+  const t = AC.currentTime + 0.02;
+  [783.99, 1046.5, 1318.51, 1567.98].forEach((f, i) => bell(f, t + i * 0.12, 0.2));
+  [1046.5, 1318.51, 1567.98, 2093].forEach(f => bell(f, t + 0.55, 0.13));
+}
+
+function ding(i) {
+  if (AC) bell(1318.51 * Math.pow(1.122, i), AC.currentTime + 0.01, 0.16);
+}
+
+function bell(f, t, amp) {
+  for (const [m, a, d] of [[1, 1, 1.8], [2.76, 0.35, 0.9], [5.4, 0.12, 0.45]]) {
+    tone(f * m, f * m * 0.999, d, amp * a, 'sine', t);
+    tone(f * m, f * m * 0.999, d, amp * a * 0.6, 'sine', t, echo);
+  }
+}
+
+function winSound() {
+  if (!AC) return;
+  const t = AC.currentTime + 0.01;
+  tone(220, 110, 0.15, 0.5, 'sine', t);
+  [783.99, 987.77, 1174.66, 1567.98].forEach((f, i) => bell(f, t + 0.08 + i * 0.11, 0.22));
+}
+
+function buzz(ms) { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} }
+
+// ---------- Input ----------
+const motion = { active: false, beta: 0, gamma: 0, b0: null, g0: 0 };
+const tilt = { x: 0, y: 0 }, target = { x: 0, y: 0 };
+const keys = {};
+const drag = { active: false, id: null, x0: 0, y0: 0, x: 0, y: 0 };
+
+function onOrient(e) {
+  if (e.beta == null || e.gamma == null) return;
+  motion.active = true; motion.beta = e.beta; motion.gamma = e.gamma;
+  if (motion.b0 === null) calibrate();
+}
+function screenAngle() {
+  const o = screen.orientation, a = o && typeof o.angle === 'number' ? o.angle : (window.orientation || 0);
+  return ((Math.round(a / 90) * 90) % 360 + 360) % 360;
+}
+// Device tilt turned into screen directions: [toward screen right, toward screen bottom], in degrees.
+function screenTilt() {
+  const b = motion.beta, g = motion.gamma;
+  switch (screenAngle()) {
+    case 90: return [b, -g];
+    case 180: return [-g, -b];
+    case 270: return [-b, g];
+    default: return [g, b];
+  }
+}
+function calibrate() { const [x, y] = screenTilt(); motion.g0 = clamp(x, -20, 20); motion.b0 = clamp(y, -10, 75); }
+
+function requestMotion() {
+  try {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // Must be called directly inside the tap handler on iOS.
+      return DeviceOrientationEvent.requestPermission().then(r => {
+        if (r !== 'granted') return false;
+        window.addEventListener('deviceorientation', onOrient);
+        return true;
+      }).catch(() => false);
+    }
+    window.addEventListener('deviceorientation', onOrient);
+    return Promise.resolve(true);
+  } catch (e) { return Promise.resolve(false); }
+}
+
+function computeTarget() {
+  const kx = (keys.ArrowRight ? 1 : 0) - (keys.ArrowLeft ? 1 : 0);
+  const ky = (keys.ArrowDown ? 1 : 0) - (keys.ArrowUp ? 1 : 0);
+  const dz = a => Math.sign(a) * Math.max(0, Math.abs(a) - 0.01);
+  if (drag.active) {
+    const u = 3 * scale;
+    target.x = clamp((drag.x - drag.x0) / u, -1, 1) * DRAG_TILT;
+    target.y = clamp((drag.y - drag.y0) / u, -1, 1) * DRAG_TILT;
+  } else if (kx || ky) {
+    target.x = kx * KEY_TILT; target.y = ky * KEY_TILT;
+  } else if (motion.active) {
+    const D = Math.PI / 180, [x, y] = screenTilt();
+    target.x = clamp(dz((x - motion.g0) * D), -MAX_TILT, MAX_TILT);
+    target.y = clamp(dz((y - motion.b0) * D), -MAX_TILT, MAX_TILT);
+  } else {
+    target.x = 0; target.y = 0;
+  }
+}
+
+canvas.addEventListener('pointerdown', e => {
+  drag.active = true; drag.id = e.pointerId;
+  drag.x0 = drag.x = e.clientX; drag.y0 = drag.y = e.clientY;
+  try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+});
+canvas.addEventListener('pointermove', e => { if (drag.active && e.pointerId === drag.id) { drag.x = e.clientX; drag.y = e.clientY; } });
+const endDrag = e => { if (e.pointerId === drag.id) drag.active = false; };
+canvas.addEventListener('pointerup', endDrag);
+canvas.addEventListener('pointercancel', endDrag);
+
+addEventListener('keydown', e => {
+  if (e.key.startsWith('Arrow')) { keys[e.key] = true; e.preventDefault(); }
+  if ((e.key === 'r' || e.key === 'R') && state === 'playing') startLevel(level);
+});
+addEventListener('keyup', e => { keys[e.key] = false; });
+addEventListener('blur', () => { for (const k in keys) keys[k] = false; drag.active = false; });
+
+// No scrolling, pinch or double-tap zoom.
+document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+document.addEventListener('gesturestart', e => e.preventDefault());
+document.addEventListener('dblclick', e => e.preventDefault());
+
+// ---------- Game state ----------
+let level = 0, state = 'title', time = 0, fall = null;
+const ball = { x: 0, y: 0, vx: 0, vy: 0 };
+const times = [], falls = [];
+let lastTock = 0, toastTimer = 0;
+
+function loadBest() { try { return JSON.parse(localStorage.getItem('tiltmaze-best') || '[]'); } catch (e) { return []; } }
+function saveBest(b) { try { localStorage.setItem('tiltmaze-best', JSON.stringify(b)); } catch (e) {} }
+const best = loadBest();
+
+function fmt(t) {
+  const m = Math.floor(t / 60), s = t - m * 60;
+  return m + ':' + s.toFixed(1).padStart(4, '0');
+}
+
+function startLevel(i) {
+  level = i;
+  renderStatic();
+  const s = LEVELS[i].start;
+  ball.x = s[0]; ball.y = s[1]; ball.vx = ball.vy = 0;
+  fall = null; time = 0; state = 'playing';
+  $('#lvl').textContent = i + 1;
+  $('#timer').textContent = fmt(0);
+}
+
+function showToast(text, ms = 1800) {
+  const t = $('#toast');
+  t.textContent = text; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+function showMsg(title, body, btn, onClick) {
+  $('#msgTitle').textContent = title;
+  $('#msgBody').innerHTML = body;
+  const b = $('#msgBtn');
+  b.textContent = btn;
+  b.onclick = () => { $('#msg').classList.add('hidden'); onClick(); };
+  $('#msg').classList.remove('hidden');
+}
+
+function levelComplete() {
+  times[level] = time;
+  const isBest = !best[level] || time < best[level];
+  if (isBest) { best[level] = time; saveBest(best); }
+  const bestLine = isBest ? 'New best time!' : 'Best: ' + fmt(best[level]);
+  if (level < LEVELS.length - 1) {
+    state = 'won';
+    showMsg(`Level ${level + 1} done`, `Time <b>${fmt(time)}</b><br>${bestLine}`, 'Next level', () => startLevel(level + 1));
+  } else {
+    startCelebration();
+  }
+}
+
+// ---------- Finale: the maze clears and a shower of steel balls pours onto the tray ----------
+let tray = false, fadeC = null, fadeT = 1, shower = [], celebT = 0, resultsShown = false;
+let lastTink = 0, lastLand = 0;
+const PAR = [[15, 30], [30, 60], [45, 90]];   // seconds for 3 stars (with no falls) and 2 stars
+const starsFor = i => 1 + (times[i] <= PAR[i][1] ? 1 : 0) + (times[i] <= PAR[i][0] && !falls[i] ? 1 : 0);
+
+function startCelebration() {
+  state = 'celebrate'; celebT = 0; resultsShown = false;
+  $('#timer').textContent = fmt(times.reduce((a, b) => a + (b || 0), 0));
+  fadeC = document.createElement('canvas');
+  fadeC.width = staticC.width; fadeC.height = staticC.height;
+  fadeC.getContext('2d').drawImage(staticC, 0, 0);
+  fadeT = 0;
+  tray = true; renderStatic();
+  shower = [];
+  for (let i = 0; i < 14; i++) {
+    shower.push({
+      x: 1.2 + Math.random() * (BW - 2.4), y: 1.2 + Math.random() * (BH - 2.4),
+      vx: (Math.random() - 0.5) * 3, vy: (Math.random() - 0.5) * 3,
+      z: 3 + Math.random() * 1.5, vz: 0, delay: 0.45 + i * 0.09 + Math.random() * 0.05,
+    });
+  }
+  buzz([30, 50, 30, 50, 60]);
+}
+
+function stepShower(dt) {
+  const ax = G * Math.sin(tilt.x), ay = G * Math.sin(tilt.y);
+  const n = Math.max(1, Math.ceil(dt * 240)), h = dt / n;
+  const hit = { wall: 0, ball: 0, land: 0 };
+  for (const b of shower) if (b.delay > 0) b.delay -= dt;
+  for (let s = 0; s < n; s++) {
+    for (const b of shower) {
+      if (b.delay > 0) continue;
+      if (b.z > 0 || b.vz !== 0) {
+        b.vz -= 60 * h; b.z += b.vz * h;
+        if (b.z <= 0) {
+          b.z = 0;
+          if (b.vz < -2.5) { hit.land = Math.max(hit.land, -b.vz); b.vz = -b.vz * 0.32; } else b.vz = 0;
+        }
+      }
+      if (b.z > 0.3) { b.x += b.vx * h; b.y += b.vy * h; continue; }
+      b.vx += ax * h; b.vy += ay * h;
+      applyFriction(b, ax, ay, h);
+      b.x += b.vx * h; b.y += b.vy * h;
+      hit.wall = Math.max(hit.wall, collideWalls(b, FRAME));
+    }
+    // Ball-to-ball: equal masses, a fairly lively steel bounce.
+    for (let i = 0; i < shower.length; i++) {
+      const a = shower[i];
+      if (a.delay > 0 || a.z > 0.3) continue;
+      for (let j = i + 1; j < shower.length; j++) {
+        const b = shower[j];
+        if (b.delay > 0 || b.z > 0.3) continue;
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+        if (d >= BALL_R * 2 || d < 1e-6) continue;
+        const nx = dx / d, ny = dy / d, push = (BALL_R * 2 - d) / 2;
+        a.x -= nx * push; a.y -= ny * push; b.x += nx * push; b.y += ny * push;
+        const vn = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny;
+        if (vn < 0) {
+          const imp = -(1 + 0.6) * vn / 2;
+          a.vx -= imp * nx; a.vy -= imp * ny; b.vx += imp * nx; b.vy += imp * ny;
+          hit.ball = Math.max(hit.ball, -vn);
+        }
+      }
+    }
+  }
+  return hit;
+}
+
+function showerSpeed() {
+  let sum = 0;
+  for (const b of shower) if (b.delay <= 0 && b.z <= 0.3) sum += b.vx * b.vx + b.vy * b.vy;
+  return Math.min(20, Math.sqrt(sum) * 0.6);
+}
+
+function showResults() {
+  resultsShown = true;
+  const total = times.reduce((a, b) => a + (b || 0), 0);
+  let bestTotal = 0;
+  try { bestTotal = parseFloat(localStorage.getItem('tiltmaze-best-total')) || 0; } catch (e) {}
+  const isBest = !bestTotal || total < bestTotal;
+  if (isBest) try { localStorage.setItem('tiltmaze-best-total', total); } catch (e) {}
+
+  const stars = LEVELS.map((_, i) => starsFor(i));
+  $('#resRows').innerHTML = LEVELS.map((L, i) => `
+    <div class="res-row">
+      <span class="res-name"><small>${i + 1}</small>${L.name}</span>
+      <span class="res-time">${fmt(times[i] || 0)}</span>
+      <span class="res-stars">${'<i>★</i>'.repeat(3)}</span>
+    </div>`).join('');
+  $('#resTotal').textContent = fmt(total);
+  $('#resBest').classList.toggle('hidden', !isBest);
+  $('#resStars').textContent = '0';
+  $('#results').classList.remove('hidden');
+  $('#resCard').classList.remove('hidden');
+  $('#showRes').classList.add('hidden');
+  fanfare();
+
+  // Light up earned stars one by one.
+  const rows = [...document.querySelectorAll('.res-stars')];
+  let k = 0, count = 0;
+  stars.forEach((n, i) => {
+    for (let j = 0; j < n; j++) {
+      const at = 900 + k * 230, idx = k;
+      setTimeout(() => {
+        rows[i].children[j].classList.add('on');
+        $('#resStars').textContent = ++count;
+        ding(idx); buzz(12);
+      }, at);
+      k++;
+    }
+  });
+  const shareStars = stars.reduce((a, b) => a + b, 0);
+  $('#shareBtn').onclick = () => {
+    const url = location.origin + location.pathname;
+    const text = `I cleared all 3 levels of the Wooden Tilt Maze in ${fmt(total)} with ${shareStars}/9 ★. Can you beat it?`;
+    if (navigator.share) navigator.share({ title: 'Wooden Tilt Maze', text, url }).catch(() => {});
+    else if (navigator.clipboard) navigator.clipboard.writeText(text + ' ' + url).then(() => showToast('Copied! Paste it anywhere'), () => showToast('Could not copy'));
+  };
+}
+
+function playAgain() {
+  $('#results').classList.add('hidden');
+  tray = false; shower = []; fadeC = null; fadeT = 1;
+  times.length = 0; falls.length = 0;
+  startLevel(0);
+}
+
+// ---------- Physics ----------
+function applyFriction(b, ax, ay, h) {
+  let sp = Math.hypot(b.vx, b.vy);
+  if (sp < 0.03 && Math.hypot(ax, ay) < 2) { b.vx = b.vy = 0; sp = 0; }
+  if (sp > 0) {
+    const ns = Math.max(0, Math.min(MAX_SPEED, sp - (ROLL_FRICTION + DAMPING * sp) * h));
+    b.vx *= ns / sp; b.vy *= ns / sp;
+  }
+}
+
+// Pushes a ball out of any wall it overlaps and bounces it; returns the hardest hit speed.
+function collideWalls(b, walls) {
+  let impact = 0;
+  for (const r of walls) {
+    const cx = clamp(b.x, r[0], r[0] + r[2]), cy = clamp(b.y, r[1], r[1] + r[3]);
+    const dx = b.x - cx, dy = b.y - cy, d2 = dx * dx + dy * dy;
+    if (d2 >= BALL_R * BALL_R) continue;
+    let nx, ny, pen;
+    if (d2 > 1e-12) {
+      const d = Math.sqrt(d2); nx = dx / d; ny = dy / d; pen = BALL_R - d;
+    } else {
+      const l = b.x - r[0], rt = r[0] + r[2] - b.x, t = b.y - r[1], bt = r[1] + r[3] - b.y;
+      const m = Math.min(l, rt, t, bt);
+      if (m === l) { nx = -1; ny = 0; pen = l + BALL_R; }
+      else if (m === rt) { nx = 1; ny = 0; pen = rt + BALL_R; }
+      else if (m === t) { nx = 0; ny = -1; pen = t + BALL_R; }
+      else { nx = 0; ny = 1; pen = bt + BALL_R; }
+    }
+    b.x += nx * pen; b.y += ny * pen;
+    const vn = b.vx * nx + b.vy * ny;
+    if (vn < 0) {
+      const e = -vn > 1.5 ? RESTITUTION : 0;
+      b.vx -= (1 + e) * vn * nx; b.vy -= (1 + e) * vn * ny;
+      impact = Math.max(impact, -vn);
+    }
+  }
+
+  return impact;
+}
+
+function physics(dt) {
+  const L = LEVELS[level];
+  const walls = L.walls.concat(FRAME);
+  const ax = G * Math.sin(tilt.x), ay = G * Math.sin(tilt.y);
+  const n = Math.max(1, Math.ceil(dt * 240)), h = dt / n;
+  let impact = 0;
+
+  for (let s = 0; s < n; s++) {
+    let fx = ax, fy = ay;
+    // Near a hole the ball starts to tip into it.
+    for (const hole of L.holes.concat([L.goal])) {
+      const dx = hole[0] - ball.x, dy = hole[1] - ball.y, d = Math.hypot(dx, dy);
+      if (d < HOLE_R && d > 1e-6) { fx += dx / d * HOLE_PULL; fy += dy / d * HOLE_PULL; }
+    }
+    ball.vx += fx * h; ball.vy += fy * h;
+
+    applyFriction(ball, ax, ay, h);
+    ball.x += ball.vx * h; ball.y += ball.vy * h;
+
+    impact = Math.max(impact, collideWalls(ball, walls));
+
+    for (const hole of L.holes) {
+      if (Math.hypot(hole[0] - ball.x, hole[1] - ball.y) < FALL_R) { startFall(hole, false); return impact; }
+    }
+    if (Math.hypot(L.goal[0] - ball.x, L.goal[1] - ball.y) < FALL_R) { startFall(L.goal, true); return impact; }
+  }
+  return impact;
+}
+
+function startFall(hole, goal) {
+  state = 'falling';
+  fall = { hx: hole[0], hy: hole[1], x0: ball.x, y0: ball.y, t: 0, goal };
+  ball.vx = ball.vy = 0;
+  if (goal) { winSound(); buzz([20, 60, 30]); }
+  else { dropSound(); buzz(40); }
+}
+
+// ---------- Main loop ----------
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000);
+  last = now;
+  update(dt);
+  draw();
+  requestAnimationFrame(frame);
+}
+
+function update(dt) {
+  computeTarget();
+  const k = 1 - Math.exp(-dt * 10);
+  tilt.x += (target.x - tilt.x) * k;
+  tilt.y += (target.y - tilt.y) * k;
+
+  const paused = phoneLandscape.matches || document.hidden;
+  if (state === 'playing' && !paused) {
+    time += dt;
+    const impact = physics(dt);
+    if (impact > 1.0 && last - lastTock > 60) {
+      const v = Math.min(1, (impact - 0.8) / 12);
+      tock(v);
+      if (impact > 2.5) buzz(Math.round(6 + 18 * v));
+      lastTock = last;
+    }
+  } else if (state === 'falling') {
+    fall.t += dt;
+    if (fall.t > (fall.goal ? 0.55 : 0.9)) {
+      if (fall.goal) levelComplete();
+      else { falls[level] = (falls[level] || 0) + 1; showToast('Into the hole! Try again'); startLevel(level); }
+    }
+  } else if (state === 'celebrate' && !paused) {
+    celebT += dt;
+    fadeT = Math.min(1, fadeT + dt / 0.6);
+    const hit = stepShower(dt);
+    if (hit.land > 2.5 && last - lastLand > 35) { tock(Math.min(1, hit.land / 14)); lastLand = last; }
+    if (hit.wall > 1.0 && last - lastTock > 45) { tock(Math.min(1, (hit.wall - 0.8) / 12)); lastTock = last; }
+    if (hit.ball > 0.8 && last - lastTink > 30) { tink(Math.min(1, hit.ball / 10)); lastTink = last; }
+    if (celebT > 2.6 && !resultsShown) showResults();
+  }
+  const rolling = (state === 'playing' || state === 'celebrate') && !paused;
+  updateRoll(state === 'celebrate' ? showerSpeed() : Math.hypot(ball.vx, ball.vy), rolling);
+
+  if (state === 'playing' || state === 'falling') $('#timer').textContent = fmt(time);
+
+}
+
+function draw() {
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(staticC, 0, 0);
+  if (fadeC && fadeT < 1) { ctx.globalAlpha = 1 - fadeT; ctx.drawImage(fadeC, 0, 0); ctx.globalAlpha = 1; }
+  ctx.setTransform(ps, 0, 0, ps, TX, TY);
+  if (state === 'celebrate') {
+    const list = shower.filter(b => b.delay <= 0).sort((a, b) => a.z - b.z);
+    for (const b of list) drawBall(ctx, b.x, b.y, 1 + b.z * 0.09, 0, b.z);
+  } else if (state === 'falling') {
+    const p = Math.min(1, fall.t / 0.35), e = 1 - Math.pow(1 - p, 3);
+    const x = fall.x0 + (fall.hx - fall.x0) * e, y = fall.y0 + (fall.hy - fall.y0) * e;
+    if (p < 1) drawBall(ctx, x, y, 1 - 0.4 * e, Math.min(1, e * 1.1));
+  } else if (state !== 'won' && state !== 'complete') {
+    drawBall(ctx, ball.x, ball.y, 1, 0);
+  }
+}
+
+// ---------- UI wiring ----------
+let wakeLock = null;
+async function requestWake() {
+  try { if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
+}
+document.addEventListener('visibilitychange', () => {
+  if (!AC) return;
+  if (document.hidden) AC.suspend();
+  else { AC.resume(); if (state !== 'title') requestWake(); }
+});
+
+$('#startHint').textContent = isTouch
+  ? 'Hold the device comfortably, then tilt it to roll the ball. Tap ◎ any time to re-level.'
+  : 'Drag the board or use the arrow keys to tilt it. R restarts. On a phone, you tilt the phone itself.';
+
+$('#startBtn').addEventListener('click', () => {
+  const perm = requestMotion();   // first, while still inside the tap
+  initAudio();
+  requestWake();
+  $('#title').classList.add('hidden');
+  startLevel(0);
+  perm.then(ok => {
+    if (!isTouch) return;
+    if (!ok) { showToast('No motion access. Drag the board to tilt', 3500); return; }
+    setTimeout(() => { if (!motion.active) showToast('No tilt data. Drag the board to tilt', 3500); }, 1500);
+  });
+});
+
+$('#againBtn').addEventListener('click', playAgain);
+$('#hideRes').addEventListener('click', () => { $('#resCard').classList.add('hidden'); $('#showRes').classList.remove('hidden'); });
+$('#showRes').addEventListener('click', () => { $('#resCard').classList.remove('hidden'); $('#showRes').classList.add('hidden'); });
+
+$('#resetBtn').addEventListener('click', () => {
+  initAudio();
+  if (state === 'playing' || state === 'falling') { startLevel(level); showToast('Level restarted', 1200); }
+  else if (state === 'celebrate') { playAgain(); showToast('Starting over', 1200); }
+});
+function showSound() {
+  $('#sndOn').style.display = soundOn ? '' : 'none';
+  $('#sndOff').style.display = soundOn ? 'none' : '';
+  $('#soundBtn').setAttribute('aria-pressed', soundOn);
+  $('#soundBtn').setAttribute('aria-label', soundOn ? 'Sound on' : 'Sound off');
+}
+$('#soundBtn').addEventListener('click', () => {
+  soundOn = !soundOn;
+  try { localStorage.setItem('tiltmaze-sound', soundOn ? 'on' : 'off'); } catch (e) {}
+  initAudio();
+  if (master) master.gain.setTargetAtTime(soundOn ? 0.9 : 0, AC.currentTime, 0.02);
+  showSound();
+  showToast(soundOn ? 'Sound on' : 'Sound off', 1000);
+});
+showSound();
+
+$('#calBtn').addEventListener('click', () => {
+  if (motion.active) { calibrate(); showToast('Board leveled', 1200); }
+  else showToast(isTouch ? 'Drag the board to tilt' : 'Drag the board or use arrow keys', 1800);
+});
+
+let resizeTimer = 0;
+addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(layout, 150); });
+// Turning the device re-levels the board for the new hold (a 180° turn fires no resize).
+const reorient = () => setTimeout(() => { if (motion.active) calibrate(); }, 300);
+if (screen.orientation && screen.orientation.addEventListener) screen.orientation.addEventListener('change', reorient);
+else addEventListener('orientationchange', reorient);
+
+layout();
+const s0 = LEVELS[0].start; ball.x = s0[0]; ball.y = s0[1];
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
