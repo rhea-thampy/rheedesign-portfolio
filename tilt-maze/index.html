@@ -962,7 +962,7 @@ function winSound() {
 function buzz(ms) { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} }
 
 // ---------- Input ----------
-const motion = { active: false, beta: 0, gamma: 0, b0: null, g0: 0 };
+const motion = { active: false, beta: 0, gamma: 0, ready: false, c1: 1, s1: 0, c2: 1, s2: 0 };
 const tilt = { x: 0, y: 0 }, target = { x: 0, y: 0 };
 const keys = {};
 const drag = { active: false, id: null, x0: 0, y0: 0, x: 0, y: 0 };
@@ -970,23 +970,37 @@ const drag = { active: false, id: null, x0: 0, y0: 0, x: 0, y: 0 };
 function onOrient(e) {
   if (e.beta == null || e.gamma == null) return;
   motion.active = true; motion.beta = e.beta; motion.gamma = e.gamma;
-  if (motion.b0 === null) calibrate();
+  if (!motion.ready) calibrate();
 }
 function screenAngle() {
   const o = screen.orientation, a = o && typeof o.angle === 'number' ? o.angle : (window.orientation || 0);
   return ((Math.round(a / 90) * 90) % 360 + 360) % 360;
 }
-// Device tilt turned into screen directions: [toward screen right, toward screen bottom], in degrees.
-function screenTilt() {
-  const b = motion.beta, g = motion.gamma;
+// Which way gravity points, seen from the screen: [toward screen right, toward screen bottom, out of the screen].
+// Working from gravity rather than the raw angles keeps tilt smooth at any hold, upright or lying back.
+function screenGravity() {
+  const D = Math.PI / 180, b = motion.beta * D, g = motion.gamma * D;
+  const dx = Math.cos(b) * Math.sin(g), dy = -Math.sin(b), dz = -Math.cos(b) * Math.cos(g);
   switch (screenAngle()) {
-    case 90: return [b, -g];
-    case 180: return [-g, -b];
-    case 270: return [-b, g];
-    default: return [g, b];
+    case 90: return [-dy, -dx, dz];
+    case 180: return [-dx, dy, dz];
+    case 270: return [dy, dx, dz];
+    default: return [dx, -dy, dz];
   }
 }
-function calibrate() { const [x, y] = screenTilt(); motion.g0 = clamp(x, -20, 20); motion.b0 = clamp(y, -10, 75); }
+// The way the device is held right now becomes "level": undo its forward/back angle, then its sideways lean.
+function calibrate() {
+  const [x, y, z] = screenGravity(), r = Math.hypot(y, z), q = Math.hypot(x, r);
+  if (!r) return;
+  motion.c1 = -z / r; motion.s1 = y / r; motion.c2 = r / q; motion.s2 = x / q;
+  motion.ready = true;
+}
+// Tilt away from the levelled hold: [toward screen right, toward screen bottom], in radians.
+function screenTilt() {
+  const [x, y, z] = screenGravity(), m = motion;
+  const y1 = y * m.c1 + z * m.s1, z1 = z * m.c1 - y * m.s1, x2 = x * m.c2 + z1 * m.s2;
+  return [Math.asin(clamp(x2, -1, 1)), Math.asin(clamp(y1, -1, 1))];
+}
 
 function requestMotion() {
   try {
@@ -1016,9 +1030,9 @@ function computeTarget() {
   } else if (kx || ky) {
     target.x = kx * KEY_TILT; target.y = ky * KEY_TILT;
   } else if (motion.active) {
-    const D = Math.PI / 180, [x, y] = screenTilt();
-    target.x = clamp(dz((x - motion.g0) * D), -MAX_TILT, MAX_TILT);
-    target.y = clamp(dz((y - motion.b0) * D), -MAX_TILT, MAX_TILT);
+    const [x, y] = screenTilt();
+    target.x = clamp(dz(x), -MAX_TILT, MAX_TILT);
+    target.y = clamp(dz(y), -MAX_TILT, MAX_TILT);
   } else {
     target.x = 0; target.y = 0;
   }
@@ -1099,6 +1113,7 @@ function levelComplete() {
   if (level < LEVELS.length - 1) {
     state = 'won';
     showMsg(`Level ${level + 1} done`, `Time <b>${fmt(time)}</b><br>${bestLine}`, 'Next level', () => {
+      if (motion.active) calibrate();   // each level starts level with however they now hold it
       startLevel(level + 1); track('level_started', { level: level + 1 });
     });
   } else {
@@ -1235,6 +1250,7 @@ function playAgain() {
   $('#results').classList.add('hidden');
   tray = false; shower = []; fadeC = null; fadeT = 1;
   times.length = 0; falls.length = 0;
+  if (motion.active) calibrate();
   startLevel(0);
 }
 
@@ -1414,6 +1430,7 @@ $('#startBtn').addEventListener('click', () => {
   initAudio();
   requestWake();
   $('#title').classList.add('hidden');
+  if (motion.active) calibrate();   // otherwise the first sensor reading sets the level
   startLevel(0);
   track('game_started', { returning: best.length > 0 });
   track('level_started', { level: 1 });
