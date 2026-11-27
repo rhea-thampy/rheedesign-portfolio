@@ -3,3 +3,5 @@
 /fello  /fello.html  200
 /financial-education  /financial-education.html  200
 /trading-investment  /trading-investment.html  200
+/sticker-desk  https://rhea-thampy.github.io/sticker-desk/  301
+/sticker-desk/*  https://rhea-thampy.github.io/sticker-desk/  301
