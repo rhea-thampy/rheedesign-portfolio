@@ -764,7 +764,68 @@ function renderBallSprite(bx, by) {
   envX.putImageData(envImg, 0, 0);
 }
 
-function drawBall(c, x, y, k, dark, hgt = 0) {
+// Fine scratches on the steel, fixed to the ball's surface so they turn as it rolls.
+// Each is a short arc of points on the unit sphere; same pattern every game.
+const SCRATCHES = (() => {
+  let s = 7;
+  const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const list = [];
+  for (let i = 0; i < 11; i++) {
+    const z = rnd() * 2 - 1, a = rnd() * TAU, q = Math.sqrt(1 - z * z);
+    const p = [q * Math.cos(a), q * Math.sin(a), z];
+    let t = [-p[1], p[0], 0];
+    if (Math.hypot(t[0], t[1]) < 0.2) t = [0, -p[2], p[1]];
+    const tl = Math.hypot(...t); t = t.map(v => v / tl);
+    const b = [p[1] * t[2] - p[2] * t[1], p[2] * t[0] - p[0] * t[2], p[0] * t[1] - p[1] * t[0]];
+    const len = 0.18 + rnd() * 0.4, bend = (rnd() - 0.5) * 0.25, pts = [];
+    for (let j = 0; j <= 5; j++) {
+      const u = (j / 5 - 0.5) * len, w = bend * (j / 5 - 0.5) ** 2 * 4 * len;
+      pts.push([0, 1, 2].map(k => p[k] * Math.cos(u) + t[k] * Math.sin(u) + b[k] * w));
+    }
+    list.push({ pts, light: rnd() < 0.7, a: 0.4 + rnd() * 0.3 });
+  }
+  return list;
+})();
+const newRot = () => [1, 0, 0, 0, 1, 0, 0, 0, 1];
+// Turn a ball's orientation by how far it rolled this frame.
+function rollBall(b, dt) {
+  const v = Math.hypot(b.vx, b.vy);
+  if (v < 1e-4) return;
+  const th = v * dt / BALL_R, ax = -b.vy / v, ay = b.vx / v, c = Math.cos(th), s = Math.sin(th), C = 1 - c;
+  const R = [c + ax * ax * C, ax * ay * C, ay * s, ax * ay * C, c + ay * ay * C, -ax * s, -ay * s, ax * s, c];
+  const M = b.rot, N = new Array(9);
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++)
+    N[i * 3 + j] = R[i * 3] * M[j] + R[i * 3 + 1] * M[3 + j] + R[i * 3 + 2] * M[6 + j];
+  // Keep it a clean rotation as small errors add up.
+  const r0 = [N[0], N[1], N[2]], l0 = Math.hypot(...r0); r0.forEach((v, i) => r0[i] = v / l0);
+  const d = N[3] * r0[0] + N[4] * r0[1] + N[5] * r0[2];
+  const r1 = [N[3] - d * r0[0], N[4] - d * r0[1], N[5] - d * r0[2]], l1 = Math.hypot(...r1); r1.forEach((v, i) => r1[i] = v / l1);
+  b.rot = [...r0, ...r1, r0[1] * r1[2] - r0[2] * r1[1], r0[2] * r1[0] - r0[0] * r1[2], r0[0] * r1[1] - r0[1] * r1[0]];
+}
+// Any orientation, so the finale's balls don't all show the same scratches.
+function randomRot() {
+  const b = { vx: 1, vy: 0, rot: newRot() };
+  rollBall(b, Math.random() * TAU * BALL_R);
+  b.vx = 0; b.vy = 1; rollBall(b, Math.random() * TAU * BALL_R);
+  return b.rot;
+}
+function drawBallScratches(c, x, y, r, M) {
+  c.lineCap = 'round'; c.lineWidth = r * 0.028;
+  for (const sc of SCRATCHES) {
+    let prev = null;
+    for (const p of sc.pts) {
+      const q = [0, 1, 2].map(i => M[i * 3] * p[0] + M[i * 3 + 1] * p[1] + M[i * 3 + 2] * p[2]);
+      if (prev && prev[2] > 0.08 && q[2] > 0.08) {
+        const a = sc.a * Math.min(prev[2], q[2]) ** 0.6;
+        c.strokeStyle = sc.light ? `rgba(240,244,248,${a})` : `rgba(15,15,20,${a * 0.8})`;
+        c.beginPath(); c.moveTo(x + prev[0] * r, y + prev[1] * r); c.lineTo(x + q[0] * r, y + q[1] * r); c.stroke();
+      }
+      prev = q;
+    }
+  }
+}
+
+function drawBall(c, x, y, k, dark, hgt = 0, rot = ball.rot) {
   const r = BALL_R * k;
   if (dark < 1) {
     c.globalAlpha = (1 - dark) / (1 + hgt * 0.8);
@@ -786,6 +847,7 @@ function drawBall(c, x, y, k, dark, hgt = 0) {
   renderBallSprite(x, y);
   c.imageSmoothingEnabled = true; c.imageSmoothingQuality = 'high';
   c.drawImage(envC, x - r, y - r, r * 2, r * 2);
+  drawBallScratches(c, x, y, r, rot);
 
   // Form shading: the side turned away from the light falls off, so the ball reads as round.
   let sh = c.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.3, x - r * 0.1, y - r * 0.1, r * 1.3);
@@ -959,7 +1021,30 @@ function winSound() {
   [783.99, 987.77, 1174.66, 1567.98].forEach((f, i) => bell(f, t + 0.08 + i * 0.11, 0.22));
 }
 
-function buzz(ms) { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} }
+// Haptics. Android vibrates; iPhone Safari has no vibrate, but toggling a hidden switch control
+// gives a short system tap there (iOS 18+), so a pattern becomes one tap per pulse.
+let tapLabel = null, lastTap = 0;
+function iosTap() {
+  const now = performance.now();
+  if (now - lastTap < 35) return;
+  lastTap = now;
+  if (!tapLabel) {
+    tapLabel = document.createElement('label');
+    tapLabel.setAttribute('aria-hidden', 'true');
+    tapLabel.style.cssText = 'position:fixed;left:-99px;top:0;width:1px;height:1px;opacity:0;pointer-events:none';
+    tapLabel.innerHTML = '<input type="checkbox" switch tabindex="-1">';
+    document.body.appendChild(tapLabel);
+  }
+  tapLabel.click();
+}
+function buzz(ms) {
+  try {
+    if (navigator.vibrate) { navigator.vibrate(ms); return; }
+    if (!isTouch) return;
+    const p = Array.isArray(ms) ? ms : [ms];
+    for (let i = 0, t = 0; i < p.length; t += p[i] + (p[i + 1] || 0), i += 2) setTimeout(iosTap, t);
+  } catch (e) {}
+}
 
 // ---------- Input ----------
 const motion = { active: false, beta: 0, gamma: 0, ready: false, c1: 1, s1: 0, c2: 1, s2: 0 };
@@ -1063,7 +1148,7 @@ document.addEventListener('dblclick', e => e.preventDefault());
 // ---------- Game state ----------
 let level = 0, state = 'title', time = 0, fall = null;
 let inputUse = {}, playSecs = 0, lastSent = 0;
-const ball = { x: 0, y: 0, vx: 0, vy: 0 };
+const ball = { x: 0, y: 0, vx: 0, vy: 0, rot: newRot() };
 const times = [], falls = [];
 let lastTock = 0, toastTimer = 0;
 
@@ -1103,16 +1188,33 @@ function showMsg(title, body, btn, onClick) {
   $('#msg').classList.remove('hidden');
 }
 
+// A random, upbeat headline for each finished level, picked to fit how the run went.
+const CHEERS = {
+  any: ['Hole in one!', 'On a roll!', 'Right on the ball!', 'Wood you look at that!', 'Smooth moves!',
+    'That ball listens to you!', 'Nailed it!', 'Like it was on rails!', 'Steel-y skilled!', 'Rolling with it!'],
+  clean: ['Not a single wobble!', 'Clean as a whistle!', 'Zero holes. Pure skill.', 'Smooth as fresh varnish!', 'Nerves of steel!'],
+  comeback: ['Persistence pays off!', 'The holes couldn’t stop you!', 'Never gave up. Love it!', 'Back on track and through!', 'Bounced right back!'],
+  best: ['New personal best!', 'Faster than ever!', 'Beat your own record!'],
+};
+let lastCheer = '';
+function cheer(fell, isBest, hadBest) {
+  const pool = isBest && hadBest && Math.random() < 0.6 ? CHEERS.best
+    : fell === 2 && Math.random() < 0.5 ? ['Third time’s the charm!']
+    : Math.random() < 0.5 ? (fell ? CHEERS.comeback : CHEERS.clean) : CHEERS.any;
+  const opts = pool.filter(m => m !== lastCheer);
+  return lastCheer = opts[Math.floor(Math.random() * opts.length)] || pool[0];
+}
+
 function levelComplete() {
   times[level] = time;
-  const isBest = !best[level] || time < best[level];
+  const hadBest = !!best[level], isBest = !best[level] || time < best[level];
   const input = Object.keys(inputUse).sort((a, b) => inputUse[b] - inputUse[a])[0] || 'none';
   track('level_completed', { level: level + 1, seconds: +time.toFixed(1), falls: falls[level] || 0, input, new_best: isBest });
   if (isBest) { best[level] = time; saveBest(best); }
   const bestLine = isBest ? 'New best time!' : 'Best: ' + fmt(best[level]);
   if (level < LEVELS.length - 1) {
     state = 'won';
-    showMsg(`Level ${level + 1} done`, `Time <b>${fmt(time)}</b><br>${bestLine}`, 'Next level', () => {
+    showMsg(cheer(falls[level] || 0, isBest, hadBest), `Level ${level + 1} cleared in <b>${fmt(time)}</b><br>${bestLine}`, 'Next level', () => {
       if (motion.active) calibrate();   // each level starts level with however they now hold it
       startLevel(level + 1); track('level_started', { level: level + 1 });
     });
@@ -1140,7 +1242,7 @@ function startCelebration() {
     shower.push({
       x: 1.2 + Math.random() * (BW - 2.4), y: 1.2 + Math.random() * (BH - 2.4),
       vx: (Math.random() - 0.5) * 3, vy: (Math.random() - 0.5) * 3,
-      z: 3 + Math.random() * 1.5, vz: 0, delay: 0.45 + i * 0.09 + Math.random() * 0.05,
+      z: 3 + Math.random() * 1.5, vz: 0, delay: 0.45 + i * 0.09 + Math.random() * 0.05, rot: randomRot(),
     });
   }
   buzz([30, 50, 30, 50, 60]);
@@ -1327,7 +1429,7 @@ function startFall(hole, goal) {
   state = 'falling';
   fall = { hx: hole[0], hy: hole[1], x0: ball.x, y0: ball.y, t: 0, goal };
   ball.vx = ball.vy = 0;
-  if (goal) { winSound(); buzz([20, 60, 30]); }
+  if (goal) { winSound(); buzz([30, 70, 30, 70, 50]); }
   else { dropSound(); buzz(40); }
 }
 
@@ -1353,10 +1455,11 @@ function update(dt) {
     if (inputNow !== 'none') inputUse[inputNow] = (inputUse[inputNow] || 0) + dt;
     time += dt;
     const impact = physics(dt);
+    rollBall(ball, dt);
     if (impact > 1.0 && last - lastTock > 60) {
       const v = Math.min(1, (impact - 0.8) / 12);
       tock(v);
-      if (impact > 2.5) buzz(Math.round(6 + 18 * v));
+      buzz(Math.round(8 + 18 * v));   // every knock against a wall
       lastTock = last;
     }
   } else if (state === 'falling') {
@@ -1372,6 +1475,7 @@ function update(dt) {
     celebT += dt;
     fadeT = Math.min(1, fadeT + dt / 0.6);
     const hit = stepShower(dt);
+    for (const b of shower) if (b.delay <= 0) rollBall(b, dt);
     if (hit.land > 2.5 && last - lastLand > 35) { tock(Math.min(1, hit.land / 14)); lastLand = last; }
     if (hit.wall > 1.0 && last - lastTock > 45) { tock(Math.min(1, (hit.wall - 0.8) / 12)); lastTock = last; }
     if (hit.ball > 0.8 && last - lastTink > 30) { tink(Math.min(1, hit.ball / 10)); lastTink = last; }
@@ -1392,7 +1496,7 @@ function draw() {
   ctx.setTransform(ps, 0, 0, ps, TX, TY);
   if (state === 'celebrate') {
     const list = shower.filter(b => b.delay <= 0).sort((a, b) => a.z - b.z);
-    for (const b of list) drawBall(ctx, b.x, b.y, 1 + b.z * 0.09, 0, b.z);
+    for (const b of list) drawBall(ctx, b.x, b.y, 1 + b.z * 0.09, 0, b.z, b.rot);
   } else if (state === 'falling') {
     const p = Math.min(1, fall.t / 0.35), e = 1 - Math.pow(1 - p, 3);
     const x = fall.x0 + (fall.hx - fall.x0) * e, y = fall.y0 + (fall.hy - fall.y0) * e;
